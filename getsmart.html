@@ -957,7 +957,7 @@ body{background:#000}
       <button class="theme-btn" onclick="showScreen('themes')">🎨 Theme</button>
       <span class="sync-dot" id="sync-dot" title="Data synced"></span>
       <button class="theme-btn" id="topbar-signin-btn" onclick="showLoginScreenUI()" style="display:none">Sign in</button>
-      <div class="topbar-user" id="topbar-user" onclick="handleAvatarClick()" style="display:none" title="Sign out">
+      <div class="topbar-user" id="topbar-user" onclick="handleAvatarClick()" style="display:none" title="Profile & settings">
         <img class="topbar-avatar" id="topbar-avatar" src="" alt="" style="display:none"/>
         <div class="topbar-avatar-placeholder" id="topbar-avatar-placeholder">?</div>
         <span class="topbar-username" id="topbar-username"></span>
@@ -1266,6 +1266,32 @@ body{background:#000}
       <p style="margin:0 0 10px"><strong>Privacy.</strong> No personal data is sold or shared with third parties. Your name and email (from Google Sign-In) are used only to save progress across devices.</p>
       <p style="margin:0"><strong>Free &amp; non-commercial.</strong> BrainSpark is free to use and not for resale. &copy; <span class="footer-year-modal"></span> BrainSpark.</p>
     </div>
+  </div>
+</div>
+
+<!-- Profile Modal -->
+<div class="result-overlay" id="profile-modal">
+  <div class="result-card" style="max-width:360px">
+    <div style="font-size:48px;margin-bottom:8px">🧒</div>
+    <div class="result-title" style="font-size:22px;margin-bottom:6px">Your Profile</div>
+    <div style="font-size:13px;color:var(--text2);margin-bottom:18px;line-height:1.5" id="profile-google-name"></div>
+    <div class="name-input-wrap" style="margin-bottom:6px">
+      <span class="name-input-icon">✏️</span>
+      <input class="name-input" id="profile-name-input" type="text" maxlength="20"
+        placeholder="Enter your name..."
+        oninput="onProfileNameInput(this.value)"
+        onkeydown="if(event.key==='Enter')saveProfileName()"/>
+    </div>
+    <div class="name-greeting" id="profile-greeting" style="margin-bottom:16px;min-height:24px"></div>
+    <button class="btn btn-primary" style="width:100%" onclick="saveProfileName()">
+      Save Name ✓
+    </button>
+    <button class="btn btn-secondary" style="width:100%;margin-top:10px;font-size:13px;color:var(--wrong)" onclick="confirmSignOut()">
+      Sign out
+    </button>
+    <button class="btn btn-secondary" style="width:100%;margin-top:8px;font-size:13px" onclick="closeProfileModal()">
+      Cancel
+    </button>
   </div>
 </div>
 
@@ -1579,6 +1605,63 @@ function showLoginError(msg) {
 }
 
 function handleAvatarClick() {
+  showProfileModal();
+}
+
+function showProfileModal() {
+  const modal = document.getElementById('profile-modal');
+  if (!modal) return;
+  const input = document.getElementById('profile-name-input');
+  const googleNameEl = document.getElementById('profile-google-name');
+  const greetingEl = document.getElementById('profile-greeting');
+  if (input) { input.value = playerName || ''; }
+  if (greetingEl) greetingEl.textContent = '';
+  if (googleNameEl) {
+    if (currentUser && currentUser.displayName) {
+      googleNameEl.textContent = 'Signed in as ' + currentUser.displayName;
+    } else {
+      googleNameEl.textContent = '';
+    }
+  }
+  modal.classList.add('visible');
+  setTimeout(() => { if (input) input.focus(); }, 100);
+}
+
+function closeProfileModal() {
+  const modal = document.getElementById('profile-modal');
+  if (modal) modal.classList.remove('visible');
+}
+
+function onProfileNameInput(val) {
+  const greetings = ['Hi', 'Hey', 'Hello', "What's up", 'Yo'];
+  const icons = ['🚀','⚡','🌟','💫','🎯','🧠','🔥'];
+  const el = document.getElementById('profile-greeting');
+  if (!el) return;
+  const trimmed = val.trim();
+  if (trimmed.length < 2) { el.textContent = ''; return; }
+  const g = greetings[trimmed.length % greetings.length];
+  const icon = icons[trimmed.charCodeAt(0) % icons.length];
+  el.style.animation = 'none';
+  el.textContent = `${icon} ${g}, ${trimmed}!`;
+  requestAnimationFrame(() => { el.style.animation = 'slideUp 0.3s ease both'; });
+}
+
+async function saveProfileName() {
+  const input = document.getElementById('profile-name-input');
+  const val = input ? input.value.trim() : '';
+  if (val.length >= 1) {
+    playerName = sanitizeName(val);
+    const s = await loadSettings(); s.playerName = playerName; await saveSettings(s);
+    // sync to setup screen input and topbar
+    const si = document.getElementById('player-name-input');
+    if (si) { si.value = playerName; onNameInput(playerName, false); }
+    refreshHome();
+  }
+  closeProfileModal();
+}
+
+function confirmSignOut() {
+  closeProfileModal();
   if (!currentUser) return;
   const name = currentUser.displayName || 'you';
   if (confirm(`Sign out, ${name}?`)) doSignOut();

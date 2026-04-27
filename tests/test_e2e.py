@@ -44,6 +44,23 @@ def app_url(local_server: str) -> str:
     return f"{local_server}{APP_PATH}"
 
 
+def _suppress_welcome_modal(page) -> None:
+    """
+    Inject a localStorage pre-seed so the app sees welcomeSeen=true from the start.
+    Must be called BEFORE page.goto() so the init script fires before page JS runs.
+    """
+    page.add_init_script(
+        """(function() {
+            try {
+                var key = 'cogat_settings_local';
+                var existing = JSON.parse(localStorage.getItem(key)) || {};
+                existing.welcomeSeen = true;
+                localStorage.setItem(key, JSON.stringify(existing));
+            } catch(e) {}
+        })()"""
+    )
+
+
 def enter_guest_mode(page) -> None:
     """Click 'Play without signing in' and wait for the home screen to be visible."""
     guest_btn = page.locator("button", has_text=re.compile("without signing in", re.IGNORECASE))
@@ -51,13 +68,14 @@ def enter_guest_mode(page) -> None:
     guest_btn.click()
     # Home screen hero should be visible
     page.locator("#screen-home").wait_for(state="visible", timeout=GUEST_TIMEOUT)
-    # Dismiss the welcome modal if it appears (first-time users see it)
-    skip_btn = page.locator("button", has_text=re.compile("skip for now", re.IGNORECASE))
-    if skip_btn.is_visible():
-        skip_btn.click()
-        page.locator("#welcome-modal").wait_for(state="hidden", timeout=3_000)
     # Questions must have loaded (battery pills appear only after questions.json fetch)
     page.locator(".battery-pills").wait_for(state="visible", timeout=GUEST_TIMEOUT)
+
+
+def _goto(page, url: str) -> None:
+    """Navigate to URL with the welcome-modal suppressed."""
+    _suppress_welcome_modal(page)
+    page.goto(url, wait_until="domcontentloaded")
 
 
 # ---------------------------------------------------------------------------
@@ -78,7 +96,7 @@ class TestSmoke:
 
     def test_login_screen_or_guest_option_visible(self, page, local_server):
         """Either the 'play without signing in' button or a Google sign-in button must be visible on load."""
-        page.goto(app_url(local_server), wait_until="domcontentloaded")
+        _goto(page, app_url(local_server))
         # Wait for either the guest button or the Google sign-in button
         page.wait_for_selector(
             "button:has-text('without signing in'), button:has-text('Google')",
@@ -87,12 +105,12 @@ class TestSmoke:
         )
 
     def test_home_screen_loads_in_guest_mode(self, page, local_server):
-        page.goto(app_url(local_server), wait_until="domcontentloaded")
+        _goto(page, app_url(local_server))
         enter_guest_mode(page)
         assert page.locator("#screen-home").is_visible()
 
     def test_brainspark_logo_visible(self, page, local_server):
-        page.goto(app_url(local_server), wait_until="domcontentloaded")
+        _goto(page, app_url(local_server))
         enter_guest_mode(page)
         logo = page.locator(".topbar-logo")
         assert logo.is_visible()
@@ -113,41 +131,41 @@ class TestSmoke:
 
 class TestNavigation:
     def test_new_session_button_navigates_to_setup(self, page, local_server):
-        page.goto(app_url(local_server), wait_until="domcontentloaded")
+        _goto(page, app_url(local_server))
         enter_guest_mode(page)
         page.locator("#btn-new-session").click()
         page.locator("#screen-setup").wait_for(state="visible", timeout=5_000)
         assert page.locator("#screen-setup").is_visible()
 
     def test_theme_button_opens_themes_screen(self, page, local_server):
-        page.goto(app_url(local_server), wait_until="domcontentloaded")
+        _goto(page, app_url(local_server))
         enter_guest_mode(page)
         page.locator("button.theme-btn", has_text="Theme").first.click()
         page.locator("#screen-themes").wait_for(state="visible", timeout=5_000)
         assert page.locator("#screen-themes").is_visible()
 
     def test_back_button_on_themes_returns_to_home(self, page, local_server):
-        page.goto(app_url(local_server), wait_until="domcontentloaded")
+        _goto(page, app_url(local_server))
         enter_guest_mode(page)
         page.locator("button.theme-btn", has_text="Theme").first.click()
         page.locator("#screen-themes").wait_for(state="visible", timeout=5_000)
-        page.locator("button", has_text="← Back").first.click()
+        page.locator("#screen-themes button", has_text="← Back").click()
         page.locator("#screen-home").wait_for(state="visible", timeout=5_000)
         assert page.locator("#screen-home").is_visible()
 
     def test_progress_nav_opens_insights(self, page, local_server):
-        page.goto(app_url(local_server), wait_until="domcontentloaded")
+        _goto(page, app_url(local_server))
         enter_guest_mode(page)
         page.locator("#nav-insights").click()
         page.locator("#screen-insights").wait_for(state="visible", timeout=5_000)
         assert page.locator("#screen-insights").is_visible()
 
     def test_back_from_setup_returns_to_home(self, page, local_server):
-        page.goto(app_url(local_server), wait_until="domcontentloaded")
+        _goto(page, app_url(local_server))
         enter_guest_mode(page)
         page.locator("#btn-new-session").click()
         page.locator("#screen-setup").wait_for(state="visible", timeout=5_000)
-        page.locator("button", has_text="← Back").first.click()
+        page.locator("#screen-setup button", has_text="← Back").click()
         page.locator("#screen-home").wait_for(state="visible", timeout=5_000)
         assert page.locator("#screen-home").is_visible()
 
@@ -159,7 +177,7 @@ class TestNavigation:
 
 class TestSetupScreen:
     def _go_to_setup(self, page, local_server):
-        page.goto(app_url(local_server), wait_until="domcontentloaded")
+        _goto(page, app_url(local_server))
         enter_guest_mode(page)
         page.locator("#btn-new-session").click()
         page.locator("#screen-setup").wait_for(state="visible", timeout=5_000)
@@ -227,7 +245,7 @@ class TestSetupScreen:
 
 def _start_quiz(page, local_server, grade="3", battery_text="All Batteries"):
     """Navigate from home to the first quiz question."""
-    page.goto(app_url(local_server), wait_until="domcontentloaded")
+    _goto(page, app_url(local_server))
     enter_guest_mode(page)
     page.locator("#btn-new-session").click()
     page.locator("#screen-setup").wait_for(state="visible", timeout=5_000)
@@ -363,8 +381,8 @@ class TestQuizFlow:
             page.locator("#btn-next").wait_for(state="visible", timeout=5_000)
             page.locator("#btn-next").click()
         # Result overlay should appear
-        page.locator(".result-overlay").wait_for(state="visible", timeout=8_000)
-        assert page.locator(".result-overlay").is_visible(), "Result screen did not appear after 9 questions"
+        page.locator("#result-overlay").wait_for(state="visible", timeout=8_000)
+        assert page.locator("#result-overlay").is_visible(), "Result screen did not appear after 9 questions"
 
     def test_result_screen_shows_score(self, page, local_server):
         """Score on result screen must be a fraction like '5 / 9'."""
@@ -375,7 +393,7 @@ class TestQuizFlow:
             page.locator("#btn-check").click()
             page.locator("#btn-next").wait_for(state="visible", timeout=5_000)
             page.locator("#btn-next").click()
-        page.locator(".result-overlay").wait_for(state="visible", timeout=8_000)
+        page.locator("#result-overlay").wait_for(state="visible", timeout=8_000)
         score_text = page.locator(".result-score").inner_text()
         assert re.search(r"\d", score_text), f"No numeric score visible: {score_text!r}"
 
@@ -412,7 +430,7 @@ class TestAnswerCorrectnessUI:
         # We can't know which is wrong without reading internal state, so
         # we run the quiz 4 times and verify that the 'wrong' class is shown
         # on the selected option when it's NOT the correct one.
-        page.goto(app_url(local_server), wait_until="domcontentloaded")
+        _goto(page, app_url(local_server))
         enter_guest_mode(page)
         _start_quiz(page, local_server)
         page.locator(".option-btn").first.wait_for(state="visible", timeout=8_000)
@@ -436,7 +454,7 @@ class TestAnswerCorrectnessUI:
 
 class TestThemes:
     def _open_themes(self, page, local_server):
-        page.goto(app_url(local_server), wait_until="domcontentloaded")
+        _goto(page, app_url(local_server))
         enter_guest_mode(page)
         page.locator("button.theme-btn", has_text="Theme").first.click()
         page.locator("#screen-themes").wait_for(state="visible", timeout=5_000)
@@ -461,10 +479,10 @@ class TestThemes:
         assert "theme-jungle" in body_class, f"body class after jungle theme: {body_class!r}"
 
     def test_theme_change_does_not_break_layout(self, page, local_server):
-        """After theme switch, the home screen is still accessible."""
+        """After theme switch, the home screen is automatically shown (setTheme calls showScreen('home'))."""
         self._open_themes(page, local_server)
         page.locator(".theme-card").nth(2).click()
-        page.locator("button", has_text="← Back").first.click()
+        # setTheme() calls showScreen('home') automatically
         page.locator("#screen-home").wait_for(state="visible", timeout=5_000)
         assert page.locator("#screen-home").is_visible()
 
@@ -483,8 +501,8 @@ class TestLocalStoragePersistence:
         page.locator("#btn-check").click()
         page.locator("#btn-next").wait_for(state="visible", timeout=5_000)
 
-        active = page.evaluate("() => localStorage.getItem('brainspark_active')")
-        assert active is not None, "Active session not found in localStorage"
+        active = page.evaluate("() => localStorage.getItem('cogat_active_session_local')")
+        assert active is not None, "Active session not found in localStorage (key: cogat_active_session_local)"
         import json
         session = json.loads(active)
         assert "answers" in session, "Saved session missing 'answers' field"
@@ -507,7 +525,7 @@ class TestLocalStoragePersistence:
         assert status_text.strip() != "", "Session status box is empty after reload"
 
     def test_completed_session_saved_in_sessions_list(self, page, local_server):
-        """Finishing a session must persist to brainspark_sessions in localStorage."""
+        """Finishing a session must persist to cogat_sessions_local in localStorage."""
         _start_quiz(page, local_server)
         for _ in range(9):
             page.locator(".option-btn").first.wait_for(state="visible", timeout=8_000)
@@ -515,11 +533,11 @@ class TestLocalStoragePersistence:
             page.locator("#btn-check").click()
             page.locator("#btn-next").wait_for(state="visible", timeout=5_000)
             page.locator("#btn-next").click()
-        page.locator(".result-overlay").wait_for(state="visible", timeout=8_000)
+        page.locator("#result-overlay").wait_for(state="visible", timeout=8_000)
 
         import json
-        sessions_raw = page.evaluate("() => localStorage.getItem('brainspark_sessions')")
-        assert sessions_raw is not None, "No sessions stored after completing a quiz"
+        sessions_raw = page.evaluate("() => localStorage.getItem('cogat_sessions_local')")
+        assert sessions_raw is not None, "No sessions stored after completing a quiz (key: cogat_sessions_local)"
         sessions = json.loads(sessions_raw)
         assert len(sessions) >= 1, "Sessions list is empty after completing a quiz"
 
@@ -540,7 +558,7 @@ class TestResponsiveLayout:
     @pytest.mark.parametrize("viewport", VIEWPORTS, ids=lambda v: v["name"])
     def test_home_screen_renders_at_viewport(self, page, local_server, viewport):
         page.set_viewport_size({"width": viewport["width"], "height": viewport["height"]})
-        page.goto(app_url(local_server), wait_until="domcontentloaded")
+        _goto(page, app_url(local_server))
         enter_guest_mode(page)
         home = page.locator("#screen-home")
         assert home.is_visible(), f"Home screen not visible at {viewport['name']}"
@@ -548,7 +566,7 @@ class TestResponsiveLayout:
     @pytest.mark.parametrize("viewport", VIEWPORTS, ids=lambda v: v["name"])
     def test_start_session_button_visible_at_viewport(self, page, local_server, viewport):
         page.set_viewport_size({"width": viewport["width"], "height": viewport["height"]})
-        page.goto(app_url(local_server), wait_until="domcontentloaded")
+        _goto(page, app_url(local_server))
         enter_guest_mode(page)
         btn = page.locator("#btn-new-session")
         assert btn.is_visible(), f"'New session' button not visible at {viewport['name']}"
@@ -579,7 +597,7 @@ class TestResponsiveLayout:
 class TestBatteryFilter:
     def _start_quiz_with_battery(self, page, local_server, battery_id: str):
         """Start a quiz with a specific battery using the element ID."""
-        page.goto(app_url(local_server), wait_until="domcontentloaded")
+        _goto(page, app_url(local_server))
         enter_guest_mode(page)
         page.locator("#btn-new-session").click()
         page.locator("#screen-setup").wait_for(state="visible", timeout=5_000)

@@ -14,7 +14,6 @@ BrainSpark runs entirely in the browser — no installation, no accounts require
 - **Google Sign-In sync** — scores, streaks, and settings follow you across any device
 - **Daily streak system** with full-screen milestone celebrations
 - **Insights dashboard** — accuracy trends, per-battery breakdowns, and error-category analysis
-- **Question pipeline tool** — built-in AI generator (Claude API) with deduplication, validation, and export
 - **Zero dependencies to deploy** — two static files, any host will do
 - **Free and open** for educational use
 
