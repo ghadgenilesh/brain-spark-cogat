@@ -613,7 +613,7 @@
     "battery": "non-verbal",
     "type": "figure-classification",
     "difficulty": "medium",
-    "text": "Group: square, rectangle, rhombus (4-sided shapes). Which fits?",
+    "text": "Group: square, rectangle, rhombus. Which fits?",
     "svg": null,
     "options": [
       {
@@ -2590,7 +2590,7 @@
     "type": "figure-matrices",
     "difficulty": "easy",
     "text": "Shapes gain a side each row: triangle(3)→square(4)→___.",
-    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='12' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>Each shape gains one side</text><rect x='8' y='55' width='55' height='55' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='35,71.55604 26.0,87.14404 44.0,87.14404' fill='none' stroke='#7c6fff' stroke-width='2'/><text x='35' y='122' text-anchor='middle' fill='#ffd700' font-size='10' font-family='Nunito,sans-serif'>3</text><rect x='71' y='55' width='55' height='55' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><rect x='84' y='68' width='28' height='28' fill='none' stroke='#7c6fff' stroke-width='2'/><text x='98' y='122' text-anchor='middle' fill='#ffd700' font-size='10' font-family='Nunito,sans-serif'>4</text><rect x='134' y='55' width='55' height='55' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='142.0,82.0 155.1,63.9 176.4,70.8 176.4,93.2 155.1,100.1' fill='none' stroke='#7c6fff' stroke-width='2'/><text x='161' y='122' text-anchor='middle' fill='#ffd700' font-size='10' font-family='Nunito,sans-serif'>5</text><rect x='197' y='55' width='55' height='55' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='224' y='87' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text><text x='224' y='122' text-anchor='middle' fill='#ff6b9d' font-size='10' font-family='Nunito,sans-serif'>?</text></svg>",
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='12' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>Each shape gains one side</text><rect x='8' y='55' width='70' height='70' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='43,68 25,95 61,95' fill='none' stroke='#7c6fff' stroke-width='2'/><text x='43' y='138' text-anchor='middle' fill='#ffd700' font-size='10' font-family='Nunito,sans-serif'>3</text><rect x='95' y='55' width='70' height='70' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><rect x='115' y='68' width='30' height='30' fill='none' stroke='#7c6fff' stroke-width='2'/><text x='130' y='138' text-anchor='middle' fill='#ffd700' font-size='10' font-family='Nunito,sans-serif'>4</text><rect x='182' y='55' width='70' height='70' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='217' y='97' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text><text x='217' y='138' text-anchor='middle' fill='#ff6b9d' font-size='10' font-family='Nunito,sans-serif'>?</text></svg>",
     "options": [
       {
         "label": "A",
@@ -2855,7 +2855,7 @@
     "battery": "non-verbal",
     "type": "figure-classification",
     "difficulty": "hard",
-    "text": "Group: 1, 8, 27, 64 (perfect cubes). Which fits?",
+    "text": "Group: 1, 8, 27, 64. Which fits?",
     "svg": null,
     "options": [
       {
@@ -18017,7 +18017,7 @@
     "battery": "non-verbal",
     "type": "figure-classification",
     "difficulty": "medium",
-    "text": "Group: robin, eagle, penguin (all birds). Which fits?",
+    "text": "Group: robin, eagle, penguin. Which fits?",
     "svg": null,
     "options": [
       {
@@ -22197,7 +22197,7 @@
     "battery": "non-verbal",
     "type": "figure-classification",
     "difficulty": "easy",
-    "text": "Group: autobiography, diary, memoir (first-person nonfiction). Which fits?",
+    "text": "Group: autobiography, diary, memoir. Which fits?",
     "svg": null,
     "options": [
       {
@@ -31545,7 +31545,7 @@
     "battery": "non-verbal",
     "type": "figure-classification",
     "difficulty": "medium",
-    "text": "Group: iambic pentameter, haiku, sonnet (fixed forms). Which fits?",
+    "text": "Group: iambic pentameter, haiku, sonnet. Which fits?",
     "svg": null,
     "options": [
       {
@@ -32913,7 +32913,7 @@
     "battery": "non-verbal",
     "type": "figure-classification",
     "difficulty": "easy",
-    "text": "Group: enthalpy, entropy, Gibbs free energy (thermodynamic state functions). Which fits?",
+    "text": "Group: enthalpy, entropy, Gibbs free energy. Which fits?",
     "svg": null,
     "options": [
       {
@@ -38613,7 +38613,7 @@
     "battery": "non-verbal",
     "type": "figure-classification",
     "difficulty": "medium",
-    "text": "Group: iamb, trochee, spondee (2-syllable feet). Which fits?",
+    "text": "Group: iamb, trochee, spondee. Which fits?",
     "svg": null,
     "options": [
       {
@@ -41729,7 +41729,7 @@
     "battery": "non-verbal",
     "type": "figure-classification",
     "difficulty": "medium",
-    "text": "Group: erosion, weathering, deposition (geological processes). Which fits?",
+    "text": "Group: erosion, weathering, deposition. Which fits?",
     "svg": null,
     "options": [
       {
@@ -43097,7 +43097,7 @@
     "battery": "non-verbal",
     "type": "figure-classification",
     "difficulty": "medium",
-    "text": "Group: allegory, parable, fable (moral stories). Which fits?",
+    "text": "Group: allegory, parable, fable. Which fits?",
     "svg": null,
     "options": [
       {
@@ -45035,7 +45035,7 @@
     "battery": "non-verbal",
     "type": "figure-classification",
     "difficulty": "easy",
-    "text": "Group: proton, neutron, electron (subatomic particles). Which fits?",
+    "text": "Group: proton, neutron, electron. Which fits?",
     "svg": null,
     "options": [
       {
@@ -49899,7 +49899,7 @@
     "battery": "non-verbal",
     "type": "figure-classification",
     "difficulty": "hard",
-    "text": "Group: scalene, right, equilateral (all triangles). Which fits?",
+    "text": "Group: scalene, right, equilateral. Which fits?",
     "svg": null,
     "options": [
       {
@@ -52521,7 +52521,7 @@
     "battery": "non-verbal",
     "type": "figure-classification",
     "difficulty": "hard",
-    "text": "Group: 2, 3, 5, 7 (primes). Which fits?",
+    "text": "Group: 2, 3, 5, 7. Which fits?",
     "svg": null,
     "options": [
       {
@@ -57955,7 +57955,7 @@
     "battery": "non-verbal",
     "type": "figure-classification",
     "difficulty": "easy",
-    "text": "Group: mitosis, meiosis, binary fission (cell division). Which fits?",
+    "text": "Group: mitosis, meiosis, binary fission. Which fits?",
     "svg": null,
     "options": [
       {
@@ -67189,7 +67189,7 @@
     "battery": "non-verbal",
     "type": "figure-classification",
     "difficulty": "easy",
-    "text": "Group: Mercury, Venus, Mars (inner rocky planets). Which fits?",
+    "text": "Group: Mercury, Venus, Mars. Which fits?",
     "svg": null,
     "options": [
       {
@@ -67417,7 +67417,7 @@
     "battery": "non-verbal",
     "type": "figure-classification",
     "difficulty": "easy",
-    "text": "Group: whisper, murmur, hum (quiet sounds). Which fits?",
+    "text": "Group: whisper, murmur, hum. Which fits?",
     "svg": null,
     "options": [
       {
@@ -73041,7 +73041,7 @@
     "battery": "non-verbal",
     "type": "figure-classification",
     "difficulty": "medium",
-    "text": "Group: haiku, tanka, renga (Japanese poetry forms). Which fits?",
+    "text": "Group: haiku, tanka, renga. Which fits?",
     "svg": null,
     "options": [
       {
@@ -76005,7 +76005,7 @@
     "battery": "non-verbal",
     "type": "figure-classification",
     "difficulty": "hard",
-    "text": "Group: whistle, trumpet, flute (wind instruments). Which fits?",
+    "text": "Group: whistle, trumpet, flute. Which fits?",
     "svg": null,
     "options": [
       {
@@ -78589,7 +78589,7 @@
     "battery": "non-verbal",
     "type": "figure-classification",
     "difficulty": "hard",
-    "text": "Group: 1, 3, 6, 10 (triangular numbers). Which fits?",
+    "text": "Group: 1, 3, 6, 10. Which fits?",
     "svg": null,
     "options": [
       {
@@ -80299,7 +80299,7 @@
     "battery": "non-verbal",
     "type": "figure-classification",
     "difficulty": "hard",
-    "text": "Group: logarithmic, exponential, polynomial (growth types). Which fits?",
+    "text": "Group: logarithmic, exponential, polynomial. Which fits?",
     "svg": null,
     "options": [
       {
@@ -81097,7 +81097,7 @@
     "battery": "non-verbal",
     "type": "figure-classification",
     "difficulty": "easy",
-    "text": "Group: circle, oval, sphere (round shapes). Which fits?",
+    "text": "Group: circle, oval, sphere. Which fits?",
     "svg": null,
     "options": [
       {
@@ -91053,7 +91053,7 @@
     "battery": "non-verbal",
     "type": "figure-classification",
     "difficulty": "hard",
-    "text": "Group: 4, 9, 16 (perfect squares). Which fits?",
+    "text": "Group: 4, 9, 16. Which fits?",
     "svg": null,
     "options": [
       {
@@ -92535,7 +92535,7 @@
     "battery": "non-verbal",
     "type": "figure-classification",
     "difficulty": "hard",
-    "text": "Group: 6, 28, 496 (perfect numbers). Which fits?",
+    "text": "Group: 6, 28, 496. Which fits?",
     "svg": null,
     "options": [
       {
@@ -93257,7 +93257,7 @@
     "battery": "non-verbal",
     "type": "figure-classification",
     "difficulty": "easy",
-    "text": "Group: mitochondria, chloroplast, nucleus (organelles). Which fits?",
+    "text": "Group: mitochondria, chloroplast, nucleus. Which fits?",
     "svg": null,
     "options": [
       {
@@ -94359,7 +94359,7 @@
     "battery": "non-verbal",
     "type": "figure-classification",
     "difficulty": "medium",
-    "text": "Group: apple, lemon, orange (round fruits). Which fits?",
+    "text": "Group: apple, lemon, orange. Which fits?",
     "svg": null,
     "options": [
       {
