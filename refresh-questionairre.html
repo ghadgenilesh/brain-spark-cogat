@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>BrainSpark — Question Pipeline</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f1117;--surface:#1a1d26;--surface2:#22263a;--surface3:#2a2f45;
+  --text:#e8eaf0;--text2:#8b90a8;--text3:#454d6a;
+  --blue:#4a7cf7;--blue-dim:#1e2d5a;
+  --green:#2dd6a0;--green-dim:#0d3329;
+  --amber:#f5a623;--amber-dim:#3a2800;
+  --red:#f05252;--red-dim:#3a1010;
+  --purple:#a78bfa;--purple-dim:#2d1f4a;
+  --border:rgba(255,255,255,0.07);
+  --radius:10px;
+  --font:'DM Sans',sans-serif;
+  --mono:'DM Mono',monospace;
+}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;padding:0}
+h1,h2,h3{font-weight:600}
+
+/* Layout */
+.header{background:var(--surface);border-bottom:1px solid var(--border);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.header-logo{display:flex;align-items:center;gap:10px}
+.header-logo-icon{font-size:28px}
+.header-title{font-size:18px;font-weight:700}
+.header-sub{font-size:12px;color:var(--text2);margin-top:1px}
+.content{max-width:1100px;margin:0 auto;padding:28px 20px}
+
+/* Steps */
+.steps{display:flex;gap:0;margin-bottom:32px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.step{flex:1;padding:14px 16px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:all .2s;border-right:1px solid var(--border);position:relative}
+.step:last-child{border-right:none}
+.step.active{background:var(--blue-dim)}
+.step.done{background:var(--green-dim)}
+.step.active .step-num{background:var(--blue);color:white}
+.step.done .step-num{background:var(--green);color:#0d2b22}
+.step-num{width:26px;height:26px;border-radius:50%;background:var(--surface3);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;transition:all .2s}
+.step-label{font-size:13px;font-weight:600;color:var(--text)}
+.step-sub{font-size:11px;color:var(--text2)}
+.step-arrow{position:absolute;right:-1px;top:50%;transform:translateY(-50%);width:0;height:0;border-top:14px solid transparent;border-bottom:14px solid transparent;border-left:10px solid var(--bg);z-index:1;display:none}
+.step.active .step-arrow,.step.done .step-arrow{display:block}
+
+/* Panels */
+.panel{display:none;animation:fadeIn .25s ease}
+.panel.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* Cards */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:16px}
+.card-title{font-size:14px;font-weight:600;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.card-sub{font-size:12px;color:var(--text2);margin-bottom:16px}
+
+/* Grid */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:640px){.grid2,.grid3,.grid4{grid-template-columns:1fr}}
+
+/* Stat chips */
+.stat-chip{background:var(--surface2);border-radius:8px;padding:14px;text-align:center}
+.stat-num{font-size:28px;font-weight:700;line-height:1}
+.stat-lbl{font-size:11px;color:var(--text2);margin-top:4px}
+.stat-num.blue{color:var(--blue)}
+.stat-num.green{color:var(--green)}
+.stat-num.amber{color:var(--amber)}
+.stat-num.red{color:var(--red)}
+.stat-num.purple{color:var(--purple)}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 20px;border-radius:8px;border:none;font-family:var(--font);font-size:14px;font-weight:600;cursor:pointer;transition:all .15s}
+.btn-primary{background:var(--blue);color:white}
+.btn-primary:hover{background:#3a6ae0}
+.btn-primary:disabled{background:var(--blue-dim);color:var(--text3);cursor:not-allowed}
+.btn-ghost{background:var(--surface2);color:var(--text2)}
+.btn-ghost:hover{color:var(--text);background:var(--surface3)}
+.btn-green{background:var(--green);color:#0d2b22}
+.btn-green:hover{background:#20b088}
+.btn-sm{padding:6px 13px;font-size:13px}
+.btn-danger{background:var(--red-dim);color:var(--red)}
+
+/* Upload zone */
+.upload-zone{border:2px dashed var(--border);border-radius:var(--radius);padding:32px;text-align:center;cursor:pointer;transition:all .2s;position:relative}
+.upload-zone:hover,.upload-zone.drag{border-color:var(--blue);background:var(--blue-dim)}
+.upload-zone input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.upload-icon{font-size:32px;margin-bottom:8px}
+.upload-label{font-size:14px;font-weight:600;margin-bottom:4px}
+.upload-sub{font-size:12px;color:var(--text2)}
+.upload-success{border-color:var(--green);background:var(--green-dim)}
+
+/* Table */
+.table-wrap{overflow-x:auto;border-radius:8px;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:var(--surface2);padding:10px 12px;text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--text2);border-bottom:1px solid var(--border)}
+td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--surface2)}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:2px 8px;border-radius:10px}
+.badge-blue{background:var(--blue-dim);color:var(--blue)}
+.badge-green{background:var(--green-dim);color:var(--green)}
+.badge-amber{background:var(--amber-dim);color:var(--amber)}
+.badge-red{background:var(--red-dim);color:var(--red)}
+.badge-purple{background:var(--purple-dim);color:var(--purple)}
+
+/* Log */
+.log{background:var(--surface2);border-radius:8px;padding:14px;font-family:var(--mono);font-size:12px;max-height:220px;overflow-y:auto;display:flex;flex-direction:column;gap:3px;margin-top:12px}
+.log-line{display:flex;gap:8px}
+.log-t{color:var(--text3);flex-shrink:0;width:42px}
+.log-ok{color:var(--green)}
+.log-warn{color:var(--amber)}
+.log-err{color:var(--red)}
+.log-info{color:var(--blue)}
+.log-dim{color:var(--text2)}
+
+/* Progress bar */
+.prog-wrap{margin:12px 0}
+.prog-label{display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-bottom:6px}
+.prog-track{height:8px;background:var(--surface3);border-radius:4px;overflow:hidden}
+.prog-fill{height:100%;background:var(--blue);border-radius:4px;transition:width .4s ease}
+.prog-fill.green{background:var(--green)}
+
+/* Diff view */
+.diff-new{background:var(--green-dim);border-left:3px solid var(--green)}
+.diff-dup{background:var(--amber-dim);border-left:3px solid var(--amber)}
+.diff-conflict{background:var(--red-dim);border-left:3px solid var(--red)}
+
+/* Val status */
+.val-row{display:flex;align-items:flex-start;gap:10px;padding:10px;border-radius:8px;margin-bottom:8px;border:1px solid var(--border)}
+.val-row.pass{border-color:var(--green);background:var(--green-dim)}
+.val-row.fail{border-color:var(--red);background:var(--red-dim)}
+.val-row.warn{border-color:var(--amber);background:var(--amber-dim)}
+.val-row.pending{border-color:var(--border)}
+.val-icon{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;font-weight:700}
+.val-pass-icon{background:var(--green);color:#0d2b22}
+.val-fail-icon{background:var(--red);color:white}
+.val-warn-icon{background:var(--amber);color:#2a1800}
+.val-pend-icon{background:var(--surface3);color:var(--text2)}
+.val-text{flex:1}
+.val-title{font-size:13px;font-weight:600;margin-bottom:2px}
+.val-detail{font-size:12px;color:var(--text2)}
+.spin{animation:spin .8s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Section separators */
+.section-title{font-size:15px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.divider{height:1px;background:var(--border);margin:20px 0}
+select,input[type=number],input[type=text],textarea{
+  background:var(--surface2);border:1px solid var(--border);border-radius:6px;
+  color:var(--text);font-family:var(--font);font-size:13px;padding:8px 12px;outline:none;
+  transition:border .15s
+}
+select:focus,input:focus,textarea:focus{border-color:var(--blue)}
+label{font-size:12px;color:var(--text2);display:block;margin-bottom:5px}
+.field{margin-bottom:14px}
+textarea{resize:vertical;width:100%;min-height:80px}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-logo">
+    <div class="header-logo-icon">🔬</div>
+    <div>
+      <div class="header-title">BrainSpark Question Pipeline</div>
+      <div class="header-sub">Compare · Deduplicate · Validate · Merge</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:8px">
+    <button class="btn btn-ghost btn-sm" onclick="resetAll()">↺ Reset</button>
+    <button class="btn btn-primary btn-sm" id="btn-export" onclick="exportMerged()" disabled>⬇ Export questions.json</button>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- STEP NAV -->
+  <div class="steps">
+    <div class="step active" id="step-1" onclick="gotoStep(1)">
+      <div class="step-num" id="sn-1">1</div>
+      <div><div class="step-label">Load Sources</div><div class="step-sub">Existing + new batch</div></div>
+      <div class="step-arrow"></div>
+    </div>
+    <div class="step" id="step-2" onclick="gotoStep(2)">
+      <div class="step-num" id="sn-2">2</div>
+      <div><div class="step-label">Compare & Deduplicate</div><div class="step-sub">Find new questions only</div></div>
+      <div class="step-arrow"></div>
+    </div>
+    <div class="step" id="step-3" onclick="gotoStep(3)">
+      <div class="step-num" id="sn-3">3</div>
+      <div><div class="step-label">Validate Accuracy</div><div class="step-sub">AI double-check</div></div>
+      <div class="step-arrow"></div>
+    </div>
+    <div class="step" id="step-4" onclick="gotoStep(4)">
+      <div class="step-num" id="sn-4">4</div>
+      <div><div class="step-label">Review & Export</div><div class="step-sub">Final questions.json</div></div>
+    </div>
+  </div>
+
+  <!-- ─── STEP 1: LOAD SOURCES ─── -->
+  <div class="panel active" id="panel-1">
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">📦 Existing questions.json <span class="badge badge-blue" id="existing-count-badge">0 loaded</span></div>
+        <div class="card-sub">Your current production file — already used by the app</div>
+        <div class="upload-zone" id="zone-existing" ondragover="onDrag(event,'existing')" ondragleave="offDrag('existing')" ondrop="onDrop(event,'existing')">
+          <input type="file" accept=".json" onchange="loadFile(event,'existing')"/>
+          <div class="upload-icon">📂</div>
+          <div class="upload-label">Drop existing questions.json</div>
+          <div class="upload-sub">or click to browse</div>
+        </div>
+        <div id="existing-summary" style="margin-top:12px;display:none">
+          <div class="grid3" style="margin-top:8px">
+            <div class="stat-chip"><div class="stat-num blue" id="ex-total">0</div><div class="stat-lbl">Total</div></div>
+            <div class="stat-chip"><div class="stat-num" id="ex-version" style="font-size:14px;padding-top:6px">—</div><div class="stat-lbl">Version</div></div>
+            <div class="stat-chip"><div class="stat-num" id="ex-types" style="font-size:13px;padding-top:4px">—</div><div class="stat-lbl">Batteries</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">✨ New batch (JSON or paste) <span class="badge badge-purple" id="new-count-badge">0 loaded</span></div>
+        <div class="card-sub">AI-generated questions to review and merge in</div>
+        <div class="upload-zone" id="zone-new" ondragover="onDrag(event,'new')" ondragleave="offDrag('new')" ondrop="onDrop(event,'new')">
+          <input type="file" accept=".json" onchange="loadFile(event,'new')"/>
+          <div class="upload-icon">✨</div>
+          <div class="upload-label">Drop new questions batch</div>
+          <div class="upload-sub">or click to browse</div>
+        </div>
+        <div style="margin-top:10px">
+          <div style="font-size:12px;color:var(--text2);margin-bottom:6px">— or paste JSON directly —</div>
+          <textarea id="paste-input" placeholder='[{"id":"q100","battery":"verbal",...}]' rows="4"></textarea>
+          <button class="btn btn-ghost btn-sm" style="margin-top:8px" onclick="loadPaste()">Parse pasted JSON</button>
+        </div>
+        <div id="new-summary" style="margin-top:12px;display:none">
+          <div class="grid3" style="margin-top:8px">
+            <div class="stat-chip"><div class="stat-num purple" id="nw-total">0</div><div class="stat-lbl">Total</div></div>
+            <div class="stat-chip"><div class="stat-num" id="nw-types" style="font-size:13px;padding-top:4px">—</div><div class="stat-lbl">Types</div></div>
+            <div class="stat-chip"><div class="stat-num" id="nw-diff" style="font-size:13px;padding-top:4px">—</div><div class="stat-lbl">Difficulties</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📋 Required JSON schema</div>
+      <div class="card-sub">Each question must follow this structure — extra fields are allowed and preserved</div>
+      <pre style="background:var(--surface2);border-radius:8px;padding:14px;font-family:var(--mono);font-size:12px;overflow-x:auto;line-height:1.6">{
+  "id": "q001",              // unique string — never reused
+  "battery": "verbal",       // verbal | quantitative | non-verbal
+  "type": "verbal-analogies",// see full type list below
+  "difficulty": "medium",    // easy | medium | hard
+  "text": "Question text",
+  "svg": null,               // inline SVG string or null
+  "options": [
+    {"label":"A","text":"Option A","svg":null},
+    {"label":"B","text":"Option B","svg":null},
+    {"label":"C","text":"Option C","svg":null},
+    {"label":"D","text":"Option D","svg":null}
+  ],
+  "answer": 1,               // 0-indexed correct option
+  "explanation": "Why this is right (kid-friendly)",
+  "tags": ["tag1","tag2"]
+}</pre>
+    </div>
+
+    <!-- ─── AI Generation card ─── -->
+    <div class="card">
+      <div class="card-title">🤖 Generate new questions with AI
+        <span class="badge badge-blue" style="margin-left:4px">Copilot / Any AI</span>
+      </div>
+      <div class="card-sub">Build a prompt, paste it into GitHub Copilot (or any AI), then load the response as a new batch</div>
+
+      <div class="grid4" style="margin-bottom:14px">
+        <div class="field">
+          <label>Grade</label>
+          <select id="gen-grade" style="width:100%">
+            <option value="all">⭐ All Grades (K–8)</option>
+            <option value="K">Kindergarten (K)</option>
+            <option value="1">Grade 1</option>
+            <option value="2">Grade 2</option>
+            <option value="3" selected>Grade 3</option>
+            <option value="4">Grade 4</option>
+            <option value="5">Grade 5</option>
+            <option value="6">Grade 6</option>
+            <option value="7">Grade 7</option>
+            <option value="8">Grade 8</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Battery</label>
+          <select id="gen-battery" onchange="updateGenTypes()" style="width:100%">
+            <option value="verbal">Verbal</option>
+            <option value="quantitative">Quantitative</option>
+            <option value="non-verbal">Non-Verbal</option>
+            <option value="mixed">Mixed (all batteries)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Question type</label>
+          <select id="gen-type" style="width:100%">
+            <option value="balanced">⭐ Balanced (all types)</option>
+            <option value="verbal-analogies">Verbal Analogies</option>
+            <option value="verbal-classification">Verbal Classification</option>
+            <option value="sentence-completion">Sentence Completion</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Difficulty</label>
+          <select id="gen-difficulty" style="width:100%">
+            <option value="balanced">⭐ Balanced (all difficulties)</option>
+            <option value="easy">Easy</option>
+            <option value="medium" selected>Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field" style="margin-bottom:14px">
+        <label>Number of questions to generate</label>
+        <input type="number" id="gen-count" value="10" min="1" max="1000" style="width:120px"/>
+      </div>
+
+      <!-- Step 1: Copy prompt -->
+      <div style="margin-bottom:12px">
+        <button class="btn btn-primary" onclick="buildAndCopyPrompt()">
+          📋 Copy prompt to clipboard
+        </button>
+        <span id="copy-status" style="margin-left:10px;font-size:13px;color:var(--text2)"></span>
+      </div>
+
+      <!-- Step 2: Paste response -->
+      <div class="field">
+        <label>2. Paste AI response here</label>
+        <textarea id="gen-paste-area" rows="6"
+          placeholder="Paste the JSON lines from the AI here…"
+          style="width:100%;background:var(--surface3);border:1px solid var(--border);border-radius:8px;padding:10px;color:var(--text);font-family:var(--mono);font-size:12px;resize:vertical"></textarea>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:8px">
+        <button class="btn btn-primary" onclick="loadPastedResponse()">
+          ⚡ Load as new batch
+        </button>
+        <div id="gen-status" style="font-size:13px;color:var(--text2)"></div>
+      </div>
+
+      <div class="log" id="gen-log" style="display:none;margin-top:12px"></div>
+    </div>
+
+    <div style="display:flex;justify-content:flex-end">
+      <button class="btn btn-primary" onclick="gotoStep(2)" id="btn-step1-next" disabled>
+        Next: Compare & Deduplicate →
+      </button>
+    </div>
+  </div>
+
+  <!-- ─── STEP 2: COMPARE & DEDUP ─── -->
+  <div class="panel" id="panel-2">
+    <div class="card">
+      <div class="card-title">🔍 Comparison results</div>
+      <div class="grid4" style="margin-bottom:16px">
+        <div class="stat-chip"><div class="stat-num green" id="d-new">0</div><div class="stat-lbl">New (will add)</div></div>
+        <div class="stat-chip"><div class="stat-num amber" id="d-dup-id">0</div><div class="stat-lbl">Duplicate IDs</div></div>
+        <div class="stat-chip"><div class="stat-num amber" id="d-dup-text">0</div><div class="stat-lbl">Similar text</div></div>
+        <div class="stat-chip"><div class="stat-num blue" id="d-total-after">0</div><div class="stat-lbl">Total after merge</div></div>
+      </div>
+
+      <div class="section-title">🆕 New questions (will be added)</div>
+      <div id="new-questions-list" style="max-height:300px;overflow-y:auto"></div>
+
+      <div class="divider"></div>
+      <div class="section-title">⚠️ Conflicts / duplicates (excluded)</div>
+      <div id="dup-questions-list" style="max-height:200px;overflow-y:auto"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🔑 ID assignment</div>
+      <div class="card-sub">New questions with missing or conflicting IDs get auto-assigned unique IDs</div>
+      <div style="display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap">
+        <div class="field" style="margin:0">
+          <label>ID prefix</label>
+          <input type="text" id="id-prefix" value="q" maxlength="4" style="width:80px"/>
+        </div>
+        <div class="field" style="margin:0">
+          <label>Start from</label>
+          <input type="number" id="id-start" value="100" min="1" style="width:100px"/>
+        </div>
+        <button class="btn btn-ghost btn-sm" onclick="runDedup()">↺ Re-run deduplication</button>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:space-between">
+      <button class="btn btn-ghost" onclick="gotoStep(1)">← Back</button>
+      <button class="btn btn-primary" onclick="gotoStep(3)" id="btn-step2-next" disabled>
+        Next: Validate →
+      </button>
+    </div>
+  </div>
+
+  <!-- ─── STEP 3: VALIDATE ─── -->
+  <div class="panel" id="panel-3">
+    <div class="card">
+      <div class="card-title">🤖 AI accuracy validation</div>
+      <div class="card-sub">Each new question is reviewed by Claude for: correct answer, plausible distractors, age-appropriateness, no ambiguity, and skill alignment</div>
+
+      <div class="grid4" style="margin-bottom:16px">
+        <div class="stat-chip"><div class="stat-num" id="v-total">0</div><div class="stat-lbl">To validate</div></div>
+        <div class="stat-chip"><div class="stat-num green" id="v-pass">0</div><div class="stat-lbl">Passed</div></div>
+        <div class="stat-chip"><div class="stat-num amber" id="v-warn">0</div><div class="stat-lbl">Warnings</div></div>
+        <div class="stat-chip"><div class="stat-num red" id="v-fail">0</div><div class="stat-lbl">Failed</div></div>
+      </div>
+
+      <div class="prog-wrap">
+        <div class="prog-label"><span id="v-prog-label">Ready to validate</span><span id="v-prog-pct">0%</span></div>
+        <div class="prog-track"><div class="prog-fill" id="v-prog-fill" style="width:0%"></div></div>
+      </div>
+
+      <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap">
+        <button class="btn btn-primary" id="btn-validate-all" onclick="validateAll()">
+          🤖 Validate all new questions
+        </button>
+        <button class="btn btn-ghost btn-sm" onclick="validateAll(true)">Skip failed only</button>
+        <div class="field" style="margin:0;display:flex;align-items:flex-end;gap:6px">
+          <div>
+            <label>Concurrency</label>
+            <select id="val-concurrency" style="width:70px">
+              <option value="1">1</option>
+              <option value="2" selected>2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div id="val-results" style="max-height:400px;overflow-y:auto"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">⚙️ Validation options</div>
+      <div class="grid2">
+        <div>
+          <label>Auto-reject if failed checks ≥</label>
+          <select id="val-reject-threshold">
+            <option value="1">1 (strict)</option>
+            <option value="2" selected>2 (balanced)</option>
+            <option value="3">3 (lenient)</option>
+          </select>
+        </div>
+        <div>
+          <label>Include failed questions in export?</label>
+          <select id="val-include-failed">
+            <option value="no" selected>No — exclude all failed</option>
+            <option value="warn">Yes — but flag them</option>
+            <option value="yes">Yes — include all</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:space-between">
+      <button class="btn btn-ghost" onclick="gotoStep(2)">← Back</button>
+      <button class="btn btn-primary" onclick="gotoStep(4)" id="btn-step3-next">
+        Next: Review & Export →
+      </button>
+    </div>
+  </div>
+
+  <!-- ─── STEP 4: REVIEW & EXPORT ─── -->
+  <div class="panel" id="panel-4">
+    <div class="card">
+      <div class="card-title">✅ Final merge summary</div>
+      <div class="grid4" style="margin-bottom:16px">
+        <div class="stat-chip"><div class="stat-num blue" id="f-existing">0</div><div class="stat-lbl">Existing kept</div></div>
+        <div class="stat-chip"><div class="stat-num green" id="f-added">0</div><div class="stat-lbl">New added</div></div>
+        <div class="stat-chip"><div class="stat-num amber" id="f-excluded">0</div><div class="stat-lbl">Excluded</div></div>
+        <div class="stat-chip"><div class="stat-num" id="f-total" style="color:var(--text)">0</div><div class="stat-lbl">Total questions</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📋 Preview merged questions</div>
+      <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+        <select id="filter-battery" onchange="renderPreview()"><option value="">All batteries</option><option>verbal</option><option>quantitative</option><option>non-verbal</option></select>
+        <select id="filter-status" onchange="renderPreview()"><option value="">All statuses</option><option value="existing">Existing</option><option value="new">New</option><option value="excluded">Excluded</option></select>
+        <select id="filter-difficulty" onchange="renderPreview()"><option value="">All difficulties</option><option>easy</option><option>medium</option><option>hard</option></select>
+      </div>
+      <div class="table-wrap">
+        <table id="preview-table">
+          <thead><tr><th>#</th><th>ID</th><th>Battery</th><th>Type</th><th>Difficulty</th><th>Status</th><th>Text</th></tr></thead>
+          <tbody id="preview-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">⬇ Export options</div>
+      <div class="grid2">
+        <div class="field">
+          <label>New version string</label>
+          <input type="text" id="export-version" style="width:100%"/>
+        </div>
+        <div class="field">
+          <label>Export format</label>
+          <select id="export-format" style="width:100%">
+            <option value="full">Full questions.json (ready for S3)</option>
+            <option value="newonly">New questions only (patch file)</option>
+          </select>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-green" onclick="exportMerged()">⬇ Download questions.json</button>
+        <button class="btn btn-ghost btn-sm" onclick="copyJSON()">📋 Copy JSON</button>
+        <button class="btn btn-ghost btn-sm" onclick="showHostingGuide()">🌐 Hosting guide</button>
+      </div>
+    </div>
+
+    <!-- Hosting guide -->
+    <div class="card" id="hosting-guide" style="display:none">
+      <div class="card-title">🌐 Free hosting options</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="background:var(--surface2);border-radius:8px;padding:14px;border-left:3px solid var(--green)">
+          <div style="font-weight:700;margin-bottom:6px;font-size:14px">🥇 Recommended: Cloudflare Pages (free forever)</div>
+          <ol style="font-size:13px;color:var(--text2);line-height:2;padding-left:18px">
+            <li>Create account at <strong style="color:var(--text)">pages.cloudflare.com</strong></li>
+            <li>Click <strong style="color:var(--text)">Create a project → Upload assets</strong></li>
+            <li>Upload <code style="background:var(--surface3);padding:1px 6px;border-radius:4px">cogat-brainspark.html</code> and <code style="background:var(--surface3);padding:1px 6px;border-radius:4px">questions.json</code> into the same folder</li>
+            <li>Set your project name → Deploy</li>
+            <li>Update <code style="background:var(--surface3);padding:1px 6px;border-radius:4px">DATA_SOURCE</code> in the HTML to <code style="background:var(--surface3);padding:1px 6px;border-radius:4px">./questions.json</code></li>
+            <li>When you have new questions: re-upload <strong style="color:var(--text)">only questions.json</strong> — app auto-refreshes on next open</li>
+          </ol>
+        </div>
+        <div style="background:var(--surface2);border-radius:8px;padding:14px;border-left:3px solid var(--blue)">
+          <div style="font-weight:700;margin-bottom:6px;font-size:14px">🥈 Netlify Drop (free, no account needed to try)</div>
+          <ol style="font-size:13px;color:var(--text2);line-height:2;padding-left:18px">
+            <li>Go to <strong style="color:var(--text)">app.netlify.com/drop</strong></li>
+            <li>Drag a folder containing both files onto the page</li>
+            <li>Get a live URL instantly — no signup required</li>
+            <li>Create a free account to keep the URL permanent and redeploy</li>
+          </ol>
+        </div>
+        <div style="background:var(--surface2);border-radius:8px;padding:14px;border-left:3px solid var(--purple)">
+          <div style="font-weight:700;margin-bottom:6px;font-size:14px">🥉 GitHub Pages (free, good for version control)</div>
+          <ol style="font-size:13px;color:var(--text2);line-height:2;padding-left:18px">
+            <li>Create a free GitHub account and new public repo</li>
+            <li>Upload both files to the repo root</li>
+            <li>Go to <strong style="color:var(--text)">Settings → Pages → Source: main branch</strong></li>
+            <li>Your app lives at <code style="background:var(--surface3);padding:1px 6px;border-radius:4px">username.github.io/repo-name</code></li>
+            <li>Update questions: edit questions.json in the repo — app refreshes automatically</li>
+          </ol>
+        </div>
+        <div style="background:var(--surface2);border-radius:8px;padding:14px;border-left:3px solid var(--amber)">
+          <div style="font-weight:700;margin-bottom:6px;font-size:14px">☁️ AWS S3 + CloudFront (original plan, still free tier)</div>
+          <ol style="font-size:13px;color:var(--text2);line-height:2;padding-left:18px">
+            <li>Create S3 bucket → enable static website hosting → public read</li>
+            <li>Upload both files. Set <code style="background:var(--surface3);padding:1px 6px;border-radius:4px">DATA_SOURCE</code> to your S3 URL</li>
+            <li>Add CORS rule: allow GET from <code style="background:var(--surface3);padding:1px 6px;border-radius:4px">*</code></li>
+            <li>Optional: add CloudFront CDN in front for global speed</li>
+            <li>Free tier: 5 GB storage + 20K requests/month</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:flex-start;margin-top:4px">
+      <button class="btn btn-ghost" onclick="gotoStep(3)">← Back</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ─── State ──────────────────────────────────────────────────
+let existingData = null;   // { version, questions[] }
+let newBatch = [];         // raw new questions
+let dedupResult = null;    // { toAdd[], duplicates[], allAfter[] }
+let validationResults = {}; // id -> {pass, checks[], issues[]}
+let mergedQuestions = [];
+
+// ─── Step navigation ────────────────────────────────────────
+let currentStep = 1;
+function gotoStep(n) {
+  if (n > 1 && !existingData) return;
+  if (n > 2 && (!dedupResult || dedupResult.toAdd.length === 0)) return;
+  currentStep = n;
+  document.querySelectorAll('.panel').forEach((p,i) => p.classList.toggle('active', i+1 === n));
+  document.querySelectorAll('.step').forEach((s,i) => {
+    s.classList.toggle('active', i+1 === n);
+    s.classList.toggle('done', i+1 < n);
+    s.querySelector('.step-num').textContent = i+1 < n ? '✓' : i+1;
+  });
+  if (n === 2) runDedup();
+  if (n === 4) buildFinalSummary();
+}
+
+// ─── File loading ────────────────────────────────────────────
+function onDrag(e, which) { e.preventDefault(); document.getElementById('zone-'+which).classList.add('drag'); }
+function offDrag(which) { document.getElementById('zone-'+which).classList.remove('drag'); }
+function onDrop(e, which) { e.preventDefault(); offDrag(which); const f = e.dataTransfer.files[0]; if (f) readJSON(f, which); }
+function loadFile(e, which) { const f = e.target.files[0]; if (f) readJSON(f, which); }
+
+function readJSON(file, which) {
+  const r = new FileReader();
+  r.onload = ev => {
+    try {
+      const data = JSON.parse(ev.target.result);
+      if (which === 'existing') setExisting(data);
+      else setNew(Array.isArray(data) ? data : (data.questions || []));
+    } catch { alert('Invalid JSON file.'); }
+  };
+  r.readAsText(file);
+}
+
+function loadPaste() {
+  try {
+    const raw = document.getElementById('paste-input').value.trim();
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    setNew(Array.isArray(data) ? data : (data.questions || []));
+  } catch(e) { alert('Invalid JSON: ' + e.message); }
+}
+
+function setExisting(data) {
+  // Accept { version, questions[] } or just []
+  existingData = Array.isArray(data) ? { version: 'unknown', questions: data } : data;
+  const qs = existingData.questions || [];
+  document.getElementById('existing-count-badge').textContent = qs.length + ' loaded';
+  document.getElementById('existing-count-badge').className = 'badge badge-green';
+  document.getElementById('ex-total').textContent = qs.length;
+  document.getElementById('ex-version').textContent = existingData.version || '—';
+  const batteries = [...new Set(qs.map(q => q.battery))].join(', ');
+  document.getElementById('ex-types').textContent = batteries || '—';
+  document.getElementById('existing-summary').style.display = 'block';
+  document.getElementById('zone-existing').classList.add('upload-success');
+  checkStep1Ready();
+}
+
+function setNew(qs) {
+  newBatch = qs;
+  document.getElementById('new-count-badge').textContent = qs.length + ' loaded';
+  document.getElementById('new-count-badge').className = 'badge badge-purple';
+  document.getElementById('nw-total').textContent = qs.length;
+  document.getElementById('nw-types').textContent = [...new Set(qs.map(q => q.type||'?'))].length + ' types';
+  document.getElementById('nw-diff').textContent = [...new Set(qs.map(q => q.difficulty||'?'))].join(', ');
+  document.getElementById('new-summary').style.display = 'block';
+  document.getElementById('zone-new').classList.add('upload-success');
+  checkStep1Ready();
+}
+
+function checkStep1Ready() {
+  const ready = existingData && newBatch.length > 0;
+  document.getElementById('btn-step1-next').disabled = !ready;
+}
+
+// ─── Deduplication ────────────────────────────────────────────
+function normalizeText(t) {
+  return (t || '').toLowerCase().replace(/[^a-z0-9]/g, '').trim();
+}
+
+function runDedup() {
+  if (!existingData || newBatch.length === 0) return;
+  const prefix = document.getElementById('id-prefix').value || 'q';
+  const startNum = parseInt(document.getElementById('id-start').value) || 100;
+  const existingIds = new Set((existingData.questions || []).map(q => q.id));
+  const existingTexts = new Set((existingData.questions || []).map(q => normalizeText(q.text)));
+  const usedIds = new Set(existingIds);
+
+  const toAdd = [], duplicates = [];
+  let counter = startNum;
+
+  // Build a set of IDs from the new batch to detect intra-batch dupes
+  const newBatchTexts = new Set();
+
+  for (const q of newBatch) {
+    const normText = normalizeText(q.text);
+
+    // Check for duplicate ID
+    if (q.id && existingIds.has(q.id)) {
+      duplicates.push({ ...q, _reason: 'Duplicate ID: ' + q.id });
+      continue;
+    }
+    // Check for duplicate text (fuzzy — normalized)
+    if (existingTexts.has(normText)) {
+      duplicates.push({ ...q, _reason: 'Same question text already exists' });
+      continue;
+    }
+    // Check intra-batch duplicate text
+    if (newBatchTexts.has(normText)) {
+      duplicates.push({ ...q, _reason: 'Duplicate within new batch' });
+      continue;
+    }
+
+    // Assign ID if missing or conflicting
+    let id = q.id;
+    if (!id || usedIds.has(id)) {
+      while (usedIds.has(prefix + String(counter).padStart(3,'0'))) counter++;
+      id = prefix + String(counter).padStart(3,'0');
+      counter++;
+    }
+
+    usedIds.add(id);
+    newBatchTexts.add(normText);
+    toAdd.push({ ...q, id });
+  }
+
+  dedupResult = {
+    toAdd,
+    duplicates,
+    allAfter: [...(existingData.questions || []), ...toAdd]
+  };
+
+  // Update stats
+  document.getElementById('d-new').textContent = toAdd.length;
+  document.getElementById('d-dup-id').textContent = duplicates.filter(d=>d._reason.includes('ID')).length;
+  document.getElementById('d-dup-text').textContent = duplicates.filter(d=>d._reason.includes('text')).length;
+  document.getElementById('d-total-after').textContent = dedupResult.allAfter.length;
+
+  // Render new questions list
+  const nl = document.getElementById('new-questions-list');
+  if (toAdd.length === 0) {
+    nl.innerHTML = '<div style="color:var(--text2);font-size:13px;padding:12px">No new questions to add.</div>';
+  } else {
+    nl.innerHTML = toAdd.slice(0,50).map(q => `
+      <div class="val-row diff-new" style="margin-bottom:6px">
+        <div class="val-icon val-pass-icon" style="font-size:11px">NEW</div>
+        <div class="val-text">
+          <div class="val-title">${escHtml(q.id)} — ${escHtml(q.text.slice(0,80))}${q.text.length>80?'…':''}</div>
+          <div class="val-detail">
+            <span class="badge badge-blue">${q.battery||'?'}</span>
+            <span class="badge badge-purple">${(q.type||'?').replace(/-/g,' ')}</span>
+            <span class="badge badge-amber">${q.difficulty||'?'}</span>
+            &nbsp;Answer: <strong>${(q.options||[])[q.answer]?.text||q.answer}</strong>
+          </div>
+        </div>
+      </div>`).join('');
+    if (toAdd.length > 50) nl.innerHTML += `<div style="color:var(--text2);font-size:12px;padding:8px">… and ${toAdd.length-50} more</div>`;
+  }
+
+  // Render duplicates
+  const dl = document.getElementById('dup-questions-list');
+  if (duplicates.length === 0) {
+    dl.innerHTML = '<div style="color:var(--text2);font-size:13px;padding:12px">✅ No duplicates found.</div>';
+  } else {
+    dl.innerHTML = duplicates.map(q => `
+      <div class="val-row diff-dup" style="margin-bottom:6px">
+        <div class="val-icon val-warn-icon" style="font-size:10px">DUP</div>
+        <div class="val-text">
+          <div class="val-title">${escHtml(q.id||'no-id')} — ${escHtml((q.text||'').slice(0,70))}</div>
+          <div class="val-detail" style="color:var(--amber)">${escHtml(q._reason)}</div>
+        </div>
+      </div>`).join('');
+  }
+
+  document.getElementById('btn-step2-next').disabled = toAdd.length === 0;
+
+  // Init validation results
+  toAdd.forEach(q => { validationResults[q.id] = { status: 'pending' }; });
+  renderValResults();
+  document.getElementById('v-total').textContent = toAdd.length;
+}
+
+// ─── Validation ───────────────────────────────────────────────
+function renderValResults() {
+  if (!dedupResult) return;
+  const container = document.getElementById('val-results');
+  container.innerHTML = dedupResult.toAdd.map(q => {
+    const r = validationResults[q.id] || { status: 'pending' };
+    let iconCls, iconTxt, rowCls;
+    if (r.status === 'pass')    { iconCls='val-pass-icon'; iconTxt='✓'; rowCls='pass'; }
+    else if (r.status === 'warn') { iconCls='val-warn-icon'; iconTxt='⚠'; rowCls='warn'; }
+    else if (r.status === 'fail') { iconCls='val-fail-icon'; iconTxt='✗'; rowCls='fail'; }
+    else if (r.status === 'running') { iconCls='val-pend-icon'; iconTxt='<span class="spin">⟳</span>'; rowCls='pending'; }
+    else { iconCls='val-pend-icon'; iconTxt='•'; rowCls='pending'; }
+
+    const issues = (r.issues||[]).join(' · ');
+    return `
+      <div class="val-row ${rowCls}" id="vrow-${q.id}" style="margin-bottom:6px">
+        <div class="val-icon ${iconCls}">${iconTxt}</div>
+        <div class="val-text">
+          <div class="val-title">${escHtml(q.id)}: ${escHtml((q.text||'').slice(0,70))}${(q.text||'').length>70?'…':''}</div>
+          <div class="val-detail">
+            ${r.status === 'pending' ? '<span style="color:var(--text3)">Not yet validated</span>' : ''}
+            ${r.status === 'running' ? '<span style="color:var(--blue)">Validating…</span>' : ''}
+            ${issues ? '<span style="color:inherit">' + escHtml(issues) + '</span>' : ''}
+            ${r.fix ? '<br><span style="color:var(--amber)">Suggested fix: ' + escHtml(r.fix) + '</span>' : ''}
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function updateValStats() {
+  const vals = Object.values(validationResults);
+  document.getElementById('v-pass').textContent = vals.filter(v=>v.status==='pass').length;
+  document.getElementById('v-warn').textContent = vals.filter(v=>v.status==='warn').length;
+  document.getElementById('v-fail').textContent = vals.filter(v=>v.status==='fail').length;
+}
+
+async function validateAll(failedOnly = false) {
+  if (!dedupResult) return;
+  const btn = document.getElementById('btn-validate-all');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spin">⟳</span> Validating…';
+
+  const concurrency = parseInt(document.getElementById('val-concurrency').value) || 2;
+  const toValidate = dedupResult.toAdd.filter(q =>
+    !failedOnly || validationResults[q.id]?.status === 'fail'
+  );
+
+  document.getElementById('v-prog-label').textContent = 'Validating 0 / ' + toValidate.length;
+
+  let done = 0;
+
+  // Process in chunks of `concurrency`
+  for (let i = 0; i < toValidate.length; i += concurrency) {
+    const chunk = toValidate.slice(i, i + concurrency);
+    await Promise.all(chunk.map(q => validateOne(q)));
+    done += chunk.length;
+    const pct = Math.round(done / toValidate.length * 100);
+    document.getElementById('v-prog-fill').style.width = pct + '%';
+    document.getElementById('v-prog-pct').textContent = pct + '%';
+    document.getElementById('v-prog-label').textContent = `Validated ${done} / ${toValidate.length}`;
+    renderValResults();
+    updateValStats();
+  }
+
+  document.getElementById('v-prog-fill').classList.add('green');
+  document.getElementById('v-prog-label').textContent = 'Validation complete';
+  btn.disabled = false;
+  btn.innerHTML = '🤖 Re-validate';
+}
+
+async function validateOne(q) {
+  validationResults[q.id] = { status: 'running' };
+
+  const prompt = `You are a strict CoGAT question quality reviewer for Grade 3–5 students (ages 8–10).
+
+Review this question carefully:
+Battery: ${q.battery}
+Type: ${q.type}
+Difficulty: ${q.difficulty}
+Question: ${q.text}
+Options: ${(q.options||[]).map((o,i)=>String.fromCharCode(65+i)+') '+(o.text||o)).join(' | ')}
+Declared correct answer: option ${q.answer} = "${(q.options||[])[q.answer]?.text || q.answer}"
+Explanation: ${q.explanation || 'none provided'}
+
+Check ALL of the following and respond ONLY with valid JSON (no markdown, no preamble):
+{
+  "pass": true/false,
+  "answer_correct": true/false,
+  "answer_unambiguous": true/false,
+  "distractors_plausible": true/false,
+  "age_appropriate": true/false,
+  "no_bias": true/false,
+  "skill_aligned": true/false,
+  "difficulty_ok": true/false,
+  "issues": ["list specific issues found, or empty array if none"],
+  "suggested_fix": "one sentence fix if needed, else null"
+}`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 600,
+        system: 'You are a strict educational content reviewer. Output only valid JSON.',
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await res.json();
+    const text = (data.content?.[0]?.text || '').replace(/```json|```/g, '').trim();
+    const result = JSON.parse(text);
+
+    const threshold = parseInt(document.getElementById('val-reject-threshold').value) || 2;
+    const checks = ['answer_correct','answer_unambiguous','distractors_plausible','age_appropriate','no_bias','skill_aligned','difficulty_ok'];
+    const failures = checks.filter(c => result[c] === false);
+
+    validationResults[q.id] = {
+      status: failures.length >= threshold ? 'fail' : failures.length > 0 ? 'warn' : 'pass',
+      issues: result.issues || [],
+      fix: result.suggested_fix || null,
+      raw: result
+    };
+  } catch(err) {
+    validationResults[q.id] = { status: 'warn', issues: ['Validation API error: ' + err.message] };
+  }
+}
+
+// ─── Final summary & export ───────────────────────────────────
+function buildFinalSummary() {
+  if (!dedupResult) return;
+  const includeFailed = document.getElementById('val-include-failed').value;
+  const excluded = [];
+  const added = [];
+
+  for (const q of dedupResult.toAdd) {
+    const r = validationResults[q.id] || { status: 'pending' };
+    if (includeFailed === 'no' && r.status === 'fail') {
+      excluded.push(q);
+    } else {
+      added.push({ ...q, _valStatus: r.status, _valIssues: r.issues });
+    }
+  }
+
+  mergedQuestions = [...(existingData.questions || []).map(q => ({ ...q, _status: 'existing' })),
+                     ...added.map(q => ({ ...q, _status: 'new' }))];
+
+  const existingCount = (existingData.questions || []).length;
+  document.getElementById('f-existing').textContent = existingCount;
+  document.getElementById('f-added').textContent = added.length;
+  document.getElementById('f-excluded').textContent = excluded.length + dedupResult.duplicates.length;
+  document.getElementById('f-total').textContent = mergedQuestions.length;
+
+  // Set default version
+  const today = new Date().toISOString().slice(0,10);
+  document.getElementById('export-version').value = today + '-v1';
+
+  document.getElementById('btn-export').disabled = false;
+  renderPreview();
+}
+
+function renderPreview() {
+  const bFilter = document.getElementById('filter-battery').value;
+  const sFilter = document.getElementById('filter-status').value;
+  const dFilter = document.getElementById('filter-difficulty').value;
+
+  const filtered = mergedQuestions.filter(q => {
+    if (bFilter && q.battery !== bFilter) return false;
+    if (sFilter && q._status !== sFilter) return false;
+    if (dFilter && q.difficulty !== dFilter) return false;
+    return true;
+  });
+
+  const tbody = document.getElementById('preview-tbody');
+  tbody.innerHTML = filtered.slice(0, 100).map((q, i) => {
+    const statusBadge = q._status === 'new'
+      ? '<span class="badge badge-green">New</span>'
+      : '<span class="badge badge-blue">Existing</span>';
+    return `<tr>
+      <td style="color:var(--text2);font-family:var(--mono);font-size:11px">${i+1}</td>
+      <td style="font-family:var(--mono);font-size:12px">${escHtml(q.id)}</td>
+      <td><span class="badge badge-blue">${q.battery||'?'}</span></td>
+      <td style="font-size:12px;color:var(--text2)">${(q.type||'?').replace(/-/g,' ')}</td>
+      <td><span class="badge badge-amber">${q.difficulty||'?'}</span></td>
+      <td>${statusBadge}</td>
+      <td style="font-size:12px;max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escHtml((q.text||'').slice(0,80))}</td>
+    </tr>`;
+  }).join('');
+  if (filtered.length > 100) {
+    tbody.innerHTML += `<tr><td colspan="7" style="color:var(--text2);font-size:12px;text-align:center;padding:12px">… and ${filtered.length-100} more questions</td></tr>`;
+  }
+}
+
+function exportMerged() {
+  const version = document.getElementById('export-version').value || new Date().toISOString().slice(0,10)+'-v1';
+  const format = document.getElementById('export-format').value;
+
+  // Strip internal _status and _valStatus fields
+  const clean = (q) => {
+    const r = { ...q };
+    delete r._status; delete r._valStatus; delete r._valIssues; delete r._reason;
+    return r;
+  };
+
+  let output;
+  if (format === 'newonly') {
+    const newOnes = mergedQuestions.filter(q => q._status === 'new').map(clean);
+    output = { version, generatedAt: new Date().toISOString(), questions: newOnes };
+  } else {
+    output = {
+      version,
+      generatedAt: new Date().toISOString(),
+      meta: { grade: '3-5', ages: '8-10', totalQuestions: mergedQuestions.length },
+      questions: mergedQuestions.map(clean)
+    };
+  }
+
+  const blob = new Blob([JSON.stringify(output, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'questions.json';
+  a.click();
+}
+
+function copyJSON() {
+  const version = document.getElementById('export-version').value || new Date().toISOString().slice(0,10)+'-v1';
+  const clean = (q) => { const r={...q}; delete r._status; delete r._valStatus; delete r._valIssues; return r; };
+  const output = { version, questions: mergedQuestions.map(clean) };
+  navigator.clipboard.writeText(JSON.stringify(output, null, 2))
+    .then(() => alert('Copied to clipboard!'))
+    .catch(() => alert('Copy failed — use Export button instead'));
+}
+
+function showHostingGuide() {
+  const g = document.getElementById('hosting-guide');
+  g.style.display = g.style.display === 'none' ? 'block' : 'none';
+}
+
+function resetAll() {
+  if (!confirm('Reset everything? All loaded data will be cleared.')) return;
+  existingData = null; newBatch = []; dedupResult = null; validationResults = {}; mergedQuestions = [];
+  gotoStep(1);
+  document.getElementById('btn-export').disabled = true;
+  document.getElementById('btn-step1-next').disabled = true;
+  ['existing','new'].forEach(w => {
+    document.getElementById('zone-'+w).classList.remove('upload-success','drag');
+    document.getElementById(w+'-summary').style.display = 'none';
+    document.getElementById(w+'-count-badge').textContent = '0 loaded';
+    document.getElementById(w+'-count-badge').className = 'badge badge-blue';
+  });
+  document.getElementById('paste-input').value = '';
+}
+
+function escHtml(s) {
+  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ─── Question type options per battery ──────────────────────
+const BATTERY_TYPES = {
+  verbal:       ['verbal-analogies','verbal-classification','sentence-completion'],
+  quantitative: ['number-series','number-analogies','number-puzzles'],
+  'non-verbal': ['figure-matrices','paper-folding','figure-classification'],
+  mixed:        ['verbal-analogies','verbal-classification','sentence-completion',
+                 'number-series','number-analogies','number-puzzles',
+                 'figure-matrices','paper-folding','figure-classification']
+};
+
+const BATTERY_LABELS = {
+  verbal: 'Verbal', quantitative: 'Quantitative', 'non-verbal': 'Non-Verbal', mixed: 'Mixed'
+};
+
+const GRADE_INFO = {
+  K:  { label:'Kindergarten',  age:'5–6',   cogatLevel:'Primary',      difficulty:'easy' },
+  '1':{ label:'Grade 1',       age:'6–7',   cogatLevel:'Primary',      difficulty:'easy' },
+  '2':{ label:'Grade 2',       age:'7–8',   cogatLevel:'Primary',      difficulty:'easy' },
+  '3':{ label:'Grade 3',       age:'8–9',   cogatLevel:'Level 7/8',    difficulty:'medium' },
+  '4':{ label:'Grade 4',       age:'9–10',  cogatLevel:'Level 9/10',   difficulty:'medium' },
+  '5':{ label:'Grade 5',       age:'10–11', cogatLevel:'Level 11/12',  difficulty:'medium' },
+  '6':{ label:'Grade 6',       age:'11–12', cogatLevel:'Level 13/14',  difficulty:'hard' },
+  '7':{ label:'Grade 7',       age:'12–13', cogatLevel:'Level 15/16',  difficulty:'hard' },
+  '8':{ label:'Grade 8',       age:'13–14', cogatLevel:'Level 17/18',  difficulty:'hard' }
+};
+
+function updateGenTypes() {
+  const battery = document.getElementById('gen-battery').value;
+  const types = BATTERY_TYPES[battery] || [];
+  const sel = document.getElementById('gen-type');
+  const prev = sel.value;
+  // Balanced option at top for specific batteries (mixed already covers all types)
+  const balancedOption = battery !== 'mixed'
+    ? `<option value="balanced"${prev==='balanced'?' selected':''}>⭐ Balanced (all types)</option>`
+    : '';
+  sel.innerHTML = balancedOption + types.map(t => `<option value="${t}"${t===prev?' selected':''}>${
+    t.split('-').map(w=>w[0].toUpperCase()+w.slice(1)).join(' ')
+  }</option>`).join('');
+}
+
+function genLog(cls, msg) {
+  const log = document.getElementById('gen-log');
+  log.style.display = 'flex';
+  const ts = new Date().toLocaleTimeString('en-US',{hour12:false,hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  log.innerHTML += `<div class="log-line"><span class="log-t">${ts}</span><span class="${cls}">${escHtml(msg)}</span></div>`;
+  log.scrollTop = log.scrollHeight;
+}
+
+function buildPrompt() {
+  const count   = Math.max(1, Math.min(1000, parseInt(document.getElementById('gen-count').value) || 10));
+  const grade   = document.getElementById('gen-grade').value;
+  const battery = document.getElementById('gen-battery').value;
+  const typeVal = battery === 'mixed' ? 'mixed' : document.getElementById('gen-type').value;
+  const diff    = document.getElementById('gen-difficulty').value;
+
+  const isAllGrades    = grade === 'all';
+  const isBalancedDiff = diff === 'balanced';
+  const isBalancedType = typeVal === 'balanced';
+  const isMixedType    = battery === 'mixed';
+
+  // Grade header info
+  const gradeInfo = isAllGrades
+    ? { label: 'K–8 (all grades)', age: '5–14', cogatLevel: 'all levels' }
+    : (GRADE_INFO[grade] || { label: `Grade ${grade}`, age: '?', cogatLevel: '?' });
+
+  // Grade instruction
+  const gradeInstruction = isAllGrades
+    ? `Distribute the ${count} questions across ALL grades K–8 (roughly equal per grade). Set the "grade" field on each question to its appropriate grade level ("K", "1", "2", "3", "4", "5", "6", "7", or "8"). Calibrate vocabulary, complexity, and concepts to match each grade individually.`
+    : `All questions are for ${gradeInfo.label} students (age ${gradeInfo.age}, CoGAT ${gradeInfo.cogatLevel}). Set "grade": "${grade}" on every question.`;
+
+  // Difficulty instruction
+  const diffInstruction = isBalancedDiff
+    ? `Distribute difficulty evenly — approximately one third "easy", one third "medium", one third "hard". Set the "difficulty" field on each question accordingly.`
+    : `All questions must have "difficulty": "${diff}".`;
+
+  // Type instruction
+  const typeInstruction = isMixedType
+    ? `Distribute the ${count} questions evenly across all 9 CoGAT types: verbal-analogies, verbal-classification, sentence-completion, number-series, number-analogies, number-puzzles, figure-matrices (use text description, not SVG), paper-folding (use text description, not SVG), figure-classification. For non-verbal types write a short text description of the visual pattern in the "text" field and set svg to null.`
+    : isBalancedType
+      ? `Distribute the ${count} questions evenly across all types in the "${battery}" battery. For non-verbal types write a short text description of the visual pattern in the "text" field and set svg to null.`
+      : `All questions must be of type "${typeVal}". Battery: "${battery}".`;
+
+  // Existing question dedup block
+  const existingQs = existingData?.questions || [];
+  const relevantExisting = existingQs.filter(q => battery === 'mixed' || q.battery === battery);
+  let existingBlock = '';
+  if (relevantExisting.length > 0) {
+    const existingTexts = relevantExisting.map((q, i) => `${i+1}. [${q.id}] ${q.text}`).join('\n');
+    existingBlock = `\n\nDO NOT generate any question that is the same as or similar to the following EXISTING questions already in the bank:\n${existingTexts}\n`;
+  }
+
+  // Example JSON uses concrete values so the AI knows the exact schema
+  const exGrade = isAllGrades    ? '3'      : grade;
+  const exDiff  = isBalancedDiff ? 'medium' : diff;
+
+  return `You are a CoGAT test question writer.
+
+Generate exactly ${count} questions.
+
+GRADE: ${gradeInstruction}
+
+DIFFICULTY: ${diffInstruction}
+
+QUESTION TYPES: ${typeInstruction}${existingBlock}
+For EACH question output ONLY a valid JSON object on a SINGLE line (no array wrapper, no markdown, no code fences, no explanatory text before or after). Each line = one question:
+{"id":"GEN001","grade":"${exGrade}","battery":"verbal","type":"verbal-analogies","difficulty":"${exDiff}","text":"question text","svg":null,"options":[{"label":"A","text":"option","svg":null},{"label":"B","text":"option","svg":null},{"label":"C","text":"option","svg":null},{"label":"D","text":"option","svg":null}],"answer":0,"explanation":"2-sentence kid-friendly explanation","tags":["tag1"]}
+
+Rules:
+- "answer" is 0-based index (0=A, 1=B, 2=C, 3=D) of the ONLY correct option
+- All distractors must be plausible but clearly wrong
+- Explanation must be written for a student at the question's specific grade level
+- No two questions may have the same text
+- Do NOT reproduce any question from the existing bank listed above — every question must be entirely new
+- Output ONLY the ${count} JSON lines, nothing else — no preamble, no postamble`;
+}
+
+async function buildAndCopyPrompt() {
+  const prompt = buildPrompt();
+  const statusEl = document.getElementById('copy-status');
+  try {
+    await navigator.clipboard.writeText(prompt);
+    statusEl.textContent = '✓ Copied! Paste into GitHub Copilot or any AI chat.';
+    statusEl.style.color = 'var(--green)';
+  } catch(e) {
+    statusEl.textContent = 'Could not auto-copy — see prompt below:';
+    statusEl.style.color = 'var(--amber)';
+    const fallback = document.createElement('textarea');
+    fallback.value = prompt;
+    fallback.style.cssText = 'width:100%;height:120px;margin-top:8px;background:var(--surface3);border:1px solid var(--border);border-radius:6px;padding:8px;color:var(--text);font-family:var(--mono);font-size:11px;resize:vertical';
+    fallback.readOnly = true;
+    statusEl.after(fallback);
+    fallback.select();
+  }
+  setTimeout(() => { statusEl.textContent = ''; }, 6000);
+}
+
+function parseJsonLines(rawText) {
+  // Strip markdown code fences if the AI wrapped output in them
+  const stripped = rawText.replace(/```[a-z]*\n?/gi, '').trim();
+  const lines = stripped.split('\n').map(l => l.trim()).filter(l => l.startsWith('{'));
+  const parsed = [];
+  const errors = [];
+  lines.forEach((line, i) => {
+    try {
+      const q = JSON.parse(line);
+      if (!q.text || !Array.isArray(q.options) || q.options.length !== 4) {
+        errors.push(`Line ${i+1}: missing required fields (text / 4 options)`);
+      } else {
+        parsed.push(q);
+      }
+    } catch(e) {
+      errors.push(`Line ${i+1}: ${e.message}`);
+    }
+  });
+  return { parsed, errors };
+}
+
+function loadPastedResponse() {
+  const raw = (document.getElementById('gen-paste-area').value || '').trim();
+  const statusEl = document.getElementById('gen-status');
+  if (!raw) {
+    statusEl.textContent = 'Paste the AI response first.';
+    statusEl.style.color = 'var(--amber)';
+    return;
+  }
+  const { parsed, errors } = parseJsonLines(raw);
+  errors.forEach(e => genLog('log-warn', e));
+  if (parsed.length === 0) {
+    statusEl.textContent = '✗ No valid questions found. Check the format.';
+    statusEl.style.color = 'var(--red)';
+    return;
+  }
+  setNew(parsed);
+  statusEl.textContent = `✓ ${parsed.length} questions loaded as new batch`;
+  statusEl.style.color = 'var(--green)';
+  if (errors.length) genLog('log-warn', `${errors.length} line(s) skipped due to errors`);
+  genLog('log-ok', `✓ ${parsed.length} questions parsed and loaded`);
+}
+</script>
+</body>
+</html>
