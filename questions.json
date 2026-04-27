@@ -310,7 +310,7 @@
     "type": "figure-matrices",
     "difficulty": "easy",
     "text": "Each figure adds one inner rectangle. Figure 1=1, 2=2, 3=3, 4=___.",
-    "svg": null,
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='12' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>Each step adds a rectangle</text><rect x='2' y='55' width='58' height='58' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><rect x='5' y='9' width='48' height='40' fill='none' stroke='#7c6fff' stroke-width='1.5'/><text x='31' y='125' text-anchor='middle' fill='#ffd700' font-size='10' font-family='Nunito,sans-serif'>1</text><rect x='68' y='55' width='58' height='58' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><rect x='5' y='9' width='48' height='40' fill='none' stroke='#7c6fff' stroke-width='1.5'/><rect x='13' y='16' width='32' height='26' fill='none' stroke='#7c6fff' stroke-width='1.5'/><text x='97' y='125' text-anchor='middle' fill='#ffd700' font-size='10' font-family='Nunito,sans-serif'>2</text><rect x='134' y='55' width='58' height='58' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><rect x='5' y='9' width='48' height='40' fill='none' stroke='#7c6fff' stroke-width='1.5'/><rect x='13' y='16' width='32' height='26' fill='none' stroke='#7c6fff' stroke-width='1.5'/><rect x='21' y='23' width='16' height='12' fill='none' stroke='#7c6fff' stroke-width='1.5'/><text x='163' y='125' text-anchor='middle' fill='#ffd700' font-size='10' font-family='Nunito,sans-serif'>3</text><rect x='200' y='55' width='58' height='58' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='229' y='89' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text><text x='229' y='125' text-anchor='middle' fill='#ff6b9d' font-size='10' font-family='Nunito,sans-serif'>?</text></svg>",
     "options": [
       {
         "label": "A",
@@ -1132,7 +1132,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Caterpillar\u2192butterfly; tadpole\u2192frog.",
+    "explanation": "Caterpillar→butterfly; tadpole→frog.",
     "tags": [
       "verbal",
       "2",
@@ -1930,7 +1930,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Darwin\u2192natural selection; Einstein\u2192relativity.",
+    "explanation": "Darwin→natural selection; Einstein→relativity.",
     "tags": [
       "verbal",
       "7",
@@ -2158,7 +2158,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "2 folds=4 layers \u2192 4 holes.",
+    "explanation": "2 folds=4 layers → 4 holes.",
     "tags": [
       "paper",
       "2",
@@ -2500,7 +2500,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Painter\u2192brush; writer\u2192pen.",
+    "explanation": "Painter→brush; writer→pen.",
     "tags": [
       "verbal",
       "1",
@@ -2589,8 +2589,8 @@
     "battery": "non-verbal",
     "type": "figure-matrices",
     "difficulty": "easy",
-    "text": "Shapes gain a side each row: triangle(3)\u2192square(4)\u2192___.",
-    "svg": null,
+    "text": "Shapes gain a side each row: triangle(3)→square(4)→___.",
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='12' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>Each shape gains one side</text><rect x='8' y='55' width='55' height='55' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='35,71.55604 26.0,87.14404 44.0,87.14404' fill='none' stroke='#7c6fff' stroke-width='2'/><text x='35' y='122' text-anchor='middle' fill='#ffd700' font-size='10' font-family='Nunito,sans-serif'>3</text><rect x='71' y='55' width='55' height='55' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><rect x='84' y='68' width='28' height='28' fill='none' stroke='#7c6fff' stroke-width='2'/><text x='98' y='122' text-anchor='middle' fill='#ffd700' font-size='10' font-family='Nunito,sans-serif'>4</text><rect x='134' y='55' width='55' height='55' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='142.0,82.0 155.1,63.9 176.4,70.8 176.4,93.2 155.1,100.1' fill='none' stroke='#7c6fff' stroke-width='2'/><text x='161' y='122' text-anchor='middle' fill='#ffd700' font-size='10' font-family='Nunito,sans-serif'>5</text><rect x='197' y='55' width='55' height='55' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='224' y='87' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text><text x='224' y='122' text-anchor='middle' fill='#ff6b9d' font-size='10' font-family='Nunito,sans-serif'>?</text></svg>",
     "options": [
       {
         "label": "A",
@@ -2614,7 +2614,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "3\u21924\u21925 sides. Next=pentagon.",
+    "explanation": "3→4→5 sides. Next=pentagon.",
     "tags": [
       "figure",
       "3",
@@ -2804,7 +2804,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Sailor\u2192ship; pilot\u2192airplane.",
+    "explanation": "Sailor→ship; pilot→airplane.",
     "tags": [
       "verbal",
       "2",
@@ -3768,7 +3768,7 @@
     "type": "figure-matrices",
     "difficulty": "hard",
     "text": "Rows/cols each have black, gray, white. Row 3: white square, black triangle, ___.",
-    "svg": null,
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='10' text-anchor='middle' fill='#9da8d4' font-size='8' font-family='Nunito,sans-serif'>Each row/col: black · gray · white</text><rect x='20' y='16' width='60' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='50' cy='41' r='16' fill='#111' stroke='#111' stroke-width='2'/><rect x='85' y='16' width='60' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><rect x='101' y='27' width='28' height='28' fill='#888' stroke='#888' stroke-width='2'/><rect x='150' y='16' width='60' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='180,25.914279999999998 167.0,48.430279999999996 193.0,48.430279999999996' fill='#d4d4e8' stroke='#d4d4e8' stroke-width='2'/><rect x='20' y='71' width='60' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='50,80.91428 37.0,103.43028 63.0,103.43028' fill='#888' stroke='#888' stroke-width='2'/><rect x='85' y='71' width='60' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='115' cy='96' r='16' fill='#d4d4e8' stroke='#d4d4e8' stroke-width='2'/><rect x='150' y='71' width='60' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><rect x='166' y='82' width='28' height='28' fill='#111' stroke='#111' stroke-width='2'/><rect x='20' y='126' width='60' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><rect x='36' y='137' width='28' height='28' fill='#d4d4e8' stroke='#d4d4e8' stroke-width='2'/><rect x='85' y='126' width='60' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='115,135.91428 102.0,158.43028 128.0,158.43028' fill='#111' stroke='#111' stroke-width='2'/><rect x='150' y='126' width='60' height='50' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='180' y='156' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text></svg>",
     "options": [
       {
         "label": "A",
@@ -3830,7 +3830,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Center-corner cut \u2192 hole in very center.",
+    "explanation": "Center-corner cut → hole in very center.",
     "tags": [
       "paper",
       "3",
@@ -4869,8 +4869,8 @@
     "battery": "non-verbal",
     "type": "figure-matrices",
     "difficulty": "hard",
-    "text": "Shape 1 rotates 45\u00b0 per row; shape 2=circle. Row 3 shape 1 is 90\u00b0 from start (diamond). What is shown?",
-    "svg": null,
+    "text": "Shape 1 rotates 45° per row; shape 2=circle. Row 3 shape 1 is 90° from start (diamond). What is shown?",
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='12' text-anchor='middle' fill='#9da8d4' font-size='8' font-family='Nunito,sans-serif'>Shape rotates 45° per row, always overlaps circle</text><rect x='30' y='25' width='200' height='42' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='150' cy='46' r='14' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='95' y='32' width='28' height='28' fill='none' stroke='#7c6fff' stroke-width='2'/><text x='130' y='75' text-anchor='middle' fill='#9da8d4' font-size='8' font-family='Nunito,sans-serif'>Row 1: square + circle</text><rect x='30' y='72' width='200' height='42' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='150' cy='93' r='14' fill='none' stroke='#7c6fff' stroke-width='2'/><polygon points='110,77 126,93 110,109 94,93' fill='none' stroke='#7c6fff' stroke-width='2'/><text x='130' y='122' text-anchor='middle' fill='#9da8d4' font-size='8' font-family='Nunito,sans-serif'>Row 2: diamond + circle</text><rect x='30' y='119' width='200' height='42' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='130' y='145' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text><text x='130' y='169' text-anchor='middle' fill='#ff6b9d' font-size='8' font-family='Nunito,sans-serif'>Row 3: ?</text></svg>",
     "options": [
       {
         "label": "A",
@@ -4894,7 +4894,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Square rotated 45\u00b0=diamond; overlapping circle.",
+    "explanation": "Square rotated 45°=diamond; overlapping circle.",
     "tags": [
       "figure",
       "5",
@@ -7592,7 +7592,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "3 layers \u2192 3 holes.",
+    "explanation": "3 layers → 3 holes.",
     "tags": [
       "paper",
       "4",
@@ -8542,7 +8542,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Double-folded area=4 layers \u2192 4 holes.",
+    "explanation": "Double-folded area=4 layers → 4 holes.",
     "tags": [
       "paper",
       "4",
@@ -8580,7 +8580,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Diagonal fold \u2192 mirror image holes.",
+    "explanation": "Diagonal fold → mirror image holes.",
     "tags": [
       "paper",
       "1",
@@ -8783,8 +8783,8 @@
     "battery": "non-verbal",
     "type": "figure-matrices",
     "difficulty": "easy",
-    "text": "Row 1: small red square\u2192big red square. Row 2: small blue circle\u2192___.",
-    "svg": null,
+    "text": "Row 1: small red square→big red square. Row 2: small blue circle→___.",
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='14' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>Size grows · Color stays per row</text><rect x='16' y='26' width='95' height='68' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><rect x='53' y='50' width='20' height='20' fill='#e74c3c' stroke='#e74c3c' stroke-width='2'/><rect x='127' y='26' width='95' height='68' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><rect x='152' y='38' width='44' height='44' fill='#e74c3c' stroke='#e74c3c' stroke-width='2'/><rect x='16' y='102' width='95' height='68' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='63' cy='136' r='10' fill='#3a8fd1' stroke='#3a8fd1' stroke-width='2'/><rect x='127' y='102' width='95' height='68' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='174' y='141' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text></svg>",
     "options": [
       {
         "label": "A",
@@ -8808,7 +8808,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Shape grows; color stays. Small blue circle\u2192big blue circle.",
+    "explanation": "Shape grows; color stays. Small blue circle→big blue circle.",
     "tags": [
       "figure",
       "1",
@@ -9948,7 +9948,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "8 shaded squares visible; 2 layers coincide \u2192 8 unique holes.",
+    "explanation": "8 shaded squares visible; 2 layers coincide → 8 unique holes.",
     "tags": [
       "paper",
       "8",
@@ -10646,7 +10646,7 @@
     "type": "figure-matrices",
     "difficulty": "hard",
     "text": "Numbered cells: odd=solid, even=outline. Cell 9 is ___.",
-    "svg": null,
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='12' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>Odd cell# = solid · Even = outline</text><rect x='15' y='25' width='53' height='48' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='41' cy='49' r='15' fill='#7c6fff' stroke='#7c6fff' stroke-width='2'/><text x='41' y='53' text-anchor='middle' fill='#e8eaff' font-size='9' font-family='Nunito,sans-serif'>1</text><rect x='72' y='25' width='53' height='48' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='98' cy='49' r='15' fill='none' stroke='#7c6fff' stroke-width='2'/><text x='98' y='53' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>2</text><rect x='129' y='25' width='53' height='48' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='155' cy='49' r='15' fill='#7c6fff' stroke='#7c6fff' stroke-width='2'/><text x='155' y='53' text-anchor='middle' fill='#e8eaff' font-size='9' font-family='Nunito,sans-serif'>3</text><rect x='15' y='77' width='53' height='48' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='41' cy='101' r='15' fill='none' stroke='#7c6fff' stroke-width='2'/><text x='41' y='105' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>4</text><rect x='72' y='77' width='53' height='48' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='98' cy='101' r='15' fill='#7c6fff' stroke='#7c6fff' stroke-width='2'/><text x='98' y='105' text-anchor='middle' fill='#e8eaff' font-size='9' font-family='Nunito,sans-serif'>5</text><rect x='129' y='77' width='53' height='48' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='155' cy='101' r='15' fill='none' stroke='#7c6fff' stroke-width='2'/><text x='155' y='105' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>6</text><rect x='15' y='129' width='53' height='48' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='41' cy='153' r='15' fill='#7c6fff' stroke='#7c6fff' stroke-width='2'/><text x='41' y='157' text-anchor='middle' fill='#e8eaff' font-size='9' font-family='Nunito,sans-serif'>7</text><rect x='72' y='129' width='53' height='48' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='98' cy='153' r='15' fill='none' stroke='#7c6fff' stroke-width='2'/><text x='98' y='157' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>8</text><rect x='129' y='129' width='53' height='48' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='155' y='158' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text></svg>",
     "options": [
       {
         "label": "A",
@@ -10670,7 +10670,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "9 is odd \u2192 solid.",
+    "explanation": "9 is odd → solid.",
     "tags": [
       "figure",
       "6",
@@ -12963,8 +12963,8 @@
     "battery": "non-verbal",
     "type": "figure-matrices",
     "difficulty": "medium",
-    "text": "Row 1: triangle\u2192upside-down triangle\u2192triangle. Row 2: arrow up\u2192arrow down\u2192___.",
-    "svg": null,
+    "text": "Row 1: triangle→upside-down triangle→triangle. Row 2: arrow up→arrow down→___.",
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='12' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>Direction alternates ↕ each column</text><rect x='8' y='28' width='72' height='58' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='44,44.23516 33.0,63.28716 55.0,63.28716' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='86' y='28' width='72' height='58' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='122,69.76484 111.0,50.71284 133.0,50.71284' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='164' y='28' width='72' height='58' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='200,44.23516 189.0,63.28716 211.0,63.28716' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='8' y='90' width='72' height='58' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='36.8,137 36.8,119 30.5,119 44,101 57.5,119 51.2,119 51.2,137' fill='#7c6fff'/><rect x='86' y='90' width='72' height='58' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='114.8,101 114.8,119 108.5,119 122,137 135.5,119 129.2,119 129.2,101' fill='#7c6fff'/><rect x='164' y='90' width='72' height='58' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='200' y='124' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text></svg>",
     "options": [
       {
         "label": "A",
@@ -12988,7 +12988,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Flips then flips back. Up\u2192down\u2192up.",
+    "explanation": "Flips then flips back. Up→down→up.",
     "tags": [
       "figure",
       "1",
@@ -14217,8 +14217,8 @@
     "battery": "non-verbal",
     "type": "figure-matrices",
     "difficulty": "medium",
-    "text": "Shapes grow larger left\u2192right; lighter top\u2192bottom. Top-left=large dark circle. Bottom-right=___.",
-    "svg": null,
+    "text": "Shapes grow larger left→right; lighter top→bottom. Top-left=large dark circle. Bottom-right=___.",
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='14' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>Large→small (L→R) · Dark→light (T→B)</text><rect x='16' y='26' width='95' height='68' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='63' cy='60' r='30' fill='#444' stroke='#444' stroke-width='2'/><rect x='127' y='26' width='95' height='68' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='174' cy='60' r='15' fill='#444' stroke='#444' stroke-width='2'/><rect x='16' y='102' width='95' height='68' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='63' cy='136' r='30' fill='#aaa' stroke='#aaa' stroke-width='2'/><rect x='127' y='102' width='95' height='68' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='174' y='141' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text></svg>",
     "options": [
       {
         "label": "A",
@@ -14242,7 +14242,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Right=smaller; down=lighter \u2192 small light circle.",
+    "explanation": "Right=smaller; down=lighter → small light circle.",
     "tags": [
       "figure",
       "7",
@@ -18132,7 +18132,7 @@
     "type": "figure-matrices",
     "difficulty": "hard",
     "text": "Top-left=dark large circle. Top-right=light large circle. Bottom-left=dark small circle. Bottom-right=___.",
-    "svg": null,
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='14' text-anchor='middle' fill='#9da8d4' font-size='8' font-family='Nunito,sans-serif'>Left=dark · Right=light · Top=large · Bot=small</text><rect x='16' y='26' width='95' height='68' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='63' cy='60' r='28' fill='#222' stroke='#222' stroke-width='2'/><rect x='127' y='26' width='95' height='68' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='174' cy='60' r='28' fill='#aaa' stroke='#aaa' stroke-width='2'/><rect x='16' y='102' width='95' height='68' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='63' cy='136' r='14' fill='#222' stroke='#222' stroke-width='2'/><rect x='127' y='102' width='95' height='68' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='174' y='141' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text></svg>",
     "options": [
       {
         "label": "A",
@@ -18156,7 +18156,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Left=dark, right=light; top=large, bottom=small \u2192 light small circle.",
+    "explanation": "Left=dark, right=light; top=large, bottom=small → light small circle.",
     "tags": [
       "figure",
       "2",
@@ -19220,7 +19220,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "32-fold symmetry \u2192 32-gon.",
+    "explanation": "32-fold symmetry → 32-gon.",
     "tags": [
       "paper",
       "8",
@@ -19334,7 +19334,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Punch at fold \u2192 2 holes when opened.",
+    "explanation": "Punch at fold → 2 holes when opened.",
     "tags": [
       "paper",
       "7",
@@ -19448,7 +19448,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Pencil\u2192write; brush\u2192paint.",
+    "explanation": "Pencil→write; brush→paint.",
     "tags": [
       "verbal",
       "K",
@@ -19803,8 +19803,8 @@
     "battery": "non-verbal",
     "type": "figure-matrices",
     "difficulty": "medium",
-    "text": "Outer shape rotates 90\u00b0 per column; inner shape is always a square. Missing inner shape=___.",
-    "svg": null,
+    "text": "Outer shape rotates 90° per column; inner shape is always a square. Missing inner shape=___.",
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='12' text-anchor='middle' fill='#9da8d4' font-size='8' font-family='Nunito,sans-serif'>Outer rotates 90°/col · Inner always = square</text><rect x='14' y='40' width='70' height='60' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><rect x='27' y='58' width='44' height='24' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='40' y='61' width='18' height='18' fill='#222660' stroke='#7c6fff' stroke-width='2'/><rect x='94' y='40' width='70' height='60' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><rect x='117' y='48' width='24' height='44' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='120' y='61' width='18' height='18' fill='#222660' stroke='#7c6fff' stroke-width='2'/><rect x='174' y='40' width='70' height='60' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='209' y='75' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text><text x='130' y='165' text-anchor='middle' fill='#ffd700' font-size='9' font-family='Nunito,sans-serif'>Missing inner = square</text></svg>",
     "options": [
       {
         "label": "A",
@@ -20602,7 +20602,7 @@
     "type": "figure-matrices",
     "difficulty": "easy",
     "text": "Rows/cols have pentagon(P), hexagon(H), heptagon(Hp) once. Row 3: Hp, P, ___.",
-    "svg": null,
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='10' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>Each shape once per row & column</text><rect x='20' y='16' width='60' height='52' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='32.0,42.0 44.4,24.9 64.6,31.4 64.6,52.6 44.4,59.1' fill='none' stroke='#7c6fff' stroke-width='2'/><text x='50' y='47' text-anchor='middle' fill='#9da8d4' font-size='7' font-family='Nunito,sans-serif'>5</text><rect x='85' y='16' width='60' height='52' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='97.0,42.0 106.0,26.4 124.0,26.4 133.0,42.0 124.0,57.6 106.0,57.6' fill='none' stroke='#7c6fff' stroke-width='2'/><text x='115' y='47' text-anchor='middle' fill='#9da8d4' font-size='7' font-family='Nunito,sans-serif'>6</text><rect x='150' y='16' width='60' height='52' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='162.0,42.0 168.8,27.9 184.0,24.5 196.2,34.2 196.2,49.8 184.0,59.5 168.8,56.1' fill='none' stroke='#7c6fff' stroke-width='2'/><text x='180' y='47' text-anchor='middle' fill='#9da8d4' font-size='7' font-family='Nunito,sans-serif'>7</text><rect x='20' y='73' width='60' height='52' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='32.0,99.0 41.0,83.4 59.0,83.4 68.0,99.0 59.0,114.6 41.0,114.6' fill='none' stroke='#7c6fff' stroke-width='2'/><text x='50' y='104' text-anchor='middle' fill='#9da8d4' font-size='7' font-family='Nunito,sans-serif'>6</text><rect x='85' y='73' width='60' height='52' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='97.0,99.0 103.8,84.9 119.0,81.5 131.2,91.2 131.2,106.8 119.0,116.5 103.8,113.1' fill='none' stroke='#7c6fff' stroke-width='2'/><text x='115' y='104' text-anchor='middle' fill='#9da8d4' font-size='7' font-family='Nunito,sans-serif'>7</text><rect x='150' y='73' width='60' height='52' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='162.0,99.0 174.4,81.9 194.6,88.4 194.6,109.6 174.4,116.1' fill='none' stroke='#7c6fff' stroke-width='2'/><text x='180' y='104' text-anchor='middle' fill='#9da8d4' font-size='7' font-family='Nunito,sans-serif'>5</text><rect x='20' y='130' width='60' height='52' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='32.0,156.0 38.8,141.9 54.0,138.5 66.2,148.2 66.2,163.8 54.0,173.5 38.8,170.1' fill='none' stroke='#7c6fff' stroke-width='2'/><text x='50' y='161' text-anchor='middle' fill='#9da8d4' font-size='7' font-family='Nunito,sans-serif'>7</text><rect x='85' y='130' width='60' height='52' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='97.0,156.0 109.4,138.9 129.6,145.4 129.6,166.6 109.4,173.1' fill='none' stroke='#7c6fff' stroke-width='2'/><text x='115' y='161' text-anchor='middle' fill='#9da8d4' font-size='7' font-family='Nunito,sans-serif'>5</text><rect x='150' y='130' width='60' height='52' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='180' y='161' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text></svg>",
     "options": [
       {
         "label": "A",
@@ -20816,7 +20816,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Moving plates\u2192earthquakes; pressure changes\u2192weather.",
+    "explanation": "Moving plates→earthquakes; pressure changes→weather.",
     "tags": [
       "verbal",
       "6",
@@ -21348,7 +21348,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Without power there are no lights \u2014 dark.",
+    "explanation": "Without power there are no lights — dark.",
     "tags": [
       "sentence",
       "3",
@@ -21728,7 +21728,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Carpenter\u2192hammer; surgeon\u2192scalpel.",
+    "explanation": "Carpenter→hammer; surgeon→scalpel.",
     "tags": [
       "verbal",
       "3",
@@ -24046,7 +24046,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Coat\u2192cold weather; swimsuit\u2192hot weather.",
+    "explanation": "Coat→cold weather; swimsuit→hot weather.",
     "tags": [
       "verbal",
       "1",
@@ -24464,7 +24464,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Fold mirrors top to bottom \u2192 hole appears near the bottom.",
+    "explanation": "Fold mirrors top to bottom → hole appears near the bottom.",
     "tags": [
       "paper",
       "K",
@@ -25960,7 +25960,7 @@
     "type": "figure-matrices",
     "difficulty": "medium",
     "text": "Each step right adds one diagonal stripe. (2,1)=0, (2,2)=1, (2,3)=___.",
-    "svg": null,
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='12' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>Diagonal stripes increase left → right</text><rect x='20' y='22' width='60' height='52' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><clipPath id='c0'><rect x='22' y='24' width='56' height='48'/></clipPath><text x='50' y='52' text-anchor='middle' fill='#9da8d4' font-size='10' font-family='Nunito,sans-serif'>0</text><rect x='85' y='22' width='60' height='52' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><clipPath id='c1'><rect x='87' y='24' width='56' height='48'/></clipPath><line x1='93' y1='24' x2='87' y2='30' stroke='#7c6fff' stroke-width='2' clip-path='url(#c1)'/><line x1='143' y1='30' x2='93' y2='72' stroke='#7c6fff' stroke-width='2' clip-path='url(#c1)'/><rect x='150' y='22' width='60' height='52' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><clipPath id='c2'><rect x='152' y='24' width='56' height='48'/></clipPath><line x1='158' y1='24' x2='152' y2='30' stroke='#7c6fff' stroke-width='2' clip-path='url(#c2)'/><line x1='208' y1='30' x2='158' y2='72' stroke='#7c6fff' stroke-width='2' clip-path='url(#c2)'/><line x1='172' y1='24' x2='152' y2='44' stroke='#7c6fff' stroke-width='2' clip-path='url(#c2)'/><line x1='208' y1='44' x2='172' y2='72' stroke='#7c6fff' stroke-width='2' clip-path='url(#c2)'/><rect x='20' y='80' width='60' height='52' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><clipPath id='c3'><rect x='22' y='82' width='56' height='48'/></clipPath><text x='50' y='110' text-anchor='middle' fill='#9da8d4' font-size='10' font-family='Nunito,sans-serif'>0</text><rect x='85' y='80' width='60' height='52' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><clipPath id='c4'><rect x='87' y='82' width='56' height='48'/></clipPath><line x1='93' y1='82' x2='87' y2='88' stroke='#7c6fff' stroke-width='2' clip-path='url(#c4)'/><line x1='143' y1='88' x2='93' y2='130' stroke='#7c6fff' stroke-width='2' clip-path='url(#c4)'/><rect x='150' y='80' width='60' height='52' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='180' y='111' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text></svg>",
     "options": [
       {
         "label": "A",
@@ -25984,7 +25984,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "+1 stripe per step \u2192 2.",
+    "explanation": "+1 stripe per step → 2.",
     "tags": [
       "figure",
       "4",
@@ -26326,7 +26326,7 @@
       }
     ],
     "answer": 2,
-    "explanation": "Differences: 1,2,3,4 \u2014 next gap=5. 13+5=18.",
+    "explanation": "Differences: 1,2,3,4 — next gap=5. 13+5=18.",
     "tags": [
       "number",
       "4",
@@ -26630,7 +26630,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Rain\u2192umbrella; sun\u2192sunscreen.",
+    "explanation": "Rain→umbrella; sun→sunscreen.",
     "tags": [
       "verbal",
       "2",
@@ -27366,7 +27366,7 @@
     "type": "figure-matrices",
     "difficulty": "medium",
     "text": "Top row: 1 dot, 2 dots. Bottom row: 1 triangle, ___.",
-    "svg": null,
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='14' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>Count matches across rows</text><rect x='16' y='26' width='95' height='68' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='63.0' cy='60' r='9' fill='#7c6fff' stroke='#7c6fff' stroke-width='2'/><rect x='127' y='26' width='95' height='68' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='165.0' cy='60' r='9' fill='#7c6fff' stroke='#7c6fff' stroke-width='2'/><circle cx='183.0' cy='60' r='9' fill='#7c6fff' stroke='#7c6fff' stroke-width='2'/><rect x='16' y='102' width='95' height='68' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='63.0,125.55604 54.0,141.14404 72.0,141.14404' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='127' y='102' width='95' height='68' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='174' y='141' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text></svg>",
     "options": [
       {
         "label": "A",
@@ -27390,7 +27390,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Count increases by 1. 1 triangle\u21922 triangles.",
+    "explanation": "Count increases by 1. 1 triangle→2 triangles.",
     "tags": [
       "figure",
       "K",
@@ -28226,7 +28226,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "1 fold doubles. 2 holes \u2192 4 holes.",
+    "explanation": "1 fold doubles. 2 holes → 4 holes.",
     "tags": [
       "paper",
       "1",
@@ -31380,7 +31380,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "2^6=64 layers \u2192 64 holes.",
+    "explanation": "2^6=64 layers → 64 holes.",
     "tags": [
       "paper",
       "5",
@@ -32672,7 +32672,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "3 folds=8 layers \u2192 8 holes.",
+    "explanation": "3 folds=8 layers → 8 holes.",
     "tags": [
       "paper",
       "4",
@@ -33052,7 +33052,7 @@
       }
     ],
     "answer": 2,
-    "explanation": "Differences: 1,2,3,4 \u2014 next gap=5. 11+5=16.",
+    "explanation": "Differences: 1,2,3,4 — next gap=5. 11+5=16.",
     "tags": [
       "number",
       "4",
@@ -34610,7 +34610,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "1 fold=2 layers. 1 punch \u2192 2 holes.",
+    "explanation": "1 fold=2 layers. 1 punch → 2 holes.",
     "tags": [
       "paper",
       "K",
@@ -38296,7 +38296,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Reflected across both diagonals \u2192 symmetric pattern.",
+    "explanation": "Reflected across both diagonals → symmetric pattern.",
     "tags": [
       "paper",
       "5",
@@ -40500,7 +40500,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Sun\u2192day; moon\u2192night.",
+    "explanation": "Sun→day; moon→night.",
     "tags": [
       "verbal",
       "K",
@@ -40690,7 +40690,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Glove\u2192hand; shoe\u2192foot.",
+    "explanation": "Glove→hand; shoe→foot.",
     "tags": [
       "verbal",
       "K",
@@ -41464,7 +41464,7 @@
     "type": "figure-matrices",
     "difficulty": "easy",
     "text": "Top row: white star, black star. Bottom row: white heart, ___.",
-    "svg": null,
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='14' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>Shape changes · Color mirrors across row</text><rect x='16' y='26' width='95' height='68' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='63.0,42.0 67.7,53.5 80.1,54.4 70.6,62.5 73.6,74.6 63.0,68.0 52.4,74.6 55.4,62.5 45.9,54.4 58.3,53.5' fill='#d4d4e8' stroke='#d4d4e8' stroke-width='1'/><rect x='127' y='26' width='95' height='68' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='174.0,42.0 178.7,53.5 191.1,54.4 181.6,62.5 184.6,74.6 174.0,68.0 163.4,74.6 166.4,62.5 156.9,54.4 169.3,53.5' fill='#222' stroke='#222' stroke-width='1'/><rect x='16' y='102' width='95' height='68' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><path d='M63,147.9 C43.400000000000006,131.1 41.3,118.5 63,128.3 C84.7,118.5 82.6,131.1 63,147.9Z' fill='#d4d4e8'/><rect x='127' y='102' width='95' height='68' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='174' y='141' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text></svg>",
     "options": [
       {
         "label": "A",
@@ -41488,7 +41488,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "White\u2192black in each row. White heart\u2192black heart.",
+    "explanation": "White→black in each row. White heart→black heart.",
     "tags": [
       "figure",
       "K",
@@ -46428,7 +46428,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Hypothesis\u2192experiment; theory\u2192evidence.",
+    "explanation": "Hypothesis→experiment; theory→evidence.",
     "tags": [
       "verbal",
       "6",
@@ -47112,7 +47112,7 @@
       }
     ],
     "answer": 3,
-    "explanation": "Differences: 1,2,3,4 \u2014 next gap=5. 15+5=20.",
+    "explanation": "Differences: 1,2,3,4 — next gap=5. 15+5=20.",
     "tags": [
       "number",
       "6",
@@ -48518,7 +48518,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Architect\u2192blueprint; choreographer\u2192routine.",
+    "explanation": "Architect→blueprint; choreographer→routine.",
     "tags": [
       "verbal",
       "3",
@@ -50114,7 +50114,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "1 fold doubles. 1 punch \u2192 2 holes.",
+    "explanation": "1 fold doubles. 1 punch → 2 holes.",
     "tags": [
       "paper",
       "K",
@@ -50584,7 +50584,7 @@
     "type": "figure-matrices",
     "difficulty": "medium",
     "text": "Shapes reflected across vertical axis. Col 1: right arrow. Col 2: left arrow. Col 3: ___.",
-    "svg": null,
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='14' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>Reflected across vertical axis</text><rect x='14' y='50' width='65' height='58' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='26,71.0 46,71.0 46,64.0 66,79 46,94.0 46,87.0 26,87.0' fill='#7c6fff'/><rect x='89' y='50' width='65' height='58' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='141,71.0 121,71.0 121,64.0 101,79 121,94.0 121,87.0 141,87.0' fill='#7c6fff'/><rect x='164' y='50' width='65' height='58' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='196' y='84' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text><text x='130' y='165' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>right → left → ?</text></svg>",
     "options": [
       {
         "label": "A",
@@ -50608,7 +50608,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Right\u2192left\u2192right.",
+    "explanation": "Right→left→right.",
     "tags": [
       "figure",
       "5",
@@ -55624,7 +55624,7 @@
       }
     ],
     "answer": 1,
-    "explanation": "Differences: 1,2,3,4 \u2014 next gap=5. 20+5=25.",
+    "explanation": "Differences: 1,2,3,4 — next gap=5. 20+5=25.",
     "tags": [
       "number",
       "7",
@@ -56308,7 +56308,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "2 folds=4 layers. 1 punch \u2192 4 holes.",
+    "explanation": "2 folds=4 layers. 1 punch → 4 holes.",
     "tags": [
       "paper",
       "K",
@@ -58056,7 +58056,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Teacher\u2192school; doctor\u2192hospital.",
+    "explanation": "Teacher→school; doctor→hospital.",
     "tags": [
       "verbal",
       "1",
@@ -59172,7 +59172,7 @@
     "type": "figure-matrices",
     "difficulty": "hard",
     "text": "f(1)=2, f(2)=5, f(3)=10, f(4)=___.",
-    "svg": null,
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='12' text-anchor='middle' fill='#9da8d4' font-size='10' font-family='Nunito,sans-serif'>f(n) = n² + 1</text><rect x='16' y='55' width='50' height='55' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><text x='41' y='88' text-anchor='middle' fill='#ffd700' font-size='18' font-family='Nunito,sans-serif'>2</text><text x='41' y='122' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>f(1)</text><rect x='75' y='55' width='50' height='55' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><text x='100' y='88' text-anchor='middle' fill='#ffd700' font-size='18' font-family='Nunito,sans-serif'>5</text><text x='100' y='122' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>f(2)</text><rect x='134' y='55' width='50' height='55' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><text x='159' y='88' text-anchor='middle' fill='#ffd700' font-size='18' font-family='Nunito,sans-serif'>10</text><text x='159' y='122' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>f(3)</text><rect x='193' y='55' width='50' height='55' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='218' y='88' text-anchor='middle' fill='#ff6b9d' font-size='18' font-family='Nunito,sans-serif'>?</text><text x='218' y='122' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>f(4)</text><text x='130' y='162' text-anchor='middle' fill='#7c6fff' font-size='9' font-family='Nunito,sans-serif'>Pattern: n²+1</text></svg>",
     "options": [
       {
         "label": "A",
@@ -60298,7 +60298,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Kitten\u2192cat; cub\u2192bear.",
+    "explanation": "Kitten→cat; cub→bear.",
     "tags": [
       "verbal",
       "1",
@@ -62502,7 +62502,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "8 layers \u2192 8 notches.",
+    "explanation": "8 layers → 8 notches.",
     "tags": [
       "paper",
       "6",
@@ -63224,7 +63224,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "2 folds=4 layers \u2192 4 holes.",
+    "explanation": "2 folds=4 layers → 4 holes.",
     "tags": [
       "paper",
       "1",
@@ -63908,7 +63908,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Astronauts\u2192space; marine biologists\u2192ocean.",
+    "explanation": "Astronauts→space; marine biologists→ocean.",
     "tags": [
       "verbal",
       "4",
@@ -64668,7 +64668,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Evaporation: liquid\u2192gas; condensation: gas\u2192liquid.",
+    "explanation": "Evaporation: liquid→gas; condensation: gas→liquid.",
     "tags": [
       "verbal",
       "4",
@@ -64744,7 +64744,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Hungry\u2192eat; tired\u2192sleep.",
+    "explanation": "Hungry→eat; tired→sleep.",
     "tags": [
       "verbal",
       "2",
@@ -65238,7 +65238,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Hammer\u2192nail; saw\u2192wood.",
+    "explanation": "Hammer→nail; saw→wood.",
     "tags": [
       "verbal",
       "2",
@@ -68316,7 +68316,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "2 diagonal folds \u2192 4 quadrants \u2192 4 holes.",
+    "explanation": "2 diagonal folds → 4 quadrants → 4 holes.",
     "tags": [
       "paper",
       "3",
@@ -69051,7 +69051,7 @@
     "battery": "non-verbal",
     "type": "paper-folding",
     "difficulty": "medium",
-    "text": "Paper folded n times has 2^n holes from 1 punch. 32 holes \u2192 how many folds?",
+    "text": "Paper folded n times has 2^n holes from 1 punch. 32 holes → how many folds?",
     "svg": null,
     "options": [
       {
@@ -69076,7 +69076,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "2^5=32 \u2192 5 folds.",
+    "explanation": "2^5=32 → 5 folds.",
     "tags": [
       "paper",
       "6",
@@ -69318,7 +69318,7 @@
     "type": "figure-matrices",
     "difficulty": "medium",
     "text": "Row 1: 1 circle. Row 2: 2 circles. Row 3: ___.",
-    "svg": null,
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='14' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>Circles increase by 1 each row</text><rect x='30' y='22' width='200' height='38' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='52' cy='41' r='12' fill='none' stroke='#7c6fff' stroke-width='2'/><text x='20' y='46' text-anchor='middle' fill='#ffd700' font-size='11' font-family='Nunito,sans-serif'>1</text><rect x='30' y='65' width='200' height='38' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='52' cy='84' r='12' fill='none' stroke='#7c6fff' stroke-width='2'/><circle cx='84' cy='84' r='12' fill='none' stroke='#7c6fff' stroke-width='2'/><text x='20' y='89' text-anchor='middle' fill='#ffd700' font-size='11' font-family='Nunito,sans-serif'>2</text><rect x='30' y='108' width='200' height='38' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='130' y='132' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text><text x='20' y='132' text-anchor='middle' fill='#ff6b9d' font-size='11' font-family='Nunito,sans-serif'>?</text></svg>",
     "options": [
       {
         "label": "A",
@@ -69988,7 +69988,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Rain\u2192wet; fire\u2192hot.",
+    "explanation": "Rain→wet; fire→hot.",
     "tags": [
       "verbal",
       "1",
@@ -73864,7 +73864,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Congress\u2192legislation; judiciary\u2192interpretation.",
+    "explanation": "Congress→legislation; judiciary→interpretation.",
     "tags": [
       "verbal",
       "7",
@@ -75916,7 +75916,7 @@
       }
     ],
     "answer": 1,
-    "explanation": "Differences: 1,2,3,4 \u2014 next gap=5. 10+5=15.",
+    "explanation": "Differences: 1,2,3,4 — next gap=5. 10+5=15.",
     "tags": [
       "number",
       "4",
@@ -76410,7 +76410,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "8 layers \u2192 8 holes.",
+    "explanation": "8 layers → 8 holes.",
     "tags": [
       "paper",
       "2",
@@ -76448,7 +76448,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Differences: 1,2,3,4 \u2014 next gap=5. 12+5=17.",
+    "explanation": "Differences: 1,2,3,4 — next gap=5. 12+5=17.",
     "tags": [
       "number",
       "4",
@@ -76614,7 +76614,7 @@
     "type": "figure-matrices",
     "difficulty": "easy",
     "text": "Row 1: circle,circle,circle. Row 2: square,square,square. Row 3: triangle,triangle,___.",
-    "svg": null,
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='10' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>Each row repeats the same shape</text><rect x='18' y='16' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='46' cy='41' r='16' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='80' y='16' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='108' cy='41' r='16' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='142' y='16' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='170' cy='41' r='16' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='18' y='71' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><rect x='32' y='82' width='28' height='28' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='80' y='71' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><rect x='94' y='82' width='28' height='28' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='142' y='71' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><rect x='156' y='82' width='28' height='28' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='18' y='126' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='46,138.23516 35.0,157.28716 57.0,157.28716' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='80' y='126' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='108,138.23516 97.0,157.28716 119.0,157.28716' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='142' y='126' width='57' height='50' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='170' y='156' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text></svg>",
     "options": [
       {
         "label": "A",
@@ -77944,7 +77944,7 @@
     "type": "figure-matrices",
     "difficulty": "easy",
     "text": "2x2 grid: top-left=small circle, top-right=large circle, bottom-left=small square. Bottom-right=?",
-    "svg": null,
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='14' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>Size: same col · Shape: same row</text><rect x='16' y='26' width='95' height='68' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='63' cy='60' r='10' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='127' y='26' width='95' height='68' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='174' cy='60' r='22' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='16' y='102' width='95' height='68' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><rect x='53' y='126' width='20' height='20' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='127' y='102' width='95' height='68' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='174' y='141' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text></svg>",
     "options": [
       {
         "label": "A",
@@ -77968,7 +77968,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Pattern: shapes grow larger left\u2192right.",
+    "explanation": "Pattern: shapes grow larger left→right.",
     "tags": [
       "figure",
       "K",
@@ -78780,7 +78780,7 @@
     "type": "figure-matrices",
     "difficulty": "easy",
     "text": "Row 3 all solid shapes: solid circle, solid triangle, ___.",
-    "svg": null,
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='10' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>Row 3: all solid shapes</text><rect x='18' y='16' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='46' cy='41' r='16' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='80' y='16' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><rect x='94' y='27' width='28' height='28' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='142' y='16' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='170,28.23516 159.0,47.28716 181.0,47.28716' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='18' y='71' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='46' cy='96' r='16' fill='#888' stroke='#7c6fff' stroke-width='2'/><rect x='80' y='71' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><rect x='94' y='82' width='28' height='28' fill='#888' stroke='#7c6fff' stroke-width='2'/><rect x='142' y='71' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='170,83.23516 159.0,102.28716 181.0,102.28716' fill='#888' stroke='#7c6fff' stroke-width='2'/><rect x='18' y='126' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='46' cy='151' r='16' fill='#7c6fff' stroke='#7c6fff' stroke-width='2'/><rect x='80' y='126' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='108,138.23516 97.0,157.28716 119.0,157.28716' fill='#7c6fff' stroke='#7c6fff' stroke-width='2'/><rect x='142' y='126' width='57' height='50' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='170' y='156' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text></svg>",
     "options": [
       {
         "label": "A",
@@ -79464,7 +79464,7 @@
     "type": "figure-matrices",
     "difficulty": "hard",
     "text": "3x3: each row has circle,square,triangle once. Row 3: triangle, circle, ___.",
-    "svg": null,
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='10' text-anchor='middle' fill='#9da8d4' font-size='8' font-family='Nunito,sans-serif'>Each row/col: circle, square, triangle once</text><rect x='18' y='16' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='46' cy='41' r='16' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='80' y='16' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><rect x='94' y='27' width='28' height='28' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='142' y='16' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='170,28.23516 159.0,47.28716 181.0,47.28716' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='18' y='71' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><rect x='32' y='82' width='28' height='28' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='80' y='71' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='108,83.23516 97.0,102.28716 119.0,102.28716' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='142' y='71' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='170' cy='96' r='16' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='18' y='126' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='46,138.23516 35.0,157.28716 57.0,157.28716' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='80' y='126' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='108' cy='151' r='16' fill='none' stroke='#7c6fff' stroke-width='2'/><rect x='142' y='126' width='57' height='50' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='170' y='156' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text></svg>",
     "options": [
       {
         "label": "A",
@@ -79488,7 +79488,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Latin square pattern \u2014 missing=square.",
+    "explanation": "Latin square pattern — missing=square.",
     "tags": [
       "figure",
       "3",
@@ -79578,7 +79578,7 @@
     "type": "figure-matrices",
     "difficulty": "easy",
     "text": "Row 1=translation, Row 2=reflection, Row 3=___.",
-    "svg": null,
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='12' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>Each row shows a different transformation</text><rect x='30' y='22' width='200' height='40' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='65,33.87692 58.0,46.00092 72.0,46.00092' fill='none' stroke='#7c6fff' stroke-width='2'/><line x1='85' y1='42' x2='160' y2='42' stroke='#7c6fff' stroke-width='1.5' stroke-dasharray='4,3'/><polygon points='180,33.87692 173.0,46.00092 187.0,46.00092' fill='none' stroke='#7c6fff' stroke-width='2'/><text x='130' y='70' text-anchor='middle' fill='#9da8d4' font-size='8' font-family='Nunito,sans-serif'>Translation →</text><rect x='30' y='69' width='200' height='40' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='65,80.87692 58.0,93.00092000000001 72.0,93.00092000000001' fill='none' stroke='#7c6fff' stroke-width='2'/><line x1='130' y1='73' x2='130' y2='105' stroke='#ff6b9d' stroke-width='1.5' stroke-dasharray='4,3'/><polygon points='195,80.87692 188.0,93.00092000000001 202.0,93.00092000000001' fill='none' stroke='#7c6fff' stroke-width='2'/><text x='130' y='117' text-anchor='middle' fill='#9da8d4' font-size='8' font-family='Nunito,sans-serif'>Reflection ↔</text><rect x='30' y='116' width='200' height='40' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='130' y='141' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text><text x='152' y='141' text-anchor='middle' fill='#ff6b9d' font-size='12' font-family='Nunito,sans-serif'>= ?</text></svg>",
     "options": [
       {
         "label": "A",
@@ -82352,7 +82352,7 @@
     "type": "figure-matrices",
     "difficulty": "easy",
     "text": "Dark region grows +1 per row. Row 1=1, Row 2=2, Row 3=___.",
-    "svg": null,
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='12' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>Dark segments grow +1 per row</text><rect x='30' y='22' width='200' height='38' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><rect x='33' y='26' width='44' height='30' rx='3' fill='#7c6fff'/><rect x='83' y='26' width='44' height='30' rx='3' fill='#2a2a5a'/><rect x='133' y='26' width='44' height='30' rx='3' fill='#2a2a5a'/><rect x='183' y='26' width='44' height='30' rx='3' fill='#2a2a5a'/><rect x='30' y='66' width='200' height='38' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><rect x='33' y='70' width='44' height='30' rx='3' fill='#7c6fff'/><rect x='83' y='70' width='44' height='30' rx='3' fill='#7c6fff'/><rect x='133' y='70' width='44' height='30' rx='3' fill='#2a2a5a'/><rect x='183' y='70' width='44' height='30' rx='3' fill='#2a2a5a'/><rect x='30' y='110' width='200' height='38' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='130' y='134' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text></svg>",
     "options": [
       {
         "label": "A",
@@ -83326,7 +83326,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Library\u2192books; museum\u2192artifacts.",
+    "explanation": "Library→books; museum→artifacts.",
     "tags": [
       "verbal",
       "2",
@@ -84428,7 +84428,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "6 layers \u2192 6 holes.",
+    "explanation": "6 layers → 6 holes.",
     "tags": [
       "paper",
       "6",
@@ -86380,7 +86380,7 @@
     "type": "figure-matrices",
     "difficulty": "hard",
     "text": "Top row: circle inside square; circle inside triangle. Bottom row: star inside square, ___.",
-    "svg": null,
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='14' text-anchor='middle' fill='#9da8d4' font-size='8' font-family='Nunito,sans-serif'>Inner shape follows row · Outer follows column</text><rect x='16' y='26' width='95' height='68' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><rect x='41' y='38' width='44' height='44' fill='none' stroke='#7c6fff' stroke-width='2'/><circle cx='63' cy='60' r='11' fill='#222660' stroke='#7c6fff' stroke-width='2'/><rect x='127' y='26' width='95' height='68' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='174,43.75384 160.0,68.00184 188.0,68.00184' fill='none' stroke='#7c6fff' stroke-width='2'/><circle cx='174' cy='60' r='11' fill='#222660' stroke='#7c6fff' stroke-width='2'/><rect x='16' y='102' width='95' height='68' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><rect x='41' y='114' width='44' height='44' fill='none' stroke='#7c6fff' stroke-width='2'/><polygon points='63.0,123.0 66.5,131.1 75.4,132.0 68.7,137.9 70.6,146.5 63.0,142.0 55.4,146.5 57.3,137.9 50.6,132.0 59.5,131.1' fill='#ffd700' stroke='#ffd700' stroke-width='1'/><rect x='127' y='102' width='95' height='68' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='174' y='141' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text></svg>",
     "options": [
       {
         "label": "A",
@@ -86404,7 +86404,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Inner=star (same row); outer follows top pattern\u2192triangle.",
+    "explanation": "Inner=star (same row); outer follows top pattern→triangle.",
     "tags": [
       "figure",
       "K",
@@ -87886,7 +87886,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Precipitation\u2192water cycle; erosion\u2192rock cycle.",
+    "explanation": "Precipitation→water cycle; erosion→rock cycle.",
     "tags": [
       "verbal",
       "5",
@@ -87899,8 +87899,8 @@
     "battery": "non-verbal",
     "type": "figure-matrices",
     "difficulty": "medium",
-    "text": "Dots = row\u00d7col. Cell(3,2)=6. Cell(3,3)=___.",
-    "svg": null,
+    "text": "Dots = row×col. Cell(3,2)=6. Cell(3,3)=___.",
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='10' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>Dots = row × column</text><rect x='18' y='16' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><text x='46' y='47' text-anchor='middle' fill='#ffd700' font-size='18' font-family='Nunito,sans-serif'>1</text><rect x='80' y='16' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><text x='108' y='47' text-anchor='middle' fill='#ffd700' font-size='18' font-family='Nunito,sans-serif'>2</text><rect x='142' y='16' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><text x='170' y='47' text-anchor='middle' fill='#ffd700' font-size='18' font-family='Nunito,sans-serif'>3</text><rect x='18' y='71' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><text x='46' y='102' text-anchor='middle' fill='#ffd700' font-size='18' font-family='Nunito,sans-serif'>2</text><rect x='80' y='71' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><text x='108' y='102' text-anchor='middle' fill='#ffd700' font-size='18' font-family='Nunito,sans-serif'>4</text><rect x='142' y='71' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><text x='170' y='102' text-anchor='middle' fill='#ffd700' font-size='18' font-family='Nunito,sans-serif'>6</text><rect x='18' y='126' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><text x='46' y='157' text-anchor='middle' fill='#ffd700' font-size='18' font-family='Nunito,sans-serif'>3</text><rect x='80' y='126' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><text x='108' y='157' text-anchor='middle' fill='#ffd700' font-size='18' font-family='Nunito,sans-serif'>6</text><rect x='142' y='126' width='57' height='50' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='170' y='156' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text></svg>",
     "options": [
       {
         "label": "A",
@@ -88166,7 +88166,7 @@
     "type": "figure-matrices",
     "difficulty": "medium",
     "text": "Row product=24. Row 3: 3, 2, ___.",
-    "svg": null,
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='10' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>Each row multiplies to 24</text><rect x='18' y='16' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><text x='46' y='47' text-anchor='middle' fill='#ffd700' font-size='20' font-family='Nunito,sans-serif'>4</text><rect x='80' y='16' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><text x='108' y='47' text-anchor='middle' fill='#ffd700' font-size='20' font-family='Nunito,sans-serif'>2</text><rect x='142' y='16' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><text x='170' y='47' text-anchor='middle' fill='#ffd700' font-size='20' font-family='Nunito,sans-serif'>3</text><rect x='18' y='78' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><text x='46' y='109' text-anchor='middle' fill='#ffd700' font-size='20' font-family='Nunito,sans-serif'>6</text><rect x='80' y='78' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><text x='108' y='109' text-anchor='middle' fill='#ffd700' font-size='20' font-family='Nunito,sans-serif'>1</text><rect x='142' y='78' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><text x='170' y='109' text-anchor='middle' fill='#ffd700' font-size='20' font-family='Nunito,sans-serif'>4</text><rect x='18' y='140' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><text x='46' y='171' text-anchor='middle' fill='#ffd700' font-size='20' font-family='Nunito,sans-serif'>3</text><rect x='80' y='140' width='57' height='50' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><text x='108' y='171' text-anchor='middle' fill='#ffd700' font-size='20' font-family='Nunito,sans-serif'>2</text><rect x='142' y='140' width='57' height='50' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='170' y='170' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text><text x='230' y='95' text-anchor='middle' fill='#7c6fff' font-size='10' font-family='Nunito,sans-serif'>×=24</text></svg>",
     "options": [
       {
         "label": "A",
@@ -88190,7 +88190,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "3x2x?=24 \u2192 ?=4.",
+    "explanation": "3x2x?=24 → ?=4.",
     "tags": [
       "figure",
       "8",
@@ -90749,8 +90749,8 @@
     "battery": "non-verbal",
     "type": "figure-matrices",
     "difficulty": "hard",
-    "text": "3x3 grid, shapes rotate 90\u00b0 clockwise each column. Col 1: arrow right. Col 2: arrow down. Col 3: ___.",
-    "svg": null,
+    "text": "3x3 grid, shapes rotate 90° clockwise each column. Col 1: arrow right. Col 2: arrow down. Col 3: ___.",
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='14' text-anchor='middle' fill='#9da8d4' font-size='8' font-family='Nunito,sans-serif'>Arrow rotates 90° clockwise per column</text><rect x='14' y='50' width='65' height='58' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='26,71.0 46,71.0 46,64.0 66,79 46,94.0 46,87.0 26,87.0' fill='#7c6fff'/><rect x='89' y='50' width='65' height='58' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><polygon points='113.0,59 113.0,79 106.0,79 121,99 136.0,79 129.0,79 129.0,59' fill='#7c6fff'/><rect x='164' y='50' width='65' height='58' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><text x='196' y='84' text-anchor='middle' fill='#ff6b9d' font-size='14' font-weight='bold' font-family='Nunito,sans-serif'>?</text><text x='130' y='165' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>right → down → ?</text></svg>",
     "options": [
       {
         "label": "A",
@@ -90774,7 +90774,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "90\u00b0 clockwise: right\u2192down\u2192left.",
+    "explanation": "90° clockwise: right→down→left.",
     "tags": [
       "figure",
       "1",
@@ -90964,7 +90964,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "Author\u2192novel; composer\u2192symphony.",
+    "explanation": "Author→novel; composer→symphony.",
     "tags": [
       "verbal",
       "2",
@@ -91078,7 +91078,7 @@
       }
     ],
     "answer": 2,
-    "explanation": "25=5^2 \u2014 also a perfect square.",
+    "explanation": "25=5^2 — also a perfect square.",
     "tags": [
       "figure",
       "1",
@@ -91434,7 +91434,7 @@
     "type": "figure-matrices",
     "difficulty": "hard",
     "text": "Binary dots: Row 1=101=5, Row 2=110=6, Row 3=011=___.",
-    "svg": null,
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' style='background:#1a1d4e;border-radius:12px'><text x='130' y='12' text-anchor='middle' fill='#9da8d4' font-size='9' font-family='Nunito,sans-serif'>Binary: filled=1, empty=0</text><text x='130' y='24' text-anchor='middle' fill='#9da8d4' font-size='8' font-family='Nunito,sans-serif'>Row value = binary number</text><rect x='30' y='40' width='200' height='36' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='52' cy='58' r='11' fill='#7c6fff' stroke='#7c6fff' stroke-width='2'/><circle cx='88' cy='58' r='11' fill='none' stroke='#7c6fff' stroke-width='2'/><circle cx='124' cy='58' r='11' fill='#7c6fff' stroke='#7c6fff' stroke-width='2'/><text x='205' y='63' text-anchor='middle' fill='#ffd700' font-size='11' font-family='Nunito,sans-serif'>= 5</text><rect x='30' y='81' width='200' height='36' rx='3' fill='#222660' stroke='#7c6fff' stroke-width='1.5'/><circle cx='52' cy='99' r='11' fill='#7c6fff' stroke='#7c6fff' stroke-width='2'/><circle cx='88' cy='99' r='11' fill='#7c6fff' stroke='#7c6fff' stroke-width='2'/><circle cx='124' cy='99' r='11' fill='none' stroke='#7c6fff' stroke-width='2'/><text x='205' y='104' text-anchor='middle' fill='#ffd700' font-size='11' font-family='Nunito,sans-serif'>= 6</text><rect x='30' y='122' width='200' height='36' rx='3' fill='#0d0d2b' stroke='#ff6b9d' stroke-width='2'/><circle cx='52' cy='140' r='11' fill='none' stroke='#7c6fff' stroke-width='2'/><circle cx='88' cy='140' r='11' fill='#7c6fff' stroke='#7c6fff' stroke-width='2'/><circle cx='124' cy='140' r='11' fill='#7c6fff' stroke='#7c6fff' stroke-width='2'/><text x='202' y='145' text-anchor='middle' fill='#ff6b9d' font-size='13' font-family='Nunito,sans-serif'>= ?</text></svg>",
     "options": [
       {
         "label": "A",
@@ -94612,7 +94612,7 @@
       }
     ],
     "answer": 0,
-    "explanation": "2^7=128 \u2192 n=7.",
+    "explanation": "2^7=128 → n=7.",
     "tags": [
       "paper",
       "7",
