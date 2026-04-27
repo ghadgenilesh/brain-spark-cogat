@@ -1787,12 +1787,15 @@ async function saveSessions_append(session) {
   const sessionQIds = (session.questions || []).map(q => q.id).filter(Boolean);
   appendSeenIds(sessionQIds);
 
+  // Strip in-memory-only fields that Firestore/JSON cannot serialize (e.g. Set objects)
+  const { _seenSet, ...toSave } = session;
+
   // We append individually to Firestore (each session is its own doc)
   if (currentUser && window._fbReady) {
     syncStart();
     try {
       const { addDoc } = window._fbFns;
-      await addDoc(sessionsRef(), session);
+      await addDoc(sessionsRef(), toSave);
       syncDone();
       return;
     } catch(e) { syncError(); }
@@ -1800,7 +1803,7 @@ async function saveSessions_append(session) {
   // localStorage fallback
   try {
     const existing = JSON.parse(localStorage.getItem(SESSIONS_KEY)) || [];
-    existing.push(session);
+    existing.push(toSave);
     localStorage.setItem(SESSIONS_KEY, JSON.stringify(existing));
   } catch {}
 }
@@ -1853,12 +1856,14 @@ async function loadActiveSession() {
   try { return JSON.parse(localStorage.getItem(ACTIVE_SESSION_KEY)); } catch { return null; }
 }
 async function saveActiveSession(s) {
-  localStorage.setItem(ACTIVE_SESSION_KEY, JSON.stringify(s));
+  // Strip in-memory-only fields that cannot be serialized (e.g. Set objects)
+  const { _seenSet, ...toSave } = s;
+  localStorage.setItem(ACTIVE_SESSION_KEY, JSON.stringify(toSave));
   if (currentUser && window._fbReady) {
     syncStart();
     try {
       const { setDoc } = window._fbFns;
-      await setDoc(userRef(), { activeSession: s }, { merge: true });
+      await setDoc(userRef(), { activeSession: toSave }, { merge: true });
       syncDone();
     } catch(e) { syncError(); }
   }
