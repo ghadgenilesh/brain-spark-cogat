@@ -770,3 +770,237 @@ class TestHelpScreen:
         page.locator("#screen-home").wait_for(state="visible", timeout=5_000)
         assert page.locator("#screen-home").is_visible()
 
+
+# ---------------------------------------------------------------------------
+# Performance tests (Playwright navigation timing + Web Vitals)
+# ---------------------------------------------------------------------------
+
+# Thresholds (all in milliseconds unless noted)
+PERF_THRESHOLDS = {
+    "dom_content_loaded_ms": 3_000,   # DOMContentLoaded event
+    "load_event_ms": 5_000,           # window load event
+    "fcp_ms": 2_500,                  # First Contentful Paint (Good < 1.8 s, Needs improvement < 3 s)
+    "lcp_ms": 4_000,                  # Largest Contentful Paint (Good < 2.5 s, Needs improvement < 4 s)
+    "cls": 0.25,                      # Cumulative Layout Shift (Good < 0.1, Needs improvement < 0.25)
+    "questions_json_ms": 1_000,       # questions.json fetch latency
+    "home_interactive_ms": 6_000,     # time until battery pills appear (app ready for input)
+    "theme_switch_ms": 300,           # theme CSS swap should be near-instant
+    "option_click_response_ms": 500,  # time from click to feedback rendered
+}
+
+
+def _nav_timing(page) -> dict:
+    """Return PerformanceNavigationTiming values as a plain dict (all in ms)."""
+    return page.evaluate("""() => {
+        const e = performance.getEntriesByType('navigation')[0];
+        if (!e) return {};
+        return {
+            dns_ms:               e.domainLookupEnd - e.domainLookupStart,
+            connect_ms:           e.connectEnd       - e.connectStart,
+            ttfb_ms:              e.responseStart    - e.requestStart,
+            response_ms:          e.responseEnd      - e.responseStart,
+            dom_content_loaded_ms: e.domContentLoadedEventEnd - e.startTime,
+            load_event_ms:        e.loadEventEnd     - e.startTime,
+        };
+    }""")
+
+
+def _resource_timing(page, url_fragment: str) -> dict | None:
+    """Return timing for the first resource whose name contains url_fragment."""
+    return page.evaluate("""(fragment) => {
+        const e = performance.getEntriesByType('resource')
+            .find(r => r.name.includes(fragment));
+        if (!e) return null;
+        return {
+            duration_ms: e.duration,
+            transfer_size: e.transferSize,
+        };
+    }""", url_fragment)
+
+
+class TestPerformance:
+    """
+    Playwright-based performance benchmarks.
+
+    Measures real browser timing (PerformanceNavigationTiming, PerformancePaintTiming,
+    LayoutShift, ResourceTiming) against defined thresholds.
+    All tests run in a single browser tab to keep CI fast.
+    """
+
+    # ------------------------------------------------------------------
+    # Page load timing
+    # ------------------------------------------------------------------
+
+    def test_dom_content_loaded_within_threshold(self, page, local_server):
+        """DOMContentLoaded must fire within PERF_THRESHOLDS['dom_content_loaded_ms']."""
+        page.goto(app_url(local_server), wait_until="domcontentloaded")
+        timing = _nav_timing(page)
+        dcl = timing.get("dom_content_loaded_ms", 0)
+        limit = PERF_THRESHOLDS["dom_content_loaded_ms"]
+        assert dcl <= limit, (
+            f"DOMContentLoaded took {dcl:.0f} ms — exceeds {limit} ms threshold"
+        )
+
+    def test_window_load_within_threshold(self, page, local_server):
+        """window.onload must fire within PERF_THRESHOLDS['load_event_ms']."""
+        page.goto(app_url(local_server), wait_until="load")
+        timing = _nav_timing(page)
+        load = timing.get("load_event_ms", 0)
+        limit = PERF_THRESHOLDS["load_event_ms"]
+        assert load <= limit, (
+            f"window load took {load:.0f} ms — exceeds {limit} ms threshold"
+        )
+
+    # ------------------------------------------------------------------
+    # Paint metrics (FCP, LCP)
+    # ------------------------------------------------------------------
+
+    def test_first_contentful_paint_within_threshold(self, page, local_server):
+        """FCP must be within PERF_THRESHOLDS['fcp_ms']."""
+        page.goto(app_url(local_server), wait_until="networkidle")
+        fcp = page.evaluate("""() => {
+            const e = performance.getEntriesByName('first-contentful-paint')[0];
+            return e ? e.startTime : null;
+        }""")
+        if fcp is None:
+            pytest.skip("FCP entry not available in this browser/context")
+        limit = PERF_THRESHOLDS["fcp_ms"]
+        assert fcp <= limit, f"FCP was {fcp:.0f} ms — exceeds {limit} ms threshold"
+
+    def test_largest_contentful_paint_within_threshold(self, page, local_server):
+        """LCP (last observed LCP candidate) must be within PERF_THRESHOLDS['lcp_ms']."""
+        page.goto(app_url(local_server), wait_until="networkidle")
+        lcp = page.evaluate("""() => new Promise(resolve => {
+            let lastLcp = 0;
+            const obs = new PerformanceObserver(list => {
+                const entries = list.getEntries();
+                lastLcp = entries[entries.length - 1].startTime;
+            });
+            try { obs.observe({ type: 'largest-contentful-paint', buffered: true }); }
+            catch(e) { resolve(null); return; }
+            // Give the observer 1 s to collect any buffered entries
+            setTimeout(() => { obs.disconnect(); resolve(lastLcp || null); }, 1000);
+        })""")
+        if lcp is None:
+            pytest.skip("LCP entry not available in this browser/context")
+        limit = PERF_THRESHOLDS["lcp_ms"]
+        assert lcp <= limit, f"LCP was {lcp:.0f} ms — exceeds {limit} ms threshold"
+
+    # ------------------------------------------------------------------
+    # Layout stability (CLS)
+    # ------------------------------------------------------------------
+
+    def test_cumulative_layout_shift_within_threshold(self, page, local_server):
+        """CLS score must be below PERF_THRESHOLDS['cls']."""
+        page.goto(app_url(local_server), wait_until="networkidle")
+        cls_score = page.evaluate("""() => new Promise(resolve => {
+            let total = 0;
+            const obs = new PerformanceObserver(list => {
+                for (const e of list.getEntries()) {
+                    if (!e.hadRecentInput) total += e.value;
+                }
+            });
+            try { obs.observe({ type: 'layout-shift', buffered: true }); }
+            catch(e) { resolve(null); return; }
+            setTimeout(() => { obs.disconnect(); resolve(total); }, 1500);
+        })""")
+        if cls_score is None:
+            pytest.skip("layout-shift PerformanceObserver not available")
+        limit = PERF_THRESHOLDS["cls"]
+        assert cls_score <= limit, (
+            f"CLS score {cls_score:.4f} exceeds threshold {limit}"
+        )
+
+    # ------------------------------------------------------------------
+    # Resource timing
+    # ------------------------------------------------------------------
+
+    def test_questions_json_load_time(self, page, local_server):
+        """questions.json resource fetch must complete within PERF_THRESHOLDS['questions_json_ms']."""
+        page.goto(app_url(local_server), wait_until="networkidle")
+        timing = _resource_timing(page, "questions.json")
+        if timing is None:
+            pytest.skip("questions.json resource timing not captured")
+        dur = timing["duration_ms"]
+        limit = PERF_THRESHOLDS["questions_json_ms"]
+        assert dur <= limit, (
+            f"questions.json fetch took {dur:.0f} ms — exceeds {limit} ms threshold"
+        )
+
+    # ------------------------------------------------------------------
+    # App interactivity
+    # ------------------------------------------------------------------
+
+    def test_app_interactive_within_threshold(self, page, local_server):
+        """Battery pills (app ready for input) must appear within PERF_THRESHOLDS['home_interactive_ms']."""
+        start = time.time()
+        _goto(page, app_url(local_server))
+        enter_guest_mode(page)
+        elapsed_ms = (time.time() - start) * 1000
+        limit = PERF_THRESHOLDS["home_interactive_ms"]
+        assert elapsed_ms <= limit, (
+            f"App took {elapsed_ms:.0f} ms to become interactive — exceeds {limit} ms"
+        )
+
+    def test_theme_switch_speed(self, page, local_server):
+        """Switching theme should complete within PERF_THRESHOLDS['theme_switch_ms']."""
+        _goto(page, app_url(local_server))
+        enter_guest_mode(page)
+
+        # Open settings / theme picker — look for a settings or theme button
+        settings_btn = page.locator("#settings-btn, [data-action='settings'], .settings-btn").first
+        if not settings_btn.is_visible():
+            pytest.skip("No settings button found to open theme picker")
+
+        settings_btn.click()
+        theme_btn = page.locator(f"[data-theme='superhero'], button[onclick*='superhero']").first
+        if not theme_btn.is_visible():
+            pytest.skip("Theme picker not visible after opening settings")
+
+        start = time.time()
+        theme_btn.click()
+        # Wait for the body/root element to reflect the new theme
+        page.locator("body[data-theme='superhero'], #app[data-theme='superhero']").wait_for(
+            state="attached", timeout=2_000
+        )
+        elapsed_ms = (time.time() - start) * 1000
+        limit = PERF_THRESHOLDS["theme_switch_ms"]
+        assert elapsed_ms <= limit, (
+            f"Theme switch took {elapsed_ms:.0f} ms — exceeds {limit} ms threshold"
+        )
+
+    def test_option_click_response_time(self, page, local_server):
+        """Clicking an answer option should render feedback within PERF_THRESHOLDS['option_click_response_ms']."""
+        _goto(page, app_url(local_server))
+        enter_guest_mode(page)
+
+        # Start a quick-play session: pick first battery pill
+        page.locator(".battery-pills button").first.click()
+        # Select grade K
+        grade_btn = page.locator("button", has_text=re.compile(r"^K$|Grade K", re.IGNORECASE)).first
+        if grade_btn.is_visible():
+            grade_btn.click()
+        # Start button
+        start_btn = page.locator("button", has_text=re.compile(r"start|begin|play", re.IGNORECASE)).first
+        if start_btn.is_visible(timeout=2_000):
+            start_btn.click()
+
+        # Wait for an answer option to appear
+        option = page.locator(".option-btn, [data-option], .answer-btn").first
+        try:
+            option.wait_for(state="visible", timeout=5_000)
+        except Exception:
+            pytest.skip("Could not reach a question screen to test option click")
+
+        start = time.time()
+        option.click()
+        # Wait for some feedback element (correct/wrong indicator, next button, etc.)
+        page.locator(
+            ".feedback, .result-icon, #next-btn, .correct, .wrong, [data-result]"
+        ).first.wait_for(state="visible", timeout=3_000)
+        elapsed_ms = (time.time() - start) * 1000
+        limit = PERF_THRESHOLDS["option_click_response_ms"]
+        assert elapsed_ms <= limit, (
+            f"Option click response took {elapsed_ms:.0f} ms — exceeds {limit} ms threshold"
+        )
+

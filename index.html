@@ -1133,7 +1133,7 @@ body{background:#000}
 <!-- App Shell -->
 <div id="app" style="display:none">
   <div class="topbar">
-    <div class="topbar-logo" id="theme-logo">🚀 BrainSpark</div>
+    <div class="topbar-logo" id="theme-logo" onclick="showScreen('home')" style="cursor:pointer">🚀 BrainSpark</div>
     <div class="topbar-right">
       <button class="theme-btn" onclick="showScreen('themes')">🎨<span class="btn-label"> Theme</span></button>
       <button class="audio-btn" id="audio-btn" onclick="toggleAudio()" title="Toggle sound">🔊</button>
@@ -2441,6 +2441,9 @@ function createParticles(theme) {
     s2.textContent = '@keyframes candyWobble{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}} .particle{animation-timing-function:cubic-bezier(0.4,0,0.6,1)}';
     document.head.appendChild(s2);
   }
+
+  // Ambient audio — only start if audio is enabled
+  if (!audioEnabled) { window._ambientStop = () => {}; return; }
 
   // JUNGLE: night jungle ambient soundscape (crickets, frogs, wind)
   if (theme === 'jungle') {
@@ -3874,10 +3877,15 @@ function toggleAudio() {
   audioEnabled = !audioEnabled;
   const btn = document.getElementById('audio-btn');
   if (btn) btn.textContent = audioEnabled ? '🔊' : '🔇';
-  // On mobile, AudioContext starts suspended — resume it on the first user tap.
   if (audioEnabled) {
+    // Re-enable: resume AudioContext and restart ambient for current theme
     const ctx = _getAudioCtx();
     if (ctx && ctx.state === 'suspended') ctx.resume();
+    loadSettings().then(s => { createParticles(s.theme || 'space'); });
+  } else {
+    // Mute: stop ambient audio immediately
+    try { window._ambientStop?.(); } catch(e) {}
+    window._ambientStop = () => {};
   }
   loadSettings().then(s => { s.audioEnabled = audioEnabled; saveSettings(s); });
 }
