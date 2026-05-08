@@ -621,3 +621,115 @@ class TestBatteryFilter:
         assert "quantitative" in tag, (
             f"Battery tag does not say 'quantitative': {tag!r}"
         )
+
+
+# ---------------------------------------------------------------------------
+# Ambient audio tests
+# ---------------------------------------------------------------------------
+
+ALL_THEMES = [
+    "space", "superhero", "princess", "jungle",
+    "unicorn", "magic", "candyland", "zen", "science", "math",
+]
+
+
+class TestAmbientAudio:
+    """Verify that every theme registers a window._ambientStop cleanup function
+    and that switching themes replaces it without JS errors."""
+
+    def _open_themes_screen(self, page, local_server):
+        _goto(page, app_url(local_server))
+        enter_guest_mode(page)
+        page.locator("button.theme-btn").first.click()
+        page.locator("#screen-themes").wait_for(state="visible", timeout=5_000)
+
+    @pytest.mark.parametrize("theme", ALL_THEMES)
+    def test_ambient_stop_registered_for_theme(self, page, local_server, theme):
+        """After clicking any theme card, window._ambientStop must be a function."""
+        self._open_themes_screen(page, local_server)
+        page.locator(f"#tc-{theme}").click()
+        page.locator("#screen-home").wait_for(state="visible", timeout=5_000)
+        stop_type = page.evaluate("typeof window._ambientStop")
+        assert stop_type == "function", (
+            f"window._ambientStop should be a function for theme {theme!r}, got {stop_type!r}"
+        )
+
+    def test_switching_theme_replaces_ambient_stop(self, page, local_server):
+        """Switching from jungle → space replaces the ambient stop function."""
+        self._open_themes_screen(page, local_server)
+        page.locator("#tc-jungle").click()
+        page.locator("#screen-home").wait_for(state="visible", timeout=5_000)
+        assert page.evaluate("typeof window._ambientStop") == "function"
+
+        page.locator("button.theme-btn").first.click()
+        page.locator("#screen-themes").wait_for(state="visible", timeout=5_000)
+        page.locator("#tc-space").click()
+        page.locator("#screen-home").wait_for(state="visible", timeout=5_000)
+        assert page.evaluate("typeof window._ambientStop") == "function"
+
+    def test_no_js_errors_cycling_all_themes(self, page, local_server):
+        """Cycling through every theme must not throw any uncaught JS errors."""
+        errors = []
+        page.on("pageerror", lambda e: errors.append(str(e)))
+        self._open_themes_screen(page, local_server)
+        for i, theme in enumerate(ALL_THEMES):
+            page.locator(f"#tc-{theme}").click()
+            page.locator("#screen-home").wait_for(state="visible", timeout=5_000)
+            if i < len(ALL_THEMES) - 1:
+                page.locator("button.theme-btn").first.click()
+                page.locator("#screen-themes").wait_for(state="visible", timeout=5_000)
+        assert not errors, "JS errors while cycling themes:\n" + "\n".join(errors)
+
+
+# ---------------------------------------------------------------------------
+# Audio toggle tests
+# ---------------------------------------------------------------------------
+
+
+class TestAudioToggle:
+    """Verify the audio mute/unmute button state changes correctly."""
+
+    def _go_home(self, page, local_server):
+        _goto(page, app_url(local_server))
+        enter_guest_mode(page)
+
+    def test_audio_button_visible_on_home(self, page, local_server):
+        self._go_home(page, local_server)
+        btn = page.locator("#audio-btn")
+        assert btn.is_visible(), "Audio toggle button not visible"
+
+    def test_audio_enabled_by_default(self, page, local_server):
+        """Audio button should show 🔊 (enabled) by default."""
+        self._go_home(page, local_server)
+        btn_text = page.locator("#audio-btn").inner_text()
+        assert "🔊" in btn_text, f"Expected 🔊 (audio on) by default, got {btn_text!r}"
+
+    def test_audio_toggle_mutes(self, page, local_server):
+        """Clicking audio button once should switch to 🔇."""
+        self._go_home(page, local_server)
+        page.locator("#audio-btn").click()
+        btn_text = page.locator("#audio-btn").inner_text()
+        assert "🔇" in btn_text, f"Expected 🔇 after mute click, got {btn_text!r}"
+
+    def test_audio_toggle_unmutes(self, page, local_server):
+        """Clicking audio button twice should return to 🔊."""
+        self._go_home(page, local_server)
+        page.locator("#audio-btn").click()
+        page.locator("#audio-btn").click()
+        btn_text = page.locator("#audio-btn").inner_text()
+        assert "🔊" in btn_text, f"Expected 🔊 after second click, got {btn_text!r}"
+
+    def test_audio_state_persisted_to_localstorage(self, page, local_server):
+        """Muting should save audioEnabled=false to cogat_settings_local."""
+        import json
+        self._go_home(page, local_server)
+        page.locator("#audio-btn").click()  # mute
+        settings_raw = page.evaluate(
+            "() => localStorage.getItem('cogat_settings_local')"
+        )
+        assert settings_raw is not None, "Settings not found in localStorage"
+        settings = json.loads(settings_raw)
+        assert settings.get("audioEnabled") is False, (
+            f"Expected audioEnabled=false in settings, got {settings!r}"
+        )
+

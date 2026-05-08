@@ -2278,6 +2278,7 @@ function createParticles(theme) {
 
   // JUNGLE: night jungle ambient soundscape (crickets, frogs, wind)
   if (theme === 'jungle') {
+    window._ambientStop = () => {};
     try {
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
       const actx = new AudioCtx();
@@ -2347,6 +2348,7 @@ function createParticles(theme) {
 
   // ZEN: singing bowl tones that repeat softly
   if (theme === 'zen') {
+    window._ambientStop = () => {};
     try {
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
       const actx = new AudioCtx();
@@ -2373,6 +2375,247 @@ function createParticles(theme) {
       playBowl();
       window._ambientStop = () => { try { actx.close(); } catch(e){} };
     } catch(e) { console.warn('Zen sound unavailable', e); }
+  }
+
+  // SPACE: low cosmic drone + occasional radio blips
+  if (theme === 'space') {
+    window._ambientStop = () => {};
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      const actx = new AudioCtx();
+      // 55 Hz cosmic drone with slow LFO breathing
+      const drone = actx.createOscillator(); const droneGain = actx.createGain();
+      drone.type = 'sine'; drone.frequency.value = 55;
+      const lfo = actx.createOscillator(); const lfoGain = actx.createGain();
+      lfo.type = 'sine'; lfo.frequency.value = 0.08; lfoGain.gain.value = 0.012;
+      lfo.connect(lfoGain); lfoGain.connect(droneGain.gain);
+      droneGain.gain.value = 0.025;
+      drone.connect(droneGain); droneGain.connect(actx.destination);
+      drone.start(); lfo.start();
+      // Radio blip
+      function blip() {
+        if (!document.body.classList.contains('theme-space')) return;
+        const b = actx.createOscillator(); const bg = actx.createGain();
+        b.type = 'sine'; b.frequency.value = 900 + Math.random() * 400;
+        bg.gain.setValueAtTime(0, actx.currentTime);
+        bg.gain.linearRampToValueAtTime(0.04, actx.currentTime + 0.01);
+        bg.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + 0.18);
+        b.connect(bg); bg.connect(actx.destination);
+        b.start(); b.stop(actx.currentTime + 0.18);
+        setTimeout(blip, 4000 + Math.random() * 8000);
+      }
+      blip();
+      window._ambientStop = () => { try { actx.close(); } catch(e){} };
+    } catch(e) { console.warn('Space sound unavailable', e); }
+  }
+
+  // SUPERHERO: power thrum + rhythmic energy pulse
+  if (theme === 'superhero') {
+    window._ambientStop = () => {};
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      const actx = new AudioCtx();
+      // Low power thrum
+      const thrum = actx.createOscillator(); const thrumGain = actx.createGain();
+      thrum.type = 'sawtooth'; thrum.frequency.value = 80;
+      const thrumFilter = actx.createBiquadFilter();
+      thrumFilter.type = 'lowpass'; thrumFilter.frequency.value = 180;
+      thrumGain.gain.value = 0.025;
+      thrum.connect(thrumFilter); thrumFilter.connect(thrumGain); thrumGain.connect(actx.destination);
+      thrum.start();
+      // Double energy pulse (~100 BPM)
+      function pulse() {
+        if (!document.body.classList.contains('theme-superhero')) return;
+        [0, 0.09].forEach(dt => {
+          const osc = actx.createOscillator(); const g = actx.createGain();
+          osc.type = 'sine'; osc.frequency.value = 130;
+          const t = actx.currentTime + dt;
+          g.gain.setValueAtTime(0, t);
+          g.gain.linearRampToValueAtTime(0.09, t + 0.015);
+          g.gain.exponentialRampToValueAtTime(0.001, t + 0.22);
+          osc.connect(g); g.connect(actx.destination);
+          osc.start(t); osc.stop(t + 0.22);
+        });
+        setTimeout(pulse, 650 + Math.random() * 200);
+      }
+      pulse();
+      window._ambientStop = () => { try { actx.close(); } catch(e){} };
+    } catch(e) { console.warn('Superhero sound unavailable', e); }
+  }
+
+  // PRINCESS: gentle harp arpeggios (G major)
+  if (theme === 'princess') {
+    window._ambientStop = () => {};
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      const actx = new AudioCtx();
+      const harpNotes = [392, 494, 587, 784]; // G4–B4–D5–G5
+      function harp() {
+        if (!document.body.classList.contains('theme-princess')) return;
+        harpNotes.forEach((freq, i) => {
+          const osc = actx.createOscillator(); const g = actx.createGain();
+          osc.type = 'sine'; osc.frequency.value = freq;
+          const t = actx.currentTime + i * 0.14;
+          g.gain.setValueAtTime(0, t);
+          g.gain.linearRampToValueAtTime(0.08, t + 0.02);
+          g.gain.exponentialRampToValueAtTime(0.001, t + 1.4);
+          osc.connect(g); g.connect(actx.destination);
+          osc.start(t); osc.stop(t + 1.4);
+        });
+        setTimeout(harp, 5000 + Math.random() * 6000);
+      }
+      harp();
+      window._ambientStop = () => { try { actx.close(); } catch(e){} };
+    } catch(e) { console.warn('Princess sound unavailable', e); }
+  }
+
+  // UNICORN: dreamy shimmer + sparkle arpeggios
+  if (theme === 'unicorn') {
+    window._ambientStop = () => {};
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      const actx = new AudioCtx();
+      // Soft dreamy shimmer drone
+      const shimmer = actx.createOscillator(); const shimmerGain = actx.createGain();
+      shimmer.type = 'sine'; shimmer.frequency.value = 220;
+      shimmerGain.gain.value = 0.012;
+      shimmer.connect(shimmerGain); shimmerGain.connect(actx.destination);
+      shimmer.start();
+      // Pentatonic sparkle arpeggio
+      const sparkleNotes = [523, 659, 784, 1047, 1319]; // C5–E5–G5–C6–E6
+      function sparkle() {
+        if (!document.body.classList.contains('theme-unicorn')) return;
+        const start = Math.floor(Math.random() * 2);
+        sparkleNotes.slice(start, start + 4).forEach((freq, i) => {
+          const osc = actx.createOscillator(); const g = actx.createGain();
+          osc.type = 'sine'; osc.frequency.value = freq;
+          const t = actx.currentTime + i * 0.09;
+          g.gain.setValueAtTime(0, t);
+          g.gain.linearRampToValueAtTime(0.07, t + 0.01);
+          g.gain.exponentialRampToValueAtTime(0.001, t + 0.6);
+          osc.connect(g); g.connect(actx.destination);
+          osc.start(t); osc.stop(t + 0.6);
+        });
+        setTimeout(sparkle, 2500 + Math.random() * 3000);
+      }
+      sparkle();
+      window._ambientStop = () => { try { actx.close(); } catch(e){} };
+    } catch(e) { console.warn('Unicorn sound unavailable', e); }
+  }
+
+  // MAGIC: deep mysterious drone + descending spell shimmer
+  if (theme === 'magic') {
+    window._ambientStop = () => {};
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      const actx = new AudioCtx();
+      // Deep drone (90 Hz) + ethereal 5th (135 Hz)
+      [90, 135].forEach((freq, idx) => {
+        const osc = actx.createOscillator(); const g = actx.createGain();
+        osc.type = 'sine'; osc.frequency.value = freq;
+        g.gain.value = idx === 0 ? 0.04 : 0.018;
+        osc.connect(g); g.connect(actx.destination); osc.start();
+      });
+      // Spell shimmer — descending glitter
+      function spell() {
+        if (!document.body.classList.contains('theme-magic')) return;
+        [1047, 880, 784, 659, 523].forEach((freq, i) => {
+          const osc = actx.createOscillator(); const g = actx.createGain();
+          osc.type = 'sine'; osc.frequency.value = freq;
+          const t = actx.currentTime + i * 0.11;
+          g.gain.setValueAtTime(0, t);
+          g.gain.linearRampToValueAtTime(0.055, t + 0.02);
+          g.gain.exponentialRampToValueAtTime(0.001, t + 0.55);
+          osc.connect(g); g.connect(actx.destination);
+          osc.start(t); osc.stop(t + 0.55);
+        });
+        setTimeout(spell, 5000 + Math.random() * 6000);
+      }
+      spell();
+      window._ambientStop = () => { try { actx.close(); } catch(e){} };
+    } catch(e) { console.warn('Magic sound unavailable', e); }
+  }
+
+  // CANDYLAND: playful glockenspiel melody (triangle wave, C major)
+  if (theme === 'candyland') {
+    window._ambientStop = () => {};
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      const actx = new AudioCtx();
+      const candyNotes = [523, 659, 784, 880, 1047]; // C5–E5–G5–A5–C6
+      function candy() {
+        if (!document.body.classList.contains('theme-candyland')) return;
+        [0, 2, 4, 2, 1, 3].forEach((ni, i) => {
+          const osc = actx.createOscillator(); const g = actx.createGain();
+          osc.type = 'triangle'; osc.frequency.value = candyNotes[ni];
+          const t = actx.currentTime + i * 0.19;
+          g.gain.setValueAtTime(0, t);
+          g.gain.linearRampToValueAtTime(0.1, t + 0.01);
+          g.gain.exponentialRampToValueAtTime(0.001, t + 0.28);
+          osc.connect(g); g.connect(actx.destination);
+          osc.start(t); osc.stop(t + 0.28);
+        });
+        setTimeout(candy, 3000 + Math.random() * 4000);
+      }
+      candy();
+      window._ambientStop = () => { try { actx.close(); } catch(e){} };
+    } catch(e) { console.warn('Candyland sound unavailable', e); }
+  }
+
+  // SCIENCE: lab hum (60 Hz) + periodic electronic beep
+  if (theme === 'science') {
+    window._ambientStop = () => {};
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      const actx = new AudioCtx();
+      // 60 Hz equipment hum
+      const hum = actx.createOscillator(); const humGain = actx.createGain();
+      hum.type = 'sine'; hum.frequency.value = 60;
+      humGain.gain.value = 0.018;
+      hum.connect(humGain); humGain.connect(actx.destination); hum.start();
+      // Electronic monitor beep
+      function beep() {
+        if (!document.body.classList.contains('theme-science')) return;
+        const osc = actx.createOscillator(); const g = actx.createGain();
+        osc.type = 'sine'; osc.frequency.value = 1000;
+        g.gain.setValueAtTime(0, actx.currentTime);
+        g.gain.linearRampToValueAtTime(0.07, actx.currentTime + 0.005);
+        g.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + 0.12);
+        osc.connect(g); g.connect(actx.destination);
+        osc.start(); osc.stop(actx.currentTime + 0.12);
+        setTimeout(beep, 1100 + Math.random() * 900);
+      }
+      beep();
+      window._ambientStop = () => { try { actx.close(); } catch(e){} };
+    } catch(e) { console.warn('Science sound unavailable', e); }
+  }
+
+  // MATH: precise rhythmic tones at mathematical frequency ratios
+  if (theme === 'math') {
+    window._ambientStop = () => {};
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      const actx = new AudioCtx();
+      // Perfect-fifth sequence: A4 (440) → E5 (660) → A5 (880) → E5 (660)
+      const mathFreqs = [440, 660, 880, 660];
+      let mathBeat = 0;
+      function tick() {
+        if (!document.body.classList.contains('theme-math')) return;
+        const osc = actx.createOscillator(); const g = actx.createGain();
+        const filter = actx.createBiquadFilter();
+        osc.type = 'square'; osc.frequency.value = mathFreqs[mathBeat % mathFreqs.length];
+        filter.type = 'lowpass'; filter.frequency.value = 700;
+        mathBeat++;
+        g.gain.setValueAtTime(0, actx.currentTime);
+        g.gain.linearRampToValueAtTime(0.055, actx.currentTime + 0.006);
+        g.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + 0.09);
+        osc.connect(filter); filter.connect(g); g.connect(actx.destination);
+        osc.start(); osc.stop(actx.currentTime + 0.09);
+        setTimeout(tick, mathBeat % 4 === 0 ? 1200 : 750);
+      }
+      tick();
+      window._ambientStop = () => { try { actx.close(); } catch(e){} };
+    } catch(e) { console.warn('Math sound unavailable', e); }
   }
 }
 
@@ -2832,6 +3075,9 @@ let selectedOptionIdx = null;
 function selectOption(idx) {
   if (activeSession.answers[activeSession.currentIndex] !== undefined) return;
   selectedOptionIdx = idx;
+  // Unblock AudioContext on mobile (must happen inside a user gesture)
+  const ctx = _getAudioCtx();
+  if (ctx && ctx.state === 'suspended') ctx.resume().catch(() => {});
   document.querySelectorAll('.option-btn').forEach((b,i) => {
     b.classList.toggle('selected', i===idx);
   });
@@ -3461,6 +3707,11 @@ function toggleAudio() {
   audioEnabled = !audioEnabled;
   const btn = document.getElementById('audio-btn');
   if (btn) btn.textContent = audioEnabled ? '🔊' : '🔇';
+  // On mobile, AudioContext starts suspended — resume it on the first user tap.
+  if (audioEnabled) {
+    const ctx = _getAudioCtx();
+    if (ctx && ctx.state === 'suspended') ctx.resume();
+  }
   loadSettings().then(s => { s.audioEnabled = audioEnabled; saveSettings(s); });
 }
 
@@ -3471,9 +3722,19 @@ function _getAudioCtx() {
   return _audioCtx;
 }
 
-function playCorrectSound() {
+// Returns a running AudioContext, or null. Always await this before scheduling nodes.
+async function _getReadyCtx() {
+  const ctx = _getAudioCtx();
+  if (!ctx) return null;
+  if (ctx.state === 'suspended') {
+    try { await ctx.resume(); } catch(e) { return null; }
+  }
+  return ctx;
+}
+
+async function playCorrectSound() {
   if (!audioEnabled) return;
-  const ctx = _getAudioCtx(); if (!ctx) return;
+  const ctx = await _getReadyCtx(); if (!ctx) return;
   // Ascending chime C5→E5→G5
   [[523.25, 0], [659.25, 0.13], [783.99, 0.26]].forEach(([freq, delay]) => {
     const osc = ctx.createOscillator(), g = ctx.createGain();
@@ -3487,9 +3748,9 @@ function playCorrectSound() {
   });
 }
 
-function playWrongSound() {
+async function playWrongSound() {
   if (!audioEnabled) return;
-  const ctx = _getAudioCtx(); if (!ctx) return;
+  const ctx = await _getReadyCtx(); if (!ctx) return;
   const osc = ctx.createOscillator(), g = ctx.createGain();
   osc.type = 'sawtooth';
   osc.frequency.setValueAtTime(200, ctx.currentTime);
@@ -3500,9 +3761,9 @@ function playWrongSound() {
   osc.start(); osc.stop(ctx.currentTime + 0.32);
 }
 
-function playBadgeSound() {
+async function playBadgeSound() {
   if (!audioEnabled) return;
-  const ctx = _getAudioCtx(); if (!ctx) return;
+  const ctx = await _getReadyCtx(); if (!ctx) return;
   [523.25, 587.33, 659.25, 783.99, 1046.5].forEach((freq, i) => {
     const osc = ctx.createOscillator(), g = ctx.createGain();
     osc.type = 'sine'; osc.frequency.value = freq;
