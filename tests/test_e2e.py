@@ -733,3 +733,40 @@ class TestAudioToggle:
             f"Expected audioEnabled=false in settings, got {settings!r}"
         )
 
+
+# ---------------------------------------------------------------------------
+# Help / About screen tests
+# ---------------------------------------------------------------------------
+
+
+class TestHelpScreen:
+    def test_help_button_visible_on_home(self, page, local_server):
+        _goto(page, app_url(local_server))
+        enter_guest_mode(page)
+        assert page.locator("#help-btn").is_visible(), "Help button not visible"
+
+    def test_help_button_opens_help_screen(self, page, local_server):
+        _goto(page, app_url(local_server))
+        enter_guest_mode(page)
+        page.locator("#help-btn").click()
+        page.locator("#screen-help").wait_for(state="visible", timeout=5_000)
+        assert page.locator("#screen-help").is_visible()
+
+    def test_help_screen_has_key_sections(self, page, local_server):
+        _goto(page, app_url(local_server))
+        enter_guest_mode(page)
+        page.locator("#help-btn").click()
+        page.locator("#screen-help").wait_for(state="visible", timeout=5_000)
+        content = page.locator("#screen-help").inner_text()
+        for keyword in ("BrainSpark", "CoGAT", "SparkCoin", "FAQ", "Grade"):
+            assert keyword in content, f"Expected {keyword!r} in help screen content"
+
+    def test_help_back_button_returns_home(self, page, local_server):
+        _goto(page, app_url(local_server))
+        enter_guest_mode(page)
+        page.locator("#help-btn").click()
+        page.locator("#screen-help").wait_for(state="visible", timeout=5_000)
+        page.locator("#screen-help .btn-secondary").first.click()
+        page.locator("#screen-home").wait_for(state="visible", timeout=5_000)
+        assert page.locator("#screen-home").is_visible()
+

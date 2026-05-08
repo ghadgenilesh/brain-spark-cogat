@@ -961,6 +961,24 @@ body{background:#000}
 /* ===== AUDIO BUTTON ===== */
 .audio-btn{background:none;border:none;cursor:pointer;font-size:18px;padding:3px 5px;border-radius:8px;transition:all .18s;color:var(--text2);line-height:1;flex-shrink:0}
 .audio-btn:hover{background:var(--surface2);color:var(--text)}
+/* ===== HELP SCREEN ===== */
+#screen-help{padding:0 16px 80px}
+.help-header{padding:14px 0 10px;display:flex;align-items:center;gap:12px;flex-shrink:0}
+.help-title{font-family:var(--font-display);font-size:22px;color:var(--text)}
+.help-body{display:flex;flex-direction:column;gap:16px}
+.help-section{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:16px;position:relative;overflow:hidden}
+.help-section::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--deco1),var(--deco2));border-radius:var(--radius) var(--radius) 0 0}
+.help-section-title{font-family:var(--font-display);font-size:17px;color:var(--accent);margin-bottom:10px}
+.help-section p{font-size:14px;color:var(--text2);line-height:1.6;margin:0 0 8px}
+.help-section p:last-child{margin-bottom:0}
+.help-table-wrap{overflow-x:auto;margin-top:6px;border-radius:8px}
+.help-table{width:100%;border-collapse:collapse;font-size:13px}
+.help-table th{background:var(--surface2);color:var(--text2);font-weight:700;padding:7px 10px;text-align:left;border-bottom:1px solid var(--border)}
+.help-table td{padding:7px 10px;color:var(--text);border-bottom:1px solid var(--border);vertical-align:top}
+.help-table tr:last-child td{border-bottom:none}
+.help-faq-q{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;margin-top:12px}
+.help-faq-q:first-child{margin-top:0}
+.help-faq-a{font-size:13px;color:var(--text2);line-height:1.5}
 
 /* ===== SPARK COINS ===== */
 .spark-coin-badge{display:flex;align-items:center;gap:5px;background:linear-gradient(135deg,#FFD700,#FFA500);border-radius:20px;padding:5px 12px;font-size:13px;font-weight:800;color:#1a1100;box-shadow:0 2px 10px rgba(255,215,0,0.4);cursor:pointer;transition:all 0.2s;user-select:none}
@@ -1119,6 +1137,7 @@ body{background:#000}
     <div class="topbar-right">
       <button class="theme-btn" onclick="showScreen('themes')">🎨<span class="btn-label"> Theme</span></button>
       <button class="audio-btn" id="audio-btn" onclick="toggleAudio()" title="Toggle sound">🔊</button>
+      <button class="audio-btn" id="help-btn" onclick="showScreen('help')" title="About &amp; Help">ℹ️</button>
       <div class="spark-coin-badge" id="spark-coin-badge" onclick="showScreen('shop')" title="Spark Coins — visit the Character Shop!">
         <span class="coin-icon">✨</span>
         <span id="spark-coin-count">0</span>
@@ -1468,6 +1487,153 @@ body{background:#000}
       <!-- Rendered by JS -->
     </div>
     <button class="btn btn-secondary" style="width:100%;margin-top:6px" onclick="showScreen('home')">← Back to Home</button>
+  </div>
+
+  <!-- HELP / ABOUT -->
+  <div class="screen" id="screen-help">
+    <div class="help-header">
+      <button class="btn btn-secondary btn-sm" onclick="showScreen('home')">← Back</button>
+      <div class="help-title">About BrainSpark</div>
+    </div>
+    <div class="help-body">
+      <div class="help-section">
+        <div class="help-section-title">🧠 What is BrainSpark?</div>
+        <p>A free, ad-free, offline-capable CoGAT (Cognitive Abilities Test) practice app for students in Kindergarten through Grade 8.</p>
+        <p>BrainSpark runs entirely in the browser — no installation, no accounts required. Sign in with Google to sync progress, or play as a guest with everything stored locally.</p>
+        <p><strong>2,550+ questions</strong> across all 9 CoGAT types and every grade K–8, including visual SVG figure-matrices.</p>
+      </div>
+
+      <div class="help-section">
+        <div class="help-section-title">🎯 Practice Modes</div>
+        <div class="help-table-wrap">
+          <table class="help-table">
+            <tr><th>Mode</th><th>Description</th></tr>
+            <tr><td><strong>Standard Session</strong></td><td>9 questions · 15-min timer · adaptive difficulty · hints after each answer</td></tr>
+            <tr><td><strong>Exam Simulation</strong></td><td>20 questions · 25-min timer · no hints during quiz · battery breakdown at end</td></tr>
+            <tr><td><strong>Review Mistakes</strong></td><td>Re-practice up to 9 questions you got wrong in past sessions</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="help-section">
+        <div class="help-section-title">📚 CoGAT Batteries</div>
+        <div class="help-table-wrap">
+          <table class="help-table">
+            <tr><th>Battery</th><th>Question Types</th></tr>
+            <tr><td><strong>Verbal</strong></td><td>Word analogies · Odd-one-out · Sentence completion</td></tr>
+            <tr><td><strong>Quantitative</strong></td><td>Number series · Number analogies · Number puzzles</td></tr>
+            <tr><td><strong>Non-Verbal</strong></td><td>Figure matrices · Paper folding · Figure classification</td></tr>
+          </table>
+        </div>
+        <p style="margin-top:10px">BrainSpark uses a <strong>Flow Path Algorithm</strong> (ELO-style) that automatically adjusts difficulty based on your recent accuracy.</p>
+      </div>
+
+      <div class="help-section">
+        <div class="help-section-title">✨ SparkCoins &amp; Character Shop</div>
+        <p>Every correct answer earns <strong>1 SparkCoin</strong> shown in the top-right badge. Spend <strong>15 SparkCoins</strong> in the Character Shop to unlock one of 25 animated companion characters who cheer for you after correct answers.</p>
+        <p>Coins persist across sessions and sync to the cloud when signed in.</p>
+      </div>
+
+      <div class="help-section">
+        <div class="help-section-title">🎖️ Achievement Badges</div>
+        <div class="help-table-wrap">
+          <table class="help-table">
+            <tr><th>Badge</th><th>How to earn</th></tr>
+            <tr><td>🌱 First Steps</td><td>Complete your first session</td></tr>
+            <tr><td>🔢 Number Ninja</td><td>50 quantitative correct answers</td></tr>
+            <tr><td>📚 Word Wizard</td><td>50 verbal correct answers</td></tr>
+            <tr><td>🔷 Pattern Pro</td><td>50 non-verbal correct answers</td></tr>
+            <tr><td>⚡ Speed Demon</td><td>Complete a session on time</td></tr>
+            <tr><td>🏆 Perfect Score</td><td>Get all questions right in a session</td></tr>
+            <tr><td>🔥 On Fire</td><td>Reach a 5-day daily streak</td></tr>
+            <tr><td>🌟 Dedicated</td><td>Complete 10 sessions</td></tr>
+            <tr><td>🎯 Sharpshooter</td><td>80%+ accuracy over 20+ questions</td></tr>
+            <tr><td>🌐 Well-Rounded</td><td>Try all 3 battery types</td></tr>
+            <tr><td>📝 Exam Ace</td><td>Score 85%+ in Exam Simulation</td></tr>
+            <tr><td>🔄 Mistake Master</td><td>Complete a Review Mistakes session</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="help-section">
+        <div class="help-section-title">🔥 Daily Streak Milestones</div>
+        <div class="help-table-wrap">
+          <table class="help-table">
+            <tr><th>Days</th><th>Celebration</th></tr>
+            <tr><td>5</td><td>🔥 On Fire!</td></tr>
+            <tr><td>10</td><td>⚡ Supercharged!</td></tr>
+            <tr><td>15</td><td>🌈 Rainbow Streak!</td></tr>
+            <tr><td>20</td><td>🌟 Star Streak!</td></tr>
+            <tr><td>40</td><td>🚀 Blast Off!</td></tr>
+            <tr><td>100</td><td>💎 Diamond Mind!</td></tr>
+            <tr><td>200</td><td>👑 Legend Status!</td></tr>
+            <tr><td>500</td><td>🏆 Hall of Fame!</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="help-section">
+        <div class="help-section-title">🎨 Themes &amp; Ambient Audio</div>
+        <div class="help-table-wrap">
+          <table class="help-table">
+            <tr><th>Theme</th><th>Special Effect</th></tr>
+            <tr><td>🚀 Space Explorer</td><td>Floating star particles + cosmic drone audio</td></tr>
+            <tr><td>⚡ Superhero</td><td>Power-burst particles + hero thrum audio</td></tr>
+            <tr><td>👑 Royal Quest</td><td>Flower-petal particles + harp arpeggios</td></tr>
+            <tr><td>🌿 Jungle Adventure</td><td>Falling leaf particles + cricket &amp; bird ambience</td></tr>
+            <tr><td>🦄 Unicorn Dreams</td><td>Rainbow cursor trail + sparkle audio</td></tr>
+            <tr><td>🔮 Magic Realm</td><td>Live star constellation + mystical drone</td></tr>
+            <tr><td>🍭 Candy Kingdom</td><td>Bouncing candy particles + glockenspiel melody</td></tr>
+            <tr><td>🧘 Zen</td><td>Calm gradient + singing bowl tones</td></tr>
+            <tr><td>🔬 Science</td><td>Circuit-board aesthetic + lab hum &amp; beeps</td></tr>
+            <tr><td>➕ Math</td><td>Number-grid aesthetic + frequency sequence audio</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="help-section">
+        <div class="help-section-title">📐 Grade Level Guide</div>
+        <div class="help-table-wrap">
+          <table class="help-table">
+            <tr><th>Grade</th><th>Age</th><th>Focus</th></tr>
+            <tr><td>K</td><td>5–6</td><td>Colors, shapes, counting 1–10, simple patterns</td></tr>
+            <tr><td>1</td><td>6–7</td><td>Animals/objects, skip counting, simple equations</td></tr>
+            <tr><td>2</td><td>7–8</td><td>Analogies, skip counting by 5s, color-shape matrices</td></tr>
+            <tr><td>3</td><td>8–9</td><td>Antonyms, doubling sequences, 3×3 matrices</td></tr>
+            <tr><td>4</td><td>9–10</td><td>Multi-step analogies, Fibonacci, paper folding</td></tr>
+            <tr><td>5</td><td>10–11</td><td>Advanced vocabulary, algebra intro, dot-matrix patterns</td></tr>
+            <tr><td>6</td><td>11–12</td><td>Science vocabulary, perfect squares, linear equations</td></tr>
+            <tr><td>7</td><td>12–13</td><td>Literary devices, prime numbers, square roots</td></tr>
+            <tr><td>8</td><td>13–14</td><td>Advanced vocab, functions, complex spatial reasoning</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="help-section">
+        <div class="help-section-title">🔐 Sign-In &amp; Data</div>
+        <div class="help-table-wrap">
+          <table class="help-table">
+            <tr><th>Mode</th><th>Storage</th><th>Cross-device?</th></tr>
+            <tr><td>Google Sign-In</td><td>Firebase Firestore</td><td>✅ Yes</td></tr>
+            <tr><td>Guest</td><td>Browser localStorage</td><td>This device only</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="help-section">
+        <div class="help-section-title">❓ FAQ</div>
+        <div class="help-faq-q">Does this send any data to a server?</div>
+        <div class="help-faq-a">Only if you sign in with Google. In that case, session history, streaks, and settings are stored in your Firebase account. In guest mode, everything stays in the browser — nothing is transmitted.</div>
+        <div class="help-faq-q">What if a guest clears their browser cache?</div>
+        <div class="help-faq-a">Session history and streaks are reset. Signing in with Google prevents this.</div>
+        <div class="help-faq-q">Can multiple students share one device?</div>
+        <div class="help-faq-a">Yes — each student signs in with their own Google account and gets fully isolated data. In guest mode, data is shared per browser profile.</div>
+        <div class="help-faq-q">Why do I sometimes see questions from a different grade?</div>
+        <div class="help-faq-a">If there aren't enough questions for the selected grade and battery, the app falls back to the full question pool to guarantee a complete session.</div>
+      </div>
+
+      <p style="text-align:center;font-size:12px;color:var(--text3);margin-top:4px">Free to use, modify, and distribute for educational purposes.</p>
+    </div>
   </div>
 
   <!-- BADGE UNLOCK TOAST -->
