@@ -40,28 +40,24 @@ def generated_questions(tmp_path_factory):
     import os
 
     tmp = tmp_path_factory.mktemp("gen")
-    # Patch the output path so the generator writes to tmp
     src = (REPO_ROOT / "gen_questions.py").read_text(encoding="utf-8")
+    # Redirect the fixed output path so the generator writes into tmp
     patched = src.replace(
-        'f"/Users/nilesh/Projects/brainspark/questions_{timestamp}.json"',
-        f'str(tmp / f"questions_{{timestamp}}.json")',
+        'out = "/Users/nilesh/Projects/brainspark/questions.json"',
+        'out = str(tmp / "questions_gen_output.json")',
     )
-    # Inject tmp variable into the script's namespace via exec
+    assert "questions_gen_output" in patched, (
+        "conftest patch failed: output path literal not found in gen_questions.py"
+    )
     ns = {"__name__": "__not_main__", "tmp": tmp}
     exec(compile(patched, "gen_questions.py", "exec"), ns)  # noqa: S102
 
-    # Find the written file
-    files = list(tmp.glob("questions_*.json"))
-    assert files, "gen_questions.py did not produce an output file"
-    out_file = files[0]
+    # Find the written file (json.dump writes a proper JSON array, not JSONL)
+    out_file = tmp / "questions_gen_output.json"
+    assert out_file.exists(), "gen_questions.py did not produce an output file"
 
-    results = []
     with out_file.open(encoding="utf-8") as f:
-        for line in f:
-            line = line.strip()
-            if line:
-                results.append(json.loads(line))
-    return results
+        return json.load(f)
 
 
 # ---------------------------------------------------------------------------

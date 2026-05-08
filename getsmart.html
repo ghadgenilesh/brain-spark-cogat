@@ -900,6 +900,155 @@ body{background:#000}
   transform:translateX(-50%) translateY(-140%);
   opacity:0;
 }
+/* ===== EXAM MODE ===== */
+.exam-mode-wrap{display:flex;align-items:center;gap:12px;padding:13px 16px;background:var(--surface2);border-radius:var(--radius-sm);border:2px solid transparent;cursor:pointer;transition:all .2s;user-select:none}
+.exam-mode-wrap.active{border-color:var(--accent2)}
+.exam-mode-wrap .exam-icon{font-size:22px;flex-shrink:0}
+.exam-mode-info{flex:1}
+.exam-mode-name{font-weight:700;font-size:14px;color:var(--text)}
+.exam-mode-desc{font-size:11px;color:var(--text2);margin-top:1px}
+.exam-toggle-sw{width:42px;height:22px;background:var(--surface);border-radius:12px;position:relative;transition:background .2s;flex-shrink:0;border:2px solid var(--border)}
+.exam-toggle-sw.on{background:var(--accent2);border-color:var(--accent2)}
+.exam-toggle-sw::after{content:'';position:absolute;width:14px;height:14px;background:white;border-radius:50%;top:2px;left:2px;transition:left .2s}
+.exam-toggle-sw.on::after{left:20px}
+.exam-mode-badge{display:inline-block;background:rgba(255,107,157,.18);color:var(--accent2);font-size:10px;font-weight:700;padding:1px 7px;border-radius:8px;margin-left:6px;vertical-align:middle}
+/* ===== REVIEW MODE ===== */
+.review-btn{display:flex;align-items:center;justify-content:center;gap:10px;padding:11px 16px;background:transparent;border:2px dashed var(--border);border-radius:var(--radius-sm);cursor:pointer;width:100%;text-align:center;color:var(--text2);font-family:var(--font-body);font-size:14px;font-weight:600;transition:all .2s}
+.review-btn:hover:not(:disabled){border-color:var(--accent);background:rgba(124,111,255,.07);color:var(--text)}
+.review-btn:disabled{opacity:.35;cursor:not-allowed}
+/* ===== ACHIEVEMENTS ===== */
+#screen-achievements{padding:0 16px 24px}
+.achievements-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-top:10px}
+.badge-card{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius-sm);padding:14px 10px;text-align:center;transition:all .25s;position:relative;overflow:hidden}
+.badge-card.earned{border-color:var(--accent);box-shadow:0 0 16px rgba(124,111,255,.18)}
+.badge-card.locked{opacity:.4;filter:grayscale(.6)}
+.badge-icon{font-size:30px;display:block;margin-bottom:5px}
+.badge-name{font-size:11px;font-weight:800;color:var(--text);margin-bottom:3px;line-height:1.3}
+.badge-desc{font-size:10px;color:var(--text2);line-height:1.35}
+.badge-earned-check{position:absolute;top:5px;right:7px;font-size:11px}
+#badge-unlock-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(120%);background:var(--surface);border:2px solid var(--accent);border-radius:50px;padding:10px 22px;display:flex;align-items:center;gap:10px;font-weight:700;font-size:13px;color:var(--text);z-index:600;box-shadow:0 8px 32px var(--shadow);white-space:nowrap;transition:transform .45s cubic-bezier(0.34,1.56,0.64,1),opacity .3s;opacity:0;pointer-events:none}
+#badge-unlock-toast.visible{transform:translateX(-50%) translateY(0);opacity:1}
+#badge-unlock-toast .badge-toast-icon{font-size:22px}
+/* ===== PARENT DASHBOARD ===== */
+#screen-parent{padding:0 16px 24px}
+.parent-stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}
+.parent-stat{background:var(--surface);border-radius:var(--radius-sm);padding:14px;border:1px solid var(--border);text-align:center}
+.parent-stat-num{font-family:var(--font-display);font-size:24px;color:var(--accent);margin-bottom:2px}
+.parent-stat-lbl{font-size:10px;color:var(--text2);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.parent-week-bars{display:flex;gap:5px;align-items:flex-end;height:56px;margin-bottom:5px}
+.parent-week-bar{flex:1;background:var(--accent);border-radius:4px 4px 0 0;min-height:4px;transition:height .5s ease}
+.parent-week-labels{display:flex;gap:5px;justify-content:space-between}
+.parent-week-lbl{flex:1;text-align:center;font-size:9px;color:var(--text3);font-weight:600}
+.parent-weak-list{list-style:none;padding:0;margin:0}
+.parent-weak-item{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--border)}
+.parent-weak-item:last-child{border-bottom:none}
+.parent-weak-bar{flex:1;height:7px;background:var(--surface2);border-radius:4px;overflow:hidden}
+.parent-weak-fill{height:100%;background:var(--wrong);border-radius:4px;transition:width .5s ease}
+/* ===== AUDIO BUTTON ===== */
+.audio-btn{background:none;border:none;cursor:pointer;font-size:18px;padding:3px 5px;border-radius:8px;transition:all .18s;color:var(--text2);line-height:1;flex-shrink:0}
+.audio-btn:hover{background:var(--surface2);color:var(--text)}
+
+/* ===== SPARK COINS ===== */
+.spark-coin-badge{display:flex;align-items:center;gap:5px;background:linear-gradient(135deg,#FFD700,#FFA500);border-radius:20px;padding:5px 12px;font-size:13px;font-weight:800;color:#1a1100;box-shadow:0 2px 10px rgba(255,215,0,0.4);cursor:pointer;transition:all 0.2s;user-select:none}
+.spark-coin-badge:hover{transform:scale(1.05);box-shadow:0 4px 16px rgba(255,215,0,0.6)}
+.spark-coin-badge .coin-icon{font-size:16px;display:inline-block;animation:coinBob 2.5s ease-in-out infinite}
+@keyframes coinBob{0%,100%{transform:translateY(0) rotate(0)}40%{transform:translateY(-3px) rotate(-10deg)}70%{transform:translateY(1px) rotate(5deg)}}
+.spark-coin-earn{position:fixed;z-index:1000;pointer-events:none;font-family:var(--font-display);font-size:22px;color:#FFD700;text-shadow:0 0 12px #FFA500;font-weight:900;animation:coinFloat 1.4s cubic-bezier(0.22,1,0.36,1) forwards}
+@keyframes coinFloat{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-70px) scale(1.3)}}
+
+/* ===== SHOP SCREEN ===== */
+#screen-shop{padding:0 16px 80px}
+.shop-header{padding:14px 0 10px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.shop-coins-banner{background:linear-gradient(135deg,rgba(255,215,0,0.15),rgba(255,165,0,0.08));border:1px solid rgba(255,215,0,0.3);border-radius:14px;padding:12px 16px;display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.shop-coins-banner .big-coin{font-size:36px;animation:coinBob 2s ease-in-out infinite}
+.shop-coins-label{font-size:12px;color:var(--text2);font-weight:600;margin-bottom:2px}
+.shop-coins-amount{font-family:var(--font-display);font-size:26px;color:#FFD700;line-height:1}
+.shop-section-title{font-size:13px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.chars-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+@media(min-width:420px){.chars-grid{grid-template-columns:repeat(5,1fr)}}
+@media(min-width:600px){.chars-grid{grid-template-columns:repeat(5,1fr)}}
+.char-card{background:var(--surface);border:2px solid var(--border);border-radius:14px;padding:10px 6px 8px;text-align:center;cursor:pointer;transition:all 0.22s;position:relative;overflow:hidden}
+.char-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.4)}
+.char-card.owned{border-color:var(--correct);background:rgba(0,212,170,0.06)}
+.char-card.owned:hover{box-shadow:0 8px 24px rgba(0,212,170,0.25)}
+.char-card.locked{border-color:rgba(255,255,255,0.06)}
+.char-card-owned-badge{position:absolute;top:4px;right:4px;background:var(--correct);color:white;font-size:9px;font-weight:700;padding:1px 6px;border-radius:8px;line-height:1.4}
+.char-svg-wrap{width:58px;height:68px;margin:0 auto;display:flex;align-items:center;justify-content:center}
+.char-svg-wrap svg{width:100%;height:100%}
+.char-mystery{width:58px;height:68px;margin:0 auto;background:radial-gradient(circle at 40% 35%,var(--surface2),var(--bg));border-radius:50% 50% 40% 40%;display:flex;align-items:center;justify-content:center;font-size:22px;opacity:0.35;filter:blur(0.5px)}
+.char-name{font-size:10px;font-weight:700;color:var(--text2);margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.char-cost{font-size:9px;color:#FFD700;font-weight:700;margin-top:1px}
+.char-card.owned .char-cost{color:var(--correct)}
+
+/* ===== CHARACTER ANIMATION OVERLAY ===== */
+.char-anim-overlay{position:fixed;inset:0;z-index:160;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,0.78);backdrop-filter:blur(12px);animation:fadeIn 0.3s ease}
+.char-stage{display:flex;flex-direction:column;align-items:center;gap:10px;position:relative}
+.char-anim-wrap{width:160px;height:180px;display:flex;align-items:center;justify-content:center;position:relative}
+.char-anim-wrap svg{width:100%;height:100%}
+.char-anim-name{font-family:var(--font-display);font-size:26px;color:white;text-shadow:0 0 20px rgba(255,255,255,0.5);animation:slideUp 0.4s ease 0.2s both}
+.char-anim-action{font-size:14px;color:rgba(255,255,255,0.65);animation:slideUp 0.4s ease 0.3s both}
+.char-spark-earned{background:linear-gradient(135deg,#FFD700,#FFA500);color:#1a1100;font-family:var(--font-display);font-size:18px;padding:8px 20px;border-radius:30px;box-shadow:0 4px 20px rgba(255,215,0,0.5);animation:popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.1s both}
+.char-anim-timer{width:120px;height:5px;background:rgba(255,255,255,0.15);border-radius:3px;overflow:hidden;margin-top:6px}
+.char-anim-timer-fill{height:100%;background:rgba(255,255,255,0.4);border-radius:3px;animation:timerDrain 3s linear forwards}
+@keyframes timerDrain{from{width:100%}to{width:0%}}
+.char-anim-wrap.anim-moonwalk{animation:charMoonwalk 0.8s ease-in-out infinite}
+.char-anim-wrap.anim-floss{animation:charFloss 0.5s ease-in-out infinite}
+.char-anim-wrap.anim-spin{animation:charSpin 1.2s linear infinite}
+.char-anim-wrap.anim-cartwheel{animation:charCartwheel 1s ease-in-out infinite}
+.char-anim-wrap.anim-zap{animation:charZap 0.4s ease infinite}
+.char-anim-wrap.anim-jumpingjack{animation:charJumpingjack 0.6s ease-in-out infinite}
+.char-anim-wrap.anim-pirouette{animation:charPirouette 1.2s cubic-bezier(0.4,0,0.6,1) infinite}
+.char-anim-wrap.anim-headbob{animation:charHeadbob 0.5s ease-in-out infinite}
+.char-anim-wrap.anim-robot{animation:charRobot 0.4s steps(1) infinite}
+.char-anim-wrap.anim-twirl{animation:charTwirl 1.5s linear infinite}
+.char-anim-wrap.anim-wave{animation:charWave 0.6s ease-in-out infinite}
+.char-anim-wrap.anim-shuffle{animation:charShuffle 0.6s ease-in-out infinite}
+.char-anim-wrap.anim-wiggle{animation:charWiggle 0.3s ease-in-out infinite}
+.char-anim-wrap.anim-slink{animation:charSlink 0.5s ease-in-out infinite}
+.char-anim-wrap.anim-hop{animation:charHop 0.55s cubic-bezier(0.4,0,0.2,1) infinite}
+.char-anim-wrap.anim-shell-spin{animation:charShellSpin 1s ease-in-out infinite}
+.char-anim-wrap.anim-blink-zip{animation:charBlinkZip 0.7s ease-in-out infinite}
+.char-anim-wrap.anim-squish{animation:charSquish 0.5s ease-in-out infinite}
+.char-anim-wrap.anim-leap{animation:charLeap 0.7s cubic-bezier(0.4,0,0.2,1) infinite}
+.char-anim-wrap.anim-tentacle-spin{animation:charTentacleSpin 1s ease-in-out infinite}
+.char-anim-wrap.anim-roll{animation:charRoll 1s ease-in-out infinite}
+.char-anim-wrap.anim-ballet{animation:charBallet 1.2s ease-in-out infinite}
+.char-anim-wrap.anim-stomp{animation:charStomp 0.5s ease-in-out infinite}
+.char-anim-wrap.anim-sparkle{animation:charSparkle 0.8s ease-in-out infinite}
+.char-anim-wrap.anim-gallop{animation:charGallop 0.5s ease-in-out infinite}
+@keyframes charMoonwalk{0%,100%{transform:translateX(0) scaleX(1)}30%{transform:translateX(-20px) scaleX(-1)}70%{transform:translateX(20px) scaleX(-1)}}
+@keyframes charFloss{0%,100%{transform:rotate(-18deg) translateX(0)}50%{transform:rotate(18deg) translateX(12px)}}
+@keyframes charSpin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+@keyframes charCartwheel{0%,100%{transform:rotate(0deg) translateX(0)}50%{transform:rotate(180deg) translateX(20px)}}
+@keyframes charZap{0%,100%{transform:scale(1);filter:brightness(1)}20%{transform:scale(0.88) rotate(-6deg);filter:brightness(2.5)}50%{transform:scale(1.12) rotate(6deg);filter:brightness(1)}70%{transform:scale(0.94) rotate(-3deg);filter:brightness(1.8)}}
+@keyframes charJumpingjack{0%,100%{transform:translateY(0) scale(1)}40%{transform:translateY(-38px) scale(0.92,1.08)}60%{transform:translateY(-42px) scale(0.9,1.1)}80%{transform:translateY(-10px) scale(0.98,1.02)}}
+@keyframes charPirouette{0%{transform:rotate(0deg) scale(1)}50%{transform:rotate(180deg) scale(1.12)}100%{transform:rotate(360deg) scale(1)}}
+@keyframes charHeadbob{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-10px) rotate(-4deg)}75%{transform:translateY(-10px) rotate(4deg)}}
+@keyframes charRobot{0%,100%{transform:translate(0,0) rotate(0)}25%{transform:translate(10px,-10px) rotate(8deg)}50%{transform:translate(-10px,-10px) rotate(-8deg)}75%{transform:translate(10px,0) rotate(8deg)}}
+@keyframes charTwirl{0%{transform:rotate(0deg) scale(1)}50%{transform:rotate(180deg) scale(1.15)}100%{transform:rotate(360deg) scale(1)}}
+@keyframes charWave{0%,100%{transform:scaleX(1) scaleY(1) translateY(0)}25%{transform:scaleX(0.85) scaleY(1.15) translateY(-10px)}75%{transform:scaleX(1.15) scaleY(0.85) translateY(10px)}}
+@keyframes charShuffle{0%,100%{transform:translateX(0) rotate(0)}25%{transform:translateX(-22px) rotate(-10deg)}75%{transform:translateX(22px) rotate(10deg)}}
+@keyframes charWiggle{0%,100%{transform:rotate(0)}15%{transform:rotate(-22deg)}30%{transform:rotate(22deg)}45%{transform:rotate(-16deg)}60%{transform:rotate(16deg)}75%{transform:rotate(-8deg)}90%{transform:rotate(8deg)}}
+@keyframes charSlink{0%,100%{transform:scaleX(1) scaleY(1)}25%{transform:scaleX(1.35) scaleY(0.68)}75%{transform:scaleX(0.75) scaleY(1.3)}}
+@keyframes charHop{0%,100%{transform:translateY(0) scaleY(1) scaleX(1)}20%{transform:translateY(-5px) scaleY(0.88) scaleX(1.1)}50%{transform:translateY(-44px) scaleY(1.12) scaleX(0.9)}80%{transform:translateY(4px) scaleY(0.88) scaleX(1.08)}}
+@keyframes charShellSpin{0%,100%{transform:rotate(0deg) scale(1)}50%{transform:rotate(180deg) scale(0.65)}}
+@keyframes charBlinkZip{0%,100%{transform:translateX(0) scale(1);opacity:1}20%{transform:scale(1.3);filter:brightness(2)}40%{transform:translateX(35px) scale(0.5);opacity:0.3}60%{transform:translateX(-35px) scale(0.5);opacity:0.3}80%{transform:translateX(0) scale(1);opacity:1}}
+@keyframes charSquish{0%,100%{transform:scaleX(1) scaleY(1)}20%{transform:scaleX(1.45) scaleY(0.62)}50%{transform:scaleX(0.65) scaleY(1.42)}80%{transform:scaleX(1.2) scaleY(0.82)}}
+@keyframes charLeap{0%,100%{transform:translateY(0) rotate(0)}15%{transform:translateY(6px) scaleY(0.88) scaleX(1.08)}45%{transform:translateY(-52px) rotate(-12deg) scale(1.08)}70%{transform:translateY(-52px) rotate(12deg) scale(1.08)}88%{transform:translateY(6px) scaleY(0.88) scaleX(1.08)}}
+@keyframes charTentacleSpin{0%{transform:rotate(0) scale(1)}50%{transform:rotate(180deg) scale(1.15)}100%{transform:rotate(360deg) scale(1)}}
+@keyframes charRoll{0%,100%{transform:translateX(0) rotate(0)}50%{transform:translateX(22px) rotate(360deg)}}
+@keyframes charBallet{0%,100%{transform:rotate(0deg) scale(1) translateY(0)}30%{transform:rotate(-12deg) scale(1.06) translateY(-8px)}60%{transform:rotate(180deg) scale(1.12) translateY(-12px)}90%{transform:rotate(350deg) scale(1.06) translateY(-5px)}}
+@keyframes charStomp{0%,100%{transform:translateY(0) scaleY(1)}25%{transform:translateY(-22px) scaleY(1.06)}45%{transform:translateY(0) scaleY(0.84) scaleX(1.12)}60%{transform:translateY(-15px) scaleY(1.04)}78%{transform:translateY(0) scaleY(0.88) scaleX(1.08)}}
+@keyframes charSparkle{0%,100%{transform:rotate(0) scale(1);filter:brightness(1)}25%{transform:rotate(90deg) scale(1.2);filter:brightness(1.6)}50%{transform:rotate(180deg) scale(1);filter:brightness(2)}75%{transform:rotate(270deg) scale(1.2);filter:brightness(1.6)}}
+@keyframes charGallop{0%,100%{transform:translateX(0) translateY(0) rotate(0)}20%{transform:translateX(12px) translateY(-18px) rotate(-7deg)}45%{transform:translateX(18px) translateY(-8px) rotate(-12deg)}65%{transform:translateX(6px) translateY(-22px) rotate(0)}85%{transform:translateX(-8px) translateY(-12px) rotate(6deg)}}
+/* ===== EXAM RESULT BREAKDOWN ===== */
+.exam-breakdown{margin:12px 0;padding:12px;background:var(--surface2);border-radius:var(--radius-sm);text-align:left}
+.exam-breakdown-title{font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.exam-batt-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.exam-batt-label{width:90px;flex-shrink:0;color:var(--text2);font-weight:600;font-size:12px}
+.exam-batt-bar{flex:1;height:8px;background:var(--surface);border-radius:4px;overflow:hidden}
+.exam-batt-fill{height:100%;border-radius:4px;transition:width .6s .3s ease}
+.exam-batt-pct{font-weight:700;font-size:12px;width:32px;text-align:right;flex-shrink:0}
 </style>
 </head>
 <body class="theme-space">
@@ -955,6 +1104,11 @@ body{background:#000}
     <div class="topbar-logo" id="theme-logo">🚀 BrainSpark</div>
     <div class="topbar-right">
       <button class="theme-btn" onclick="showScreen('themes')">🎨 Theme</button>
+      <button class="audio-btn" id="audio-btn" onclick="toggleAudio()" title="Toggle sound">🔊</button>
+      <div class="spark-coin-badge" id="spark-coin-badge" onclick="showScreen('shop')" title="Spark Coins — visit the Character Shop!">
+        <span class="coin-icon">✨</span>
+        <span id="spark-coin-count">0</span>
+      </div>
       <span class="sync-dot" id="sync-dot" title="Data synced"></span>
       <button class="theme-btn" id="topbar-signin-btn" onclick="showLoginScreenUI()" style="display:none">Sign in</button>
       <div class="topbar-user" id="topbar-user" onclick="handleAvatarClick()" style="display:none" title="Profile & settings">
@@ -991,6 +1145,9 @@ body{background:#000}
       </button>
       <button class="btn btn-secondary" onclick="showScreen('insights')">
         <span>📊</span> My Progress
+      </button>
+      <button class="review-btn" id="btn-review-mistakes" onclick="startMistakeReview()" disabled title="No mistakes yet">
+        🔄 Review My Mistakes
       </button>
     </div>
     <div style="padding:0 20px 10px;position:relative;z-index:1">
@@ -1178,6 +1335,19 @@ body{background:#000}
         </div>
       </div>
 
+      <!-- Exam / Review Mode -->      
+      <div class="setup-section">
+        <div class="setup-label">Mode</div>
+        <div class="exam-mode-wrap" id="exam-mode-wrap" onclick="toggleExamMode()">
+          <span class="exam-icon">📝</span>
+          <div class="exam-mode-info">
+            <div class="exam-mode-name">Exam Simulation <span class="exam-mode-badge">NEW</span></div>
+            <div class="exam-mode-desc">20 questions · 25 min · No hints during quiz</div>
+          </div>
+          <div class="exam-toggle-sw" id="exam-toggle-sw"></div>
+        </div>
+      </div>
+
       <button class="btn btn-primary btn-lg" style="width:100%;margin-top:10px" onclick="startNewSession()" id="btn-start-session" disabled>
         🚀 Start Session!
       </button>
@@ -1233,6 +1403,65 @@ body{background:#000}
     </div>
   </div>
 
+  <!-- ACHIEVEMENTS -->
+  <div class="screen" id="screen-achievements">
+    <div class="insights-header">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div>
+          <div class="section-title">Achievements 🏅</div>
+          <div class="section-sub">Earn badges as you practice!</div>
+        </div>
+        <button class="btn btn-secondary btn-sm" onclick="showScreen('insights')">← Back</button>
+      </div>
+    </div>
+    <div id="achievements-grid" class="achievements-grid"></div>
+  </div>
+
+  <!-- PARENT DASHBOARD -->
+  <div class="screen" id="screen-parent">
+    <div class="insights-header">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div>
+          <div class="section-title">Parent View 👨‍👩‍👧</div>
+          <div class="section-sub">Your child's progress at a glance</div>
+        </div>
+        <button class="btn btn-secondary btn-sm" onclick="showScreen('insights')">← Back</button>
+      </div>
+    </div>
+    <div id="parent-content"></div>
+  </div>
+
+  <!-- SHOP -->
+  <div class="screen" id="screen-shop">
+    <div class="shop-header">
+      <div>
+        <div class="section-title">Character Shop ✨</div>
+        <div class="section-sub">Spend Spark coins to unlock cute companions!</div>
+      </div>
+    </div>
+    <div class="shop-coins-banner">
+      <div class="big-coin">✨</div>
+      <div>
+        <div class="shop-coins-label">Your Spark Coins</div>
+        <div class="shop-coins-amount" id="shop-coins-amount">0</div>
+      </div>
+      <div style="margin-left:auto;font-size:12px;color:var(--text2);text-align:right;line-height:1.5">
+        Earn by answering<br>questions correctly!
+      </div>
+    </div>
+    <div class="shop-section-title">Characters — 15 ✨ each</div>
+    <div class="chars-grid" id="chars-grid">
+      <!-- Rendered by JS -->
+    </div>
+    <button class="btn btn-secondary" style="width:100%;margin-top:6px" onclick="showScreen('home')">← Back to Home</button>
+  </div>
+
+  <!-- BADGE UNLOCK TOAST -->
+  <div id="badge-unlock-toast">
+    <span class="badge-toast-icon"></span>
+    <span class="badge-toast-name"></span>
+  </div>
+
   <!-- NAV -->
   <div class="navbar">
     <button class="nav-item active" id="nav-home" onclick="showScreen('home')">
@@ -1247,12 +1476,19 @@ body{background:#000}
       <div class="nav-item-icon">📊</div>
       <div class="nav-item-label">Progress</div>
     </button>
+    <button class="nav-item" id="nav-shop" onclick="showScreen('shop')">
+      <div class="nav-item-icon">✨</div>
+      <div class="nav-item-label">Shop</div>
+    </button>
   </div>
   <!-- Legal Footer -->
   <div class="legal-footer">
     &copy; <span id="footer-year"></span> BrainSpark &nbsp;&middot;&nbsp; <a onclick="document.getElementById('legal-modal').classList.add('visible')">Legal</a>
   </div>
 </div>
+
+<!-- Character Animation Overlay -->
+<div id="char-anim-overlay" style="display:none"></div>
 
 <!-- Legal Modal -->
 <div class="result-overlay" id="legal-modal" onclick="if(event.target===this)this.classList.remove('visible')">
@@ -1328,6 +1564,10 @@ body{background:#000}
     <div class="result-score" id="result-score">7/9</div>
     <div class="result-score-label" id="result-score-label">questions correct</div>
     <div class="result-badges" id="result-badges"></div>
+    <div class="exam-breakdown" id="result-exam-breakdown" style="display:none">
+      <div class="exam-breakdown-title">Battery Breakdown</div>
+      <div id="exam-breakdown-content"></div>
+    </div>
     <button class="btn btn-primary" style="width:100%;margin-bottom:10px" onclick="finishSession()">See My Progress 📊</button>
     <button class="btn btn-secondary" style="width:100%" onclick="closeResult()">Back to Home</button>
   </div>
@@ -1672,6 +1912,7 @@ function doSignOut() {
   const { signOut } = window._fbFns;
   signOut(window._fbAuth).then(() => {
     currentUser = null;
+    _sparkCoinsCache = null;
     playerName = '';
     activeSession = null;
     clearInterval(timerInterval);
@@ -2162,6 +2403,9 @@ function showScreen(name) {
   if (nav) nav.classList.add('active');
   if (name === 'insights') renderInsights();
   if (name === 'home') refreshHome();
+  if (name === 'achievements') renderAchievements();
+  if (name === 'parent') renderParentDashboard();
+  if (name === 'shop') renderShop();
 }
 
 // ============================================================
@@ -2239,6 +2483,14 @@ async function refreshHome() {
   }
   // Show quiz nav only if active
   document.getElementById('nav-quiz').style.display = active ? 'flex' : 'none';
+
+  // Enable/disable review mistakes button
+  const reviewBtn = document.getElementById('btn-review-mistakes');
+  if (reviewBtn) {
+    const hasWrong = sessions.some(s=>(s.answers||[]).some(a=>!a.correct));
+    reviewBtn.disabled = !hasWrong;
+    reviewBtn.title = hasWrong ? 'Practice questions you got wrong' : 'No mistakes yet — keep practicing!';
+  }
 }
 
 function calcStreak(sessions) {
@@ -2383,6 +2635,9 @@ async function startNewSession() {
   if (!firstQ) { alert('No questions available for this selection — please try a different grade or battery.'); return; }
   adaptState.pendingToast = null; // No toast on the first question
 
+  const totalQ   = setupExamMode ? EXAM_QUESTIONS : SESSION_QUESTIONS;
+  const totalMin  = setupExamMode ? EXAM_MINUTES   : SESSION_MINUTES;
+
   activeSession = {
     id:             'ses_' + Date.now(),
     startTime:      Date.now(),
@@ -2396,9 +2651,11 @@ async function startNewSession() {
     _seenSet:       globalSeenIds,  // in-memory only — not persisted, rebuilt each session start
     answers:        [],
     currentIndex:   0,
-    timerSeconds:   SESSION_MINUTES * 60,
+    timerSeconds:   totalMin * 60,
     overtime:       false,
-    completed:      false
+    completed:      false,
+    examMode:       setupExamMode,
+    totalQuestions: totalQ,
   };
   saveActiveSession(activeSession);
   launchSession();
@@ -2491,15 +2748,19 @@ function renderQuestion() {
   if (!q) return;
 
   // Show adaptive toast if the engine queued one
-  if (activeSession.adaptiveState?.pendingToast) {
+  if (activeSession.adaptiveState?.pendingToast && !activeSession.examMode) {
     const msg = activeSession.adaptiveState.pendingToast;
     activeSession.adaptiveState.pendingToast = null;
     setTimeout(() => showAdaptiveToast(msg), 280);
+  } else if (activeSession.adaptiveState?.pendingToast) {
+    activeSession.adaptiveState.pendingToast = null; // discard in exam mode
   }
 
   // Progress
-  document.getElementById('q-counter').textContent = `Question ${idx+1} of ${SESSION_QUESTIONS}`;
-  document.getElementById('q-progress').style.width = `${(idx/SESSION_QUESTIONS)*100}%`;
+  const totalQ = activeSession.totalQuestions || SESSION_QUESTIONS;
+  const modeTag = activeSession.examMode ? ' · EXAM' : activeSession.reviewMode ? ' · REVIEW' : '';
+  document.getElementById('q-counter').textContent = `Question ${idx+1} of ${totalQ}${modeTag}`;
+  document.getElementById('q-progress').style.width = `${(idx/totalQ)*100}%`;
   document.getElementById('overtime-badge').style.display = activeSession.overtime ? 'inline-block' : 'none';
 
   // Body
@@ -2611,17 +2872,32 @@ function applyAnswer(answer, correctIdx, animate) {
     if (i === correctIdx) { b.classList.add('correct'); document.getElementById(`opt-icon-${i}`).textContent = '✅'; }
     else if (i === answer.selected && !answer.correct) { b.classList.add('wrong'); document.getElementById(`opt-icon-${i}`).textContent = '❌'; }
   });
-  document.getElementById('explanation-box').classList.add('visible');
+  // Show explanation only in normal mode (not exam mode)
+  if (!activeSession?.examMode) {
+    document.getElementById('explanation-box').classList.add('visible');
+  }
+  if (animate) { if (answer.correct) playCorrectSound(); else playWrongSound(); }
   document.getElementById('btn-check').style.display = 'none';
-  document.getElementById('btn-next').style.display = 'inline-flex';
-  document.getElementById('btn-next').textContent =
-    activeSession.currentIndex < SESSION_QUESTIONS-1 ? 'Next Question →' : '🎉 Finish!';
-  if (animate && answer.correct) launchMiniConfetti();
+  const totalQ = activeSession?.totalQuestions || SESSION_QUESTIONS;
+  const nextBtnLabel = activeSession.currentIndex < totalQ - 1 ? 'Next Question →' : '🎉 Finish!';
+  if (animate && answer.correct) {
+    launchMiniConfetti();
+    earnSparkCoin().then(() => {
+      maybeShowCharAfterCorrect(() => {
+        document.getElementById('btn-next').style.display = 'inline-flex';
+        document.getElementById('btn-next').textContent = nextBtnLabel;
+      });
+    });
+  } else {
+    document.getElementById('btn-next').style.display = 'inline-flex';
+    document.getElementById('btn-next').textContent = nextBtnLabel;
+  }
 }
 
 function nextQuestion() {
   activeSession.currentIndex++;
-  if (activeSession.currentIndex >= SESSION_QUESTIONS) {
+  const totalQ = activeSession.totalQuestions || SESSION_QUESTIONS;
+  if (activeSession.currentIndex >= totalQ) {
     completeSession();
   } else {
     // Adaptive: if this slot has not been pre-filled, pick the next question now
@@ -2705,6 +2981,31 @@ async function completeSession() {
 
   document.getElementById('result-overlay').classList.add('visible');
   if (pct >= 0.9) launchConfetti();
+
+  // Exam mode: show battery breakdown
+  const examBreak = document.getElementById('result-exam-breakdown');
+  if (examBreak) {
+    if (activeSession.examMode) {
+      examBreak.style.display = 'block';
+      const bColors = ['var(--accent)','var(--correct)','var(--accent2)'];
+      document.getElementById('exam-breakdown-content').innerHTML =
+        ['verbal','quantitative','non-verbal'].map((b,i) => {
+          const ba = activeSession.answers.filter(a=>a.battery===b);
+          if (!ba.length) return '';
+          const pc = Math.round(ba.filter(a=>a.correct).length/ba.length*100);
+          return `<div class="exam-batt-row">
+            <div class="exam-batt-label">${capitalize(b)}</div>
+            <div class="exam-batt-bar"><div class="exam-batt-fill" style="width:${pc}%;background:${bColors[i]}"></div></div>
+            <div class="exam-batt-pct" style="color:${bColors[i]}">${pc}%</div>
+          </div>`;
+        }).join('');
+    } else {
+      examBreak.style.display = 'none';
+    }
+  }
+
+  // Check for newly earned achievements (slight delay so result shows first)
+  setTimeout(() => checkAchievements(), 900);
 
   // Check streak milestone (slight delay so result card shows first)
   setTimeout(async () => {
@@ -2841,9 +3142,10 @@ async function renderInsights() {
           const t=s.answers.length;
           const d=new Date(s.startTime);
           const dateStr=d.toLocaleDateString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
+          const modeTag=s.examMode?'<span style="font-size:10px;background:rgba(255,107,157,.2);color:var(--accent2);padding:1px 6px;border-radius:8px;margin-left:4px">EXAM</span>':s.reviewMode?'<span style="font-size:10px;background:rgba(124,111,255,.2);color:var(--accent);padding:1px 6px;border-radius:8px;margin-left:4px">REVIEW</span>':'';
           return `<div class="session-row">
             <div class="session-row-left">
-              <div class="session-row-date">${dateStr}</div>
+              <div class="session-row-date">${dateStr}${modeTag}</div>
               <div class="session-row-score">${Math.round(c/Math.max(t,1)*100)}% · ${capitalize(s.battery)} · ${s.gradeLabel||capitalize(s.difficulty)||''}</div>
             </div>
             <div class="session-row-right">
@@ -2854,6 +3156,11 @@ async function renderInsights() {
           </div>`;
         }).join('')}
       </div>
+    </div>
+
+    <div style="display:flex;gap:10px;margin-top:4px;margin-bottom:4px">
+      <button class="btn btn-secondary" style="flex:1;font-size:13px" onclick="showScreen('achievements')">🏅 My Badges</button>
+      <button class="btn btn-secondary" style="flex:1;font-size:13px" onclick="showScreen('parent')">👨‍👩‍👧 Parent View</button>
     </div>
   `;
 
@@ -3131,6 +3438,324 @@ const EMBEDDED_QUESTIONS = [
 ];
 
 // ============================================================
+// AUDIO SYSTEM
+// ============================================================
+let audioEnabled = true;
+let _audioCtx = null;
+
+function toggleAudio() {
+  audioEnabled = !audioEnabled;
+  const btn = document.getElementById('audio-btn');
+  if (btn) btn.textContent = audioEnabled ? '🔊' : '🔇';
+  loadSettings().then(s => { s.audioEnabled = audioEnabled; saveSettings(s); });
+}
+
+function _getAudioCtx() {
+  if (!_audioCtx) {
+    try { _audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {}
+  }
+  return _audioCtx;
+}
+
+function playCorrectSound() {
+  if (!audioEnabled) return;
+  const ctx = _getAudioCtx(); if (!ctx) return;
+  // Ascending chime C5→E5→G5
+  [[523.25, 0], [659.25, 0.13], [783.99, 0.26]].forEach(([freq, delay]) => {
+    const osc = ctx.createOscillator(), g = ctx.createGain();
+    osc.type = 'sine'; osc.frequency.value = freq;
+    const t = ctx.currentTime + delay;
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(0.22, t + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.001, t + 0.45);
+    osc.connect(g); g.connect(ctx.destination);
+    osc.start(t); osc.stop(t + 0.45);
+  });
+}
+
+function playWrongSound() {
+  if (!audioEnabled) return;
+  const ctx = _getAudioCtx(); if (!ctx) return;
+  const osc = ctx.createOscillator(), g = ctx.createGain();
+  osc.type = 'sawtooth';
+  osc.frequency.setValueAtTime(200, ctx.currentTime);
+  osc.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 0.28);
+  g.gain.setValueAtTime(0.13, ctx.currentTime);
+  g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.32);
+  osc.connect(g); g.connect(ctx.destination);
+  osc.start(); osc.stop(ctx.currentTime + 0.32);
+}
+
+function playBadgeSound() {
+  if (!audioEnabled) return;
+  const ctx = _getAudioCtx(); if (!ctx) return;
+  [523.25, 587.33, 659.25, 783.99, 1046.5].forEach((freq, i) => {
+    const osc = ctx.createOscillator(), g = ctx.createGain();
+    osc.type = 'sine'; osc.frequency.value = freq;
+    const t = ctx.currentTime + i * 0.09;
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(0.18, t + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.001, t + 0.5);
+    osc.connect(g); g.connect(ctx.destination);
+    osc.start(t); osc.stop(t + 0.5);
+  });
+}
+
+// ============================================================
+// ACHIEVEMENT / BADGE SYSTEM
+// ============================================================
+const ACHIEVEMENTS = [
+  { id:'first_session',  icon:'🌱', name:'First Steps',    desc:'Complete your first session' },
+  { id:'number_ninja',   icon:'🔢', name:'Number Ninja',   desc:'50 quantitative correct answers' },
+  { id:'word_wizard',    icon:'📚', name:'Word Wizard',    desc:'50 verbal correct answers' },
+  { id:'pattern_pro',    icon:'🔷', name:'Pattern Pro',    desc:'50 non-verbal correct answers' },
+  { id:'speed_demon',    icon:'⚡', name:'Speed Demon',    desc:'Complete a session on time' },
+  { id:'perfect_score',  icon:'🏆', name:'Perfect Score',  desc:'Get all questions right in a session' },
+  { id:'streak_five',    icon:'🔥', name:'On Fire',        desc:'Reach a 5-day daily streak' },
+  { id:'ten_sessions',   icon:'🌟', name:'Dedicated',      desc:'Complete 10 sessions' },
+  { id:'sharpshooter',   icon:'🎯', name:'Sharpshooter',   desc:'80%+ accuracy over 20+ questions' },
+  { id:'well_rounded',   icon:'🌐', name:'Well-Rounded',   desc:'Try all 3 battery types' },
+  { id:'exam_ace',       icon:'📝', name:'Exam Ace',       desc:'Score 85%+ in Exam Simulation' },
+  { id:'mistake_master', icon:'🔄', name:'Mistake Master', desc:'Complete a Review Mistakes session' },
+];
+
+function evalAchievements(sessions) {
+  const allAnswers = sessions.flatMap(s => s.answers || []);
+  const earned = new Set();
+  const add = id => earned.add(id);
+  if (sessions.length >= 1) add('first_session');
+  if (allAnswers.filter(a=>a.correct&&a.battery==='quantitative').length >= 50) add('number_ninja');
+  if (allAnswers.filter(a=>a.correct&&a.battery==='verbal').length >= 50) add('word_wizard');
+  if (allAnswers.filter(a=>a.correct&&a.battery==='non-verbal').length >= 50) add('pattern_pro');
+  if (sessions.some(s=>!s.overtime&&s.completed)) add('speed_demon');
+  if (sessions.some(s=>s.answers?.length>0&&s.answers.every(a=>a.correct))) add('perfect_score');
+  if (calcStreak(sessions) >= 5) add('streak_five');
+  if (sessions.length >= 10) add('ten_sessions');
+  const total = allAnswers.length; const correct = allAnswers.filter(a=>a.correct).length;
+  if (total >= 20 && correct/total >= 0.80) add('sharpshooter');
+  const bats = new Set(sessions.map(s=>s.battery).filter(b=>b&&b!=='mixed'));
+  if (bats.size >= 3 || sessions.some(s=>s.battery==='mixed')) add('well_rounded');
+  if (sessions.some(s=>s.examMode&&s.answers?.length>0&&s.answers.filter(a=>a.correct).length/s.answers.length>=0.85)) add('exam_ace');
+  if (sessions.some(s=>s.reviewMode)) add('mistake_master');
+  return earned;
+}
+
+async function checkAchievements() {
+  const settings = await loadSettings();
+  const prevEarned = new Set(settings.earnedBadges || []);
+  const sessions = await loadSessions();
+  const nowEarned = evalAchievements(sessions);
+  const newBadges = [...nowEarned].filter(id => !prevEarned.has(id));
+  if (newBadges.length > 0) {
+    settings.earnedBadges = [...new Set([...(settings.earnedBadges||[]), ...newBadges])];
+    await saveSettings(settings);
+    newBadges.forEach((id, i) => { setTimeout(() => showBadgeToast(id), i * 3000); });
+  }
+}
+
+function showBadgeToast(id) {
+  const badge = ACHIEVEMENTS.find(b => b.id === id);
+  if (!badge) return;
+  playBadgeSound();
+  const toast = document.getElementById('badge-unlock-toast');
+  if (!toast) return;
+  toast.querySelector('.badge-toast-icon').textContent = badge.icon;
+  toast.querySelector('.badge-toast-name').textContent = '🏅 ' + badge.name + ' unlocked!';
+  toast.classList.add('visible');
+  clearTimeout(toast._hideTimer);
+  toast._hideTimer = setTimeout(() => toast.classList.remove('visible'), 3500);
+}
+
+async function renderAchievements() {
+  const settings = await loadSettings();
+  const earned = new Set(settings.earnedBadges || []);
+  const sessions = await loadSessions();
+  const shouldEarn = evalAchievements(sessions);
+  const allEarned = new Set([...earned, ...shouldEarn]);
+  const container = document.getElementById('achievements-grid');
+  if (!container) return;
+  container.innerHTML = ACHIEVEMENTS.map(b => {
+    const isEarned = allEarned.has(b.id);
+    return `<div class="badge-card ${isEarned ? 'earned' : 'locked'}">
+      ${isEarned ? '<span class="badge-earned-check">✅</span>' : ''}
+      <span class="badge-icon">${b.icon}</span>
+      <div class="badge-name">${escapeHtml(b.name)}</div>
+      <div class="badge-desc">${escapeHtml(b.desc)}</div>
+    </div>`;
+  }).join('');
+}
+
+// ============================================================
+// EXAM SIMULATION MODE
+// ============================================================
+const EXAM_QUESTIONS = 20;
+const EXAM_MINUTES   = 25;
+let setupExamMode = false;
+
+function toggleExamMode() {
+  setupExamMode = !setupExamMode;
+  document.getElementById('exam-toggle-sw')?.classList.toggle('on', setupExamMode);
+  document.getElementById('exam-mode-wrap')?.classList.toggle('active', setupExamMode);
+}
+
+// ============================================================
+// MISTAKE REVIEW MODE
+// ============================================================
+async function startMistakeReview() {
+  const sessions = await loadSessions();
+  const allAnswers = sessions.flatMap(s => s.answers || []);
+  const wrongIds = [...new Set(allAnswers.filter(a=>!a.correct).map(a=>a.questionId).filter(Boolean))];
+  const wrongQuestions = wrongIds.map(id => allQuestions.find(q=>q.id===id)).filter(Boolean);
+  if (!wrongQuestions.length) {
+    alert('No mistakes found yet — keep practicing to build your review list! 🌟');
+    return;
+  }
+  const shuffled = shuffle([...wrongQuestions]).slice(0, SESSION_QUESTIONS);
+  const settings = await loadSettings();
+  const grade = setupGrade || settings.lastGrade || '4';
+  activeSession = {
+    id:             'rev_' + Date.now(),
+    startTime:      Date.now(),
+    battery:        'mixed',
+    grade,
+    gradeLabel:     GRADE_META[grade]?.label || 'Grade ' + grade,
+    playerName:     playerName || 'Explorer',
+    questions:      shuffled,
+    questionPoolIds: null,
+    adaptiveState:  null,
+    _seenSet:       new Set(),
+    answers:        [],
+    currentIndex:   0,
+    timerSeconds:   SESSION_MINUTES * 60,
+    overtime:       false,
+    completed:      false,
+    reviewMode:     true,
+    totalQuestions: shuffled.length,
+  };
+  await saveActiveSession(activeSession);
+  launchSession();
+}
+
+// ============================================================
+// PARENT DASHBOARD
+// ============================================================
+async function renderParentDashboard() {
+  const container = document.getElementById('parent-content');
+  if (!container) return;
+  const sessions = await loadSessions();
+  if (!sessions.length) {
+    container.innerHTML = `<div class="empty-state"><span class="empty-state-icon">📊</span>
+      <div class="empty-state-title">No data yet</div>
+      <div>Complete some sessions to see the parent report.</div></div>`;
+    return;
+  }
+  const allAnswers = sessions.flatMap(s=>s.answers||[]);
+  const correct = allAnswers.filter(a=>a.correct).length;
+  const total = allAnswers.length;
+  const accuracy = total>0 ? Math.round(correct/total*100) : 0;
+  const totalMinutes = sessions.reduce((sum, s) => {
+    if (s.endTime && s.startTime) return sum + Math.max(1, Math.round((s.endTime-s.startTime)/60000));
+    return sum + 12;
+  }, 0);
+  const streak = calcStreak(sessions);
+
+  // Sessions per week (last 4 weeks)
+  const now = new Date();
+  const weekCounts = [], weekLabels = [];
+  for (let w = 3; w >= 0; w--) {
+    const wStart = new Date(now); wStart.setDate(now.getDate() - w*7 - now.getDay()); wStart.setHours(0,0,0,0);
+    const wEnd   = new Date(wStart); wEnd.setDate(wStart.getDate()+7);
+    weekCounts.push(sessions.filter(s=>s.startTime>=wStart.getTime()&&s.startTime<wEnd.getTime()).length);
+    weekLabels.push(w===0?'This wk':`-${w}wk`);
+  }
+  const maxWk = Math.max(...weekCounts, 1);
+
+  // Weak question types
+  const typeErrors = {};
+  allAnswers.filter(a=>!a.correct).forEach(a=>{ const t=a.type||'unknown'; typeErrors[t]=(typeErrors[t]||0)+1; });
+  const weakTypes = Object.entries(typeErrors).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  const maxErr = weakTypes[0]?.[1]||1;
+
+  // Battery accuracy
+  const batStats = {};
+  ['verbal','quantitative','non-verbal'].forEach(b=>{
+    const ba=allAnswers.filter(a=>a.battery===b);
+    batStats[b]={correct:ba.filter(a=>a.correct).length,total:ba.length};
+  });
+
+  container.innerHTML = `
+    <div class="parent-stat-grid">
+      <div class="parent-stat"><div class="parent-stat-num">${sessions.length}</div><div class="parent-stat-lbl">Sessions</div></div>
+      <div class="parent-stat"><div class="parent-stat-num" style="color:var(--correct)">${accuracy}%</div><div class="parent-stat-lbl">Accuracy</div></div>
+      <div class="parent-stat"><div class="parent-stat-num">${totalMinutes}m</div><div class="parent-stat-lbl">Practice Time</div></div>
+      <div class="parent-stat"><div class="parent-stat-num">${streak}🔥</div><div class="parent-stat-lbl">Streak</div></div>
+    </div>
+
+    <div class="chart-card" style="margin-bottom:14px">
+      <div class="chart-card-title">📅 Sessions Per Week</div>
+      <div class="parent-week-bars">
+        ${weekCounts.map(c=>`<div class="parent-week-bar" style="height:${Math.max(4,Math.round(c/maxWk*52))}px"></div>`).join('')}
+      </div>
+      <div class="parent-week-labels">${weekLabels.map(l=>`<div class="parent-week-lbl">${l}</div>`).join('')}</div>
+    </div>
+
+    <div class="chart-card" style="margin-bottom:14px">
+      <div class="chart-card-title">🔋 Battery Accuracy</div>
+      <div style="display:flex;flex-direction:column;gap:10px;padding:4px 0">
+        ${['verbal','quantitative','non-verbal'].map(b=>{
+          const bs=batStats[b]; if (!bs?.total) return '';
+          const pct=Math.round(bs.correct/bs.total*100);
+          const color=b==='verbal'?'var(--accent)':b==='quantitative'?'var(--correct)':'var(--accent2)';
+          return `<div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-bottom:4px">
+              <span>${capitalize(b)}</span><span style="font-weight:700;color:${color}">${pct}%</span>
+            </div>
+            <div style="height:8px;background:var(--surface2);border-radius:4px;overflow:hidden">
+              <div style="height:100%;width:${pct}%;background:${color};border-radius:4px"></div>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+
+    <div class="chart-card" style="margin-bottom:14px">
+      <div class="chart-card-title">⚠️ Areas to Practice</div>
+      <div class="chart-card-sub">Question types with most errors</div>
+      ${weakTypes.length ? `<ul class="parent-weak-list">
+        ${weakTypes.map(([type,count])=>`<li class="parent-weak-item">
+          <span style="font-size:12px;font-weight:700;width:130px;flex-shrink:0;color:var(--text)">${capitalize(type.replace(/-/g,' '))}</span>
+          <div class="parent-weak-bar"><div class="parent-weak-fill" style="width:${Math.round(count/maxErr*100)}%"></div></div>
+          <span style="font-size:12px;color:var(--wrong);font-weight:700;flex-shrink:0">${count}✗</span>
+        </li>`).join('')}
+      </ul>` : '<div style="color:var(--text2);font-size:13px;padding:8px 0">No errors yet — outstanding! 🏆</div>'}
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-card-title">🕒 Recent Sessions</div>
+      <div class="session-history">
+        ${sessions.slice().reverse().slice(0,10).map(s=>{
+          const c=s.answers?.filter(a=>a.correct).length||0;
+          const t=s.answers?.length||0;
+          const d=new Date(s.startTime);
+          const dateStr=d.toLocaleDateString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
+          const modeTag=s.examMode?'<span style="font-size:10px;background:rgba(255,107,157,.2);color:var(--accent2);padding:1px 6px;border-radius:8px;margin-left:4px">EXAM</span>':s.reviewMode?'<span style="font-size:10px;background:rgba(124,111,255,.2);color:var(--accent);padding:1px 6px;border-radius:8px;margin-left:4px">REVIEW</span>':'';
+          return `<div class="session-row">
+            <div class="session-row-left">
+              <div class="session-row-date">${dateStr}${modeTag}</div>
+              <div class="session-row-score">${Math.round(c/Math.max(t,1)*100)}% · ${capitalize(s.battery)} · ${s.gradeLabel||''}</div>
+            </div>
+            <div class="session-row-right">
+              <span class="badge-correct">${c}✓</span>
+              <span class="badge-wrong">${t-c}✗</span>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+  `;
+}
+
+// ============================================================
 // INIT — waits for Firebase auth state before proceeding
 // ============================================================
 async function appStart(user) {
@@ -3159,6 +3784,11 @@ async function appStart(user) {
 
   if (settings.playerName) playerName = settings.playerName;
 
+  // Audio setting
+  audioEnabled = settings.audioEnabled !== false;
+  const audioBtn = document.getElementById('audio-btn');
+  if (audioBtn) audioBtn.textContent = audioEnabled ? '🔊' : '🔇';
+
   // Load questions
   try {
     allQuestions = await loadQuestions();
@@ -3174,6 +3804,9 @@ async function appStart(user) {
   }
 
   await refreshHome();
+
+  // Load spark coin display
+  loadSparkData().then(({ coins }) => updateSparkDisplay(coins));
 
   // Show welcome modal on very first open
   if (!settings.welcomeSeen && !settings.playerName) {
@@ -3272,6 +3905,684 @@ init();
 const _yr = new Date().getFullYear();
 document.getElementById('footer-year').textContent = _yr;
 document.querySelectorAll('.footer-year-modal').forEach(el => el.textContent = _yr);
+
+// ============================================================
+// SPARK COINS + CHARACTER SHOP
+// ============================================================
+
+const SPARK_COIN_KEY = 'bs_spark_coins';
+const OWNED_CHARS_KEY = 'bs_owned_chars';
+const CHAR_COST = 15;
+
+// 25 cute characters with unique CSS animations
+const SPARK_CHARACTERS = [
+  {
+    id:'luna', name:'Luna', desc:'Moonwalks under starlight', animation:'anim-moonwalk',
+    color:'#C8A8E9',
+    svg:`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+<polygon points="27,54 22,34 37,47" fill="#C8A8E9"/><polygon points="73,54 78,34 63,47" fill="#C8A8E9"/>
+<polygon points="29,52 24,37 35,48" fill="#EDD8FF"/><polygon points="71,52 76,37 65,48" fill="#EDD8FF"/>
+<ellipse cx="50" cy="90" rx="28" ry="22" fill="#D4B8F0"/>
+<circle cx="50" cy="56" r="26" fill="#D4B8F0"/>
+<circle cx="41" cy="54" r="7" fill="white"/><circle cx="59" cy="54" r="7" fill="white"/>
+<circle cx="41" cy="55" r="5" fill="#7B4BA0"/><circle cx="59" cy="55" r="5" fill="#7B4BA0"/>
+<circle cx="43" cy="53" r="2" fill="white"/><circle cx="61" cy="53" r="2" fill="white"/>
+<ellipse cx="50" cy="63" rx="3" ry="2" fill="#B080D0"/>
+<ellipse cx="36" cy="61" rx="7" ry="4" fill="#F0A0D8" opacity="0.45"/>
+<ellipse cx="64" cy="61" rx="7" ry="4" fill="#F0A0D8" opacity="0.45"/>
+<path d="M45,47 Q50,43 55,47 Q50,44.5 45,47Z" fill="#FFD700" opacity="0.9"/>
+<ellipse cx="36" cy="108" rx="11" ry="6" fill="#C8A8E9"/><ellipse cx="64" cy="108" rx="11" ry="6" fill="#C8A8E9"/>
+<path d="M76,90 Q94,78 92,60 Q90,48 82,52" stroke="#C8A8E9" stroke-width="8" fill="none" stroke-linecap="round"/>
+</svg>`
+  },
+  {
+    id:'zippy', name:'Zippy', desc:'Flosses like nobody\'s watching', animation:'anim-floss',
+    color:'#FF9B42',
+    svg:`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="50" cy="30" rx="7" ry="18" fill="#FF9B42"/><ellipse cx="50" cy="30" rx="5" ry="14" fill="#FFE0B2"/>
+<ellipse cx="50" cy="88" rx="28" ry="22" fill="#FF9B42"/>
+<circle cx="50" cy="56" r="26" fill="#FFAC60"/>
+<circle cx="41" cy="54" r="7" fill="white"/><circle cx="59" cy="54" r="7" fill="white"/>
+<circle cx="41" cy="55" r="5" fill="#5C2C00"/><circle cx="59" cy="55" r="5" fill="#5C2C00"/>
+<circle cx="43" cy="53" r="2" fill="white"/><circle cx="61" cy="53" r="2" fill="white"/>
+<ellipse cx="50" cy="63" rx="3" ry="2" fill="#CC5500"/>
+<ellipse cx="36" cy="60" rx="7" ry="4" fill="#FFCCAA" opacity="0.55"/>
+<ellipse cx="64" cy="60" rx="7" ry="4" fill="#FFCCAA" opacity="0.55"/>
+<ellipse cx="28" cy="72" rx="9" ry="5" fill="#FF9B42" transform="rotate(-35,28,72)"/>
+<ellipse cx="72" cy="72" rx="9" ry="5" fill="#FF9B42" transform="rotate(35,72,72)"/>
+<path d="M72,95 Q90,82 88,66 Q86,55 80,60" stroke="#FFA040" stroke-width="9" fill="none" stroke-linecap="round"/>
+<ellipse cx="50" cy="108" rx="10" ry="6" fill="#FF9B42"/>
+</svg>`
+  },
+  {
+    id:'bubbles', name:'Bubbles', desc:'Spins in gentle ocean currents', animation:'anim-spin',
+    color:'#FF80AB',
+    svg:`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="50" cy="52" rx="30" ry="28" fill="#FF80AB"/>
+<ellipse cx="50" cy="52" rx="26" ry="24" fill="#FF9EBD"/>
+<circle cx="40" cy="48" r="7" fill="white"/><circle cx="60" cy="48" r="7" fill="white"/>
+<circle cx="40" cy="49" r="5" fill="#AD1457"/><circle cx="60" cy="49" r="5" fill="#AD1457"/>
+<circle cx="42" cy="47" r="2" fill="white"/><circle cx="62" cy="47" r="2" fill="white"/>
+<path d="M43,58 Q50,63 57,58" stroke="#AD1457" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+<ellipse cx="34" cy="54" rx="7" ry="4" fill="#FFAAC0" opacity="0.5"/>
+<ellipse cx="66" cy="54" rx="7" ry="4" fill="#FFAAC0" opacity="0.5"/>
+<path d="M28,72 Q22,90 20,108" stroke="#FF80AB" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.7"/>
+<path d="M38,76 Q32,94 30,112" stroke="#FF80AB" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.6"/>
+<path d="M50,78 Q50,96 50,114" stroke="#FF80AB" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.6"/>
+<path d="M62,76 Q68,94 70,112" stroke="#FF80AB" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.6"/>
+<path d="M72,72 Q78,90 80,108" stroke="#FF80AB" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.7"/>
+</svg>`
+  },
+  {
+    id:'sunny', name:'Sunny', desc:'Cartwheels all afternoon long', animation:'anim-cartwheel',
+    color:'#FFD600',
+    svg:`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+<circle cx="50" cy="60" r="28" fill="#FFD600"/>
+<circle cx="50" cy="60" r="24" fill="#FFEB80"/>
+<circle cx="41" cy="57" r="7" fill="white"/><circle cx="59" cy="57" r="7" fill="white"/>
+<circle cx="41" cy="58" r="5" fill="#5C3700"/><circle cx="59" cy="58" r="5" fill="#5C3700"/>
+<circle cx="43" cy="56" r="2" fill="white"/><circle cx="61" cy="56" r="2" fill="white"/>
+<ellipse cx="50" cy="66" rx="3" ry="2" fill="#CC8800"/>
+<path d="M43,72 Q50,78 57,72" stroke="#CC8800" stroke-width="2" fill="none" stroke-linecap="round"/>
+<ellipse cx="35" cy="62" rx="7" ry="4" fill="#FFE066" opacity="0.5"/>
+<ellipse cx="65" cy="62" rx="7" ry="4" fill="#FFE066" opacity="0.5"/>
+<ellipse cx="50" cy="32" rx="5" ry="8" fill="#FFD600"/>
+<ellipse cx="50" cy="88" rx="5" ry="8" fill="#FFD600"/>
+<ellipse cx="22" cy="60" rx="8" ry="5" fill="#FFD600"/>
+<ellipse cx="78" cy="60" rx="8" ry="5" fill="#FFD600"/>
+<ellipse cx="30" cy="40" rx="5" ry="8" fill="#FFD600" transform="rotate(-45,30,40)"/>
+<ellipse cx="70" cy="40" rx="5" ry="8" fill="#FFD600" transform="rotate(45,70,40)"/>
+<ellipse cx="30" cy="80" rx="5" ry="8" fill="#FFD600" transform="rotate(45,30,80)"/>
+<ellipse cx="70" cy="80" rx="5" ry="8" fill="#FFD600" transform="rotate(-45,70,80)"/>
+</svg>`
+  },
+  {
+    id:'bolt', name:'Bolt', desc:'Zaps with electric energy!', animation:'anim-zap',
+    color:'#FFF176',
+    svg:`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="50" cy="88" rx="24" ry="18" fill="#333"/>
+<circle cx="50" cy="55" r="26" fill="#333"/>
+<circle cx="50" cy="55" r="22" fill="#1A1A2E"/>
+<circle cx="41" cy="52" r="8" fill="#FFF176"/><circle cx="59" cy="52" r="8" fill="#FFF176"/>
+<circle cx="41" cy="53" r="5" fill="#5C4400"/><circle cx="59" cy="53" r="5" fill="#5C4400"/>
+<circle cx="43" cy="51" r="2" fill="white"/><circle cx="61" cy="51" r="2" fill="white"/>
+<ellipse cx="50" cy="61" rx="3" ry="2" fill="#FFA000"/>
+<ellipse cx="34" cy="58" rx="7" ry="4" fill="#FFF176" opacity="0.3"/>
+<ellipse cx="66" cy="58" rx="7" ry="4" fill="#FFF176" opacity="0.3"/>
+<path d="M54,30 L46,46 L52,46 L44,68 L60,50 L53,50 Z" fill="#FFF176" opacity="0.9"/>
+<ellipse cx="36" cy="108" rx="10" ry="6" fill="#333"/>
+<ellipse cx="64" cy="108" rx="10" ry="6" fill="#333"/>
+<ellipse cx="50" cy="40" rx="8" ry="4" fill="#FFF176" opacity="0.25"/>
+</svg>`
+  },
+  {
+    id:'coco', name:'Coco', desc:'Does jumping jacks for fun', animation:'anim-jumpingjack',
+    color:'#A1887F',
+    svg:`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+<circle cx="30" cy="42" r="10" fill="#8D6E63"/><circle cx="70" cy="42" r="10" fill="#8D6E63"/>
+<circle cx="30" cy="42" r="7" fill="#A1887F"/><circle cx="70" cy="42" r="7" fill="#A1887F"/>
+<ellipse cx="50" cy="90" rx="28" ry="22" fill="#8D6E63"/>
+<circle cx="50" cy="58" r="26" fill="#A1887F"/>
+<ellipse cx="50" cy="64" rx="16" ry="10" fill="#8D6E63"/>
+<circle cx="41" cy="54" r="7" fill="white"/><circle cx="59" cy="54" r="7" fill="white"/>
+<circle cx="41" cy="55" r="5" fill="#4E342E"/><circle cx="59" cy="55" r="5" fill="#4E342E"/>
+<circle cx="43" cy="53" r="2" fill="white"/><circle cx="61" cy="53" r="2" fill="white"/>
+<ellipse cx="50" cy="66" rx="4" ry="3" fill="#6D4C41"/>
+<ellipse cx="36" cy="61" rx="8" ry="5" fill="#FFCCBC" opacity="0.45"/>
+<ellipse cx="64" cy="61" rx="8" ry="5" fill="#FFCCBC" opacity="0.45"/>
+<ellipse cx="36" cy="108" rx="11" ry="7" fill="#8D6E63"/><ellipse cx="64" cy="108" rx="11" ry="7" fill="#8D6E63"/>
+</svg>`
+  },
+  {
+    id:'pip', name:'Pip', desc:'Pirouettes like a ballet star', animation:'anim-pirouette',
+    color:'#B0BEC5',
+    svg:`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="50" cy="90" rx="22" ry="24" fill="#37474F"/>
+<ellipse cx="50" cy="90" rx="14" ry="20" fill="#ECEFF1"/>
+<circle cx="50" cy="56" r="26" fill="#37474F"/>
+<ellipse cx="50" cy="62" rx="14" ry="10" fill="#ECEFF1"/>
+<circle cx="41" cy="52" r="7" fill="white"/><circle cx="59" cy="52" r="7" fill="white"/>
+<circle cx="41" cy="53" r="5" fill="#1A237E"/><circle cx="59" cy="53" r="5" fill="#1A237E"/>
+<circle cx="43" cy="51" r="2" fill="white"/><circle cx="61" cy="51" r="2" fill="white"/>
+<ellipse cx="50" cy="62" rx="5" ry="3" fill="#FF8F00"/>
+<ellipse cx="36" cy="57" rx="7" ry="4" fill="#ECEFF1" opacity="0.3"/>
+<ellipse cx="64" cy="57" rx="7" ry="4" fill="#ECEFF1" opacity="0.3"/>
+<ellipse cx="30" cy="80" rx="12" ry="5" fill="#37474F" transform="rotate(30,30,80)"/>
+<ellipse cx="70" cy="80" rx="12" ry="5" fill="#37474F" transform="rotate(-30,70,80)"/>
+<ellipse cx="36" cy="112" rx="12" ry="6" fill="#37474F"/><ellipse cx="64" cy="112" rx="12" ry="6" fill="#37474F"/>
+</svg>`
+  },
+  {
+    id:'sparky', name:'Sparky', desc:'Headbobs to the beat all day', animation:'anim-headbob',
+    color:'#66BB6A',
+    svg:`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="80" cy="40" rx="12" ry="8" fill="#66BB6A" transform="rotate(25,80,40)"/>
+<ellipse cx="50" cy="90" rx="28" ry="24" fill="#4CAF50"/>
+<circle cx="50" cy="56" r="26" fill="#66BB6A"/>
+<ellipse cx="50" cy="38" rx="10" ry="6" fill="#66BB6A"/>
+<path d="M42,38 L46,46" stroke="#4CAF50" stroke-width="3"/>
+<path d="M58,38 L54,46" stroke="#4CAF50" stroke-width="3"/>
+<circle cx="41" cy="53" r="7" fill="white"/><circle cx="59" cy="53" r="7" fill="white"/>
+<circle cx="41" cy="54" r="5" fill="#1B5E20"/><circle cx="59" cy="54" r="5" fill="#1B5E20"/>
+<circle cx="43" cy="52" r="2" fill="white"/><circle cx="61" cy="52" r="2" fill="white"/>
+<ellipse cx="50" cy="62" rx="4" ry="3" fill="#2E7D32"/>
+<path d="M43,68 Q50,74 57,68" stroke="#2E7D32" stroke-width="2" fill="none" stroke-linecap="round"/>
+<ellipse cx="35" cy="59" rx="7" ry="4" fill="#A5D6A7" opacity="0.5"/>
+<ellipse cx="65" cy="59" rx="7" ry="4" fill="#A5D6A7" opacity="0.5"/>
+<ellipse cx="28" cy="78" rx="10" ry="6" fill="#4CAF50" transform="rotate(-25,28,78)"/>
+<ellipse cx="72" cy="78" rx="10" ry="6" fill="#4CAF50" transform="rotate(25,72,78)"/>
+<ellipse cx="36" cy="110" rx="11" ry="6" fill="#4CAF50"/><ellipse cx="64" cy="110" rx="11" ry="6" fill="#4CAF50"/>
+</svg>`
+  },
+  {
+    id:'dottie', name:'Dottie', desc:'Does the robot perfectly', animation:'anim-robot',
+    color:'#EF5350',
+    svg:`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="50" cy="86" rx="28" ry="22" fill="#EF5350"/>
+<circle cx="50" cy="56" r="28" fill="#EF5350"/>
+<circle cx="50" cy="56" r="22" fill="#EF5350"/>
+<circle cx="34" cy="42" r="5" fill="#212121"/><circle cx="66" cy="42" r="5" fill="#212121"/>
+<circle cx="34" cy="56" r="5" fill="#212121"/><circle cx="66" cy="56" r="5" fill="#212121"/>
+<circle cx="42" cy="70" r="4" fill="#212121"/><circle cx="58" cy="70" r="4" fill="#212121"/>
+<circle cx="50" cy="70" r="4" fill="#212121"/>
+<line x1="22" y1="52" x2="78" y2="52" stroke="#212121" stroke-width="2.5" opacity="0.5"/>
+<circle cx="41" cy="52" r="7" fill="white"/><circle cx="59" cy="52" r="7" fill="white"/>
+<circle cx="41" cy="53" r="5" fill="#B71C1C"/><circle cx="59" cy="53" r="5" fill="#B71C1C"/>
+<circle cx="43" cy="51" r="2" fill="white"/><circle cx="61" cy="51" r="2" fill="white"/>
+<ellipse cx="50" cy="61" rx="3" ry="2" fill="#B71C1C"/>
+<ellipse cx="36" cy="60" rx="7" ry="4" fill="#FFCDD2" opacity="0.4"/>
+<ellipse cx="64" cy="60" rx="7" ry="4" fill="#FFCDD2" opacity="0.4"/>
+<ellipse cx="36" cy="106" rx="11" ry="6" fill="#EF5350"/><ellipse cx="64" cy="106" rx="11" ry="6" fill="#EF5350"/>
+</svg>`
+  },
+  {
+    id:'frosty', name:'Frosty', desc:'Twirls forever in icy loops', animation:'anim-twirl',
+    color:'#80DEEA',
+    svg:`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+<circle cx="50" cy="60" r="30" fill="#B2EBF2"/>
+<circle cx="50" cy="60" r="26" fill="#E0F7FA"/>
+<line x1="50" y1="28" x2="50" y2="92" stroke="#80DEEA" stroke-width="4" stroke-linecap="round"/>
+<line x1="22" y1="44" x2="78" y2="76" stroke="#80DEEA" stroke-width="4" stroke-linecap="round"/>
+<line x1="22" y1="76" x2="78" y2="44" stroke="#80DEEA" stroke-width="4" stroke-linecap="round"/>
+<circle cx="50" cy="28" r="4" fill="#4DD0E1"/><circle cx="50" cy="92" r="4" fill="#4DD0E1"/>
+<circle cx="22" cy="44" r="4" fill="#4DD0E1"/><circle cx="78" cy="76" r="4" fill="#4DD0E1"/>
+<circle cx="22" cy="76" r="4" fill="#4DD0E1"/><circle cx="78" cy="44" r="4" fill="#4DD0E1"/>
+<circle cx="50" cy="60" r="10" fill="#B2EBF2"/>
+<circle cx="41" cy="57" r="6" fill="white"/><circle cx="59" cy="57" r="6" fill="white"/>
+<circle cx="41" cy="58" r="4" fill="#006064"/><circle cx="59" cy="58" r="4" fill="#006064"/>
+<circle cx="42" cy="56" r="1.5" fill="white"/><circle cx="60" cy="56" r="1.5" fill="white"/>
+<path d="M43,65 Q50,70 57,65" stroke="#006064" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+<ellipse cx="35" cy="62" rx="6" ry="3.5" fill="#B2EBF2" opacity="0.55"/>
+<ellipse cx="65" cy="62" rx="6" ry="3.5" fill="#B2EBF2" opacity="0.55"/>
+</svg>`
+  },
+  {
+    id:'noodle', name:'Noodle', desc:'Waves like a happy ribbon', animation:'anim-wave',
+    color:'#F48FB1',
+    svg:`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+<circle cx="50" cy="40" r="22" fill="#F48FB1"/>
+<ellipse cx="50" cy="85" rx="14" ry="38" fill="#F06292"/>
+<ellipse cx="50" cy="85" rx="12" ry="36" fill="#F48FB1"/>
+<circle cx="41" cy="37" r="6" fill="white"/><circle cx="59" cy="37" r="6" fill="white"/>
+<circle cx="41" cy="38" r="4" fill="#880E4F"/><circle cx="59" cy="38" r="4" fill="#880E4F"/>
+<circle cx="42" cy="36" r="1.5" fill="white"/><circle cx="60" cy="36" r="1.5" fill="white"/>
+<ellipse cx="50" cy="45" rx="3" ry="2" fill="#C2185B"/>
+<path d="M43,48 Q50,53 57,48" stroke="#C2185B" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+<ellipse cx="35" cy="42" rx="6" ry="3.5" fill="#F8BBD9" opacity="0.55"/>
+<ellipse cx="65" cy="42" rx="6" ry="3.5" fill="#F8BBD9" opacity="0.55"/>
+<ellipse cx="50" cy="118" rx="10" ry="5" fill="#F06292"/>
+</svg>`
+  },
+  {
+    id:'puddles', name:'Puddles', desc:'Shuffles with splashy style', animation:'anim-shuffle',
+    color:'#FFF176',
+    svg:`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="50" cy="88" rx="28" ry="24" fill="#FFF176"/>
+<circle cx="50" cy="56" r="26" fill="#FFF59D"/>
+<ellipse cx="50" cy="72" rx="18" ry="10" fill="#FFAB00"/>
+<ellipse cx="50" cy="72" rx="12" ry="7" fill="#FFCC02"/>
+<circle cx="41" cy="52" r="7" fill="white"/><circle cx="59" cy="52" r="7" fill="white"/>
+<circle cx="41" cy="53" r="5" fill="#5C3A00"/><circle cx="59" cy="53" r="5" fill="#5C3A00"/>
+<circle cx="43" cy="51" r="2" fill="white"/><circle cx="61" cy="51" r="2" fill="white"/>
+<ellipse cx="35" cy="58" rx="7" ry="4" fill="#FFF9C4" opacity="0.55"/>
+<ellipse cx="65" cy="58" rx="7" ry="4" fill="#FFF9C4" opacity="0.55"/>
+<ellipse cx="30" cy="100" rx="14" ry="7" fill="#FFAB00"/><ellipse cx="70" cy="100" rx="14" ry="7" fill="#FFAB00"/>
+<ellipse cx="25" cy="80" rx="10" ry="5" fill="#FFF176" transform="rotate(-25,25,80)"/>
+<ellipse cx="75" cy="80" rx="10" ry="5" fill="#FFF176" transform="rotate(25,75,80)"/>
+</svg>`
+  },
+  {
+    id:'rosie', name:'Rosie', desc:'Wiggles with buzzy energy', animation:'anim-wiggle',
+    color:'#FFD600',
+    svg:`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="50" cy="56" rx="26" ry="30" fill="#FFD600"/>
+<rect x="34" y="46" width="32" height="8" rx="4" fill="#212121" opacity="0.8"/>
+<rect x="34" y="60" width="32" height="8" rx="4" fill="#212121" opacity="0.8"/>
+<ellipse cx="50" cy="40" rx="16" ry="10" fill="#FFD600"/>
+<ellipse cx="36" cy="34" rx="8" ry="14" fill="#B2EBF2" opacity="0.75" transform="rotate(-25,36,34)"/>
+<ellipse cx="64" cy="34" rx="8" ry="14" fill="#B2EBF2" opacity="0.75" transform="rotate(25,64,34)"/>
+<circle cx="41" cy="50" r="7" fill="white"/><circle cx="59" cy="50" r="7" fill="white"/>
+<circle cx="41" cy="51" r="5" fill="#212121"/><circle cx="59" cy="51" r="5" fill="#212121"/>
+<circle cx="43" cy="49" r="2" fill="white"/><circle cx="61" cy="49" r="2" fill="white"/>
+<path d="M44,78 Q50,84 56,78" stroke="#5C3700" stroke-width="2" fill="none" stroke-linecap="round"/>
+<line x1="40" y1="36" x2="36" y2="28" stroke="#FFD600" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="60" y1="36" x2="64" y2="28" stroke="#FFD600" stroke-width="2.5" stroke-linecap="round"/>
+<circle cx="36" cy="27" r="3" fill="#FFD600"/><circle cx="64" cy="27" r="3" fill="#FFD600"/>
+<ellipse cx="36" cy="108" rx="10" ry="6" fill="#FFD600"/><ellipse cx="64" cy="108" rx="10" ry="6" fill="#FFD600"/>
+</svg>`
+  },
+  {
+    id:'ziggy', name:'Ziggy', desc:'Slinks and stretches all around', animation:'anim-slink',
+    color:'#81C784',
+    svg:`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+<circle cx="50" cy="30" r="16" fill="#66BB6A"/>
+<circle cx="50" cy="55" r="12" fill="#81C784"/>
+<circle cx="50" cy="77" r="10" fill="#66BB6A"/>
+<circle cx="50" cy="96" r="8" fill="#81C784"/>
+<circle cx="50" cy="112" r="6" fill="#66BB6A"/>
+<circle cx="41" cy="27" r="6" fill="white"/><circle cx="59" cy="27" r="6" fill="white"/>
+<circle cx="41" cy="28" r="4" fill="#1B5E20"/><circle cx="59" cy="28" r="4" fill="#1B5E20"/>
+<circle cx="42" cy="26" r="1.5" fill="white"/><circle cx="60" cy="26" r="1.5" fill="white"/>
+<ellipse cx="50" cy="35" rx="3" ry="2" fill="#388E3C"/>
+<path d="M44,38 Q50,43 56,38" stroke="#388E3C" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+<ellipse cx="35" cy="31" rx="5" ry="3" fill="#A5D6A7" opacity="0.55"/>
+<ellipse cx="65" cy="31" rx="5" ry="3" fill="#A5D6A7" opacity="0.55"/>
+<circle cx="34" cy="18" r="3" fill="#66BB6A"/><circle cx="66" cy="18" r="3" fill="#66BB6A"/>
+<line x1="36" y1="20" x2="42" y2="26" stroke="#66BB6A" stroke-width="2.5"/>
+<line x1="64" y1="20" x2="58" y2="26" stroke="#66BB6A" stroke-width="2.5"/>
+</svg>`
+  },
+  {
+    id:'mochi', name:'Mochi', desc:'Hops happily without a care', animation:'anim-hop',
+    color:'#F8BBD9',
+    svg:`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="36" cy="36" rx="9" ry="22" fill="#FAFAFA"/><ellipse cx="64" cy="36" rx="9" ry="22" fill="#FAFAFA"/>
+<ellipse cx="36" cy="36" rx="6" ry="17" fill="#F8BBD9"/><ellipse cx="64" cy="36" rx="6" ry="17" fill="#F8BBD9"/>
+<ellipse cx="50" cy="90" rx="28" ry="24" fill="#FAFAFA"/>
+<circle cx="50" cy="56" r="28" fill="#FAFAFA"/>
+<circle cx="41" cy="52" r="7" fill="white"/><circle cx="59" cy="52" r="7" fill="white"/>
+<circle cx="41" cy="53" r="5" fill="#AD1457"/><circle cx="59" cy="53" r="5" fill="#AD1457"/>
+<circle cx="43" cy="51" r="2" fill="white"/><circle cx="61" cy="51" r="2" fill="white"/>
+<ellipse cx="50" cy="61" rx="3" ry="2" fill="#EC407A"/>
+<ellipse cx="35" cy="58" rx="8" ry="5" fill="#F8BBD9" opacity="0.6"/>
+<ellipse cx="65" cy="58" rx="8" ry="5" fill="#F8BBD9" opacity="0.6"/>
+<path d="M43,66 Q50,72 57,66" stroke="#EC407A" stroke-width="2" fill="none" stroke-linecap="round"/>
+<ellipse cx="38" cy="112" rx="13" ry="7" fill="#FAFAFA"/><ellipse cx="62" cy="112" rx="13" ry="7" fill="#FAFAFA"/>
+<ellipse cx="28" cy="84" rx="9" ry="5" fill="#FAFAFA" transform="rotate(-30,28,84)"/>
+<ellipse cx="72" cy="84" rx="9" ry="5" fill="#FAFAFA" transform="rotate(30,72,84)"/>
+</svg>`
+  },
+  {
+    id:'pebble', name:'Pebble', desc:'Spins right into its shell', animation:'anim-shell-spin',
+    color:'#81C784',
+    svg:`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="50" cy="76" rx="38" ry="30" fill="#8D6E63"/>
+<ellipse cx="50" cy="76" rx="34" ry="26" fill="#A1887F"/>
+<path d="M50,52 Q62,60 60,76 Q58,88 50,90 Q42,88 40,76 Q38,60 50,52Z" fill="#6D4C41" opacity="0.5"/>
+<path d="M50,52 L28,60 L24,78" stroke="#6D4C41" stroke-width="2" fill="none" opacity="0.4"/>
+<path d="M50,52 L72,60 L76,78" stroke="#6D4C41" stroke-width="2" fill="none" opacity="0.4"/>
+<circle cx="50" cy="46" r="18" fill="#66BB6A"/>
+<circle cx="41" cy="43" r="6" fill="white"/><circle cx="59" cy="43" r="6" fill="white"/>
+<circle cx="41" cy="44" r="4" fill="#1B5E20"/><circle cx="59" cy="44" r="4" fill="#1B5E20"/>
+<circle cx="42" cy="42" r="1.5" fill="white"/><circle cx="60" cy="42" r="1.5" fill="white"/>
+<ellipse cx="50" cy="50" rx="3" ry="2" fill="#2E7D32"/>
+<ellipse cx="36" cy="47" rx="6" ry="3.5" fill="#A5D6A7" opacity="0.5"/>
+<ellipse cx="64" cy="47" rx="6" ry="3.5" fill="#A5D6A7" opacity="0.5"/>
+<ellipse cx="28" cy="100" rx="11" ry="6" fill="#66BB6A"/><ellipse cx="72" cy="100" rx="11" ry="6" fill="#66BB6A"/>
+<ellipse cx="20" cy="76" rx="8" ry="5" fill="#66BB6A"/><ellipse cx="80" cy="76" rx="8" ry="5" fill="#66BB6A"/>
+</svg>`
+  },
+  {
+    id:'flicker', name:'Flicker', desc:'Blinks and zips through the night', animation:'anim-blink-zip',
+    color:'#FFD700',
+    svg:`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="50" cy="85" rx="18" ry="24" fill="#1A1A2E"/>
+<ellipse cx="50" cy="85" rx="14" ry="20" fill="#2A2A4E"/>
+<circle cx="50" cy="52" r="22" fill="#1A1A2E"/>
+<ellipse cx="36" cy="70" rx="16" ry="10" fill="#B0FF80" opacity="0.85" transform="rotate(-20,36,70)"/>
+<ellipse cx="64" cy="70" rx="16" ry="10" fill="#B0FF80" opacity="0.85" transform="rotate(20,64,70)"/>
+<circle cx="50" cy="52" r="18" fill="#212140"/>
+<circle cx="41" cy="49" r="8" fill="#FFD700" opacity="0.9"/><circle cx="59" cy="49" r="8" fill="#FFD700" opacity="0.9"/>
+<circle cx="41" cy="50" r="5" fill="#5C3A00"/><circle cx="59" cy="50" r="5" fill="#5C3A00"/>
+<circle cx="43" cy="48" r="2" fill="white"/><circle cx="61" cy="48" r="2" fill="white"/>
+<ellipse cx="50" cy="58" rx="3" ry="2" fill="#FFA000"/>
+<path d="M43,62 Q50,67 57,62" stroke="#FFA000" stroke-width="2" fill="none" stroke-linecap="round"/>
+<ellipse cx="36" cy="55" rx="6" ry="3.5" fill="#FFE57F" opacity="0.35"/>
+<ellipse cx="64" cy="55" rx="6" ry="3.5" fill="#FFE57F" opacity="0.35"/>
+<ellipse cx="50" cy="96" rx="7" ry="5" fill="#FFD700" opacity="0.9"/>
+</svg>`
+  },
+  {
+    id:'blop', name:'Blop', desc:'Squishes with axolotl grace', animation:'anim-squish',
+    color:'#F48FB1',
+    svg:`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+<path d="M28,45 Q22,35 26,26 Q30,18 36,22 Q38,30 36,38Z" fill="#F48FB1"/>
+<path d="M72,45 Q78,35 74,26 Q70,18 64,22 Q62,30 64,38Z" fill="#F48FB1"/>
+<path d="M40,36 Q38,28 42,24 Q46,20 50,22 Q54,20 58,24 Q62,28 60,36Z" fill="#F48FB1"/>
+<ellipse cx="50" cy="88" rx="32" ry="22" fill="#F48FB1"/>
+<ellipse cx="50" cy="62" rx="30" ry="24" fill="#F8BBD9"/>
+<circle cx="41" cy="58" r="7" fill="white"/><circle cx="59" cy="58" r="7" fill="white"/>
+<circle cx="41" cy="59" r="5" fill="#880E4F"/><circle cx="59" cy="59" r="5" fill="#880E4F"/>
+<circle cx="43" cy="57" r="2" fill="white"/><circle cx="61" cy="57" r="2" fill="white"/>
+<ellipse cx="50" cy="67" rx="3" ry="2" fill="#C2185B"/>
+<path d="M43,72 Q50,78 57,72" stroke="#C2185B" stroke-width="2" fill="none" stroke-linecap="round"/>
+<ellipse cx="34" cy="64" rx="8" ry="5" fill="#F48FB1" opacity="0.55"/>
+<ellipse cx="66" cy="64" rx="8" ry="5" fill="#F48FB1" opacity="0.55"/>
+<ellipse cx="30" cy="104" rx="14" ry="7" fill="#F48FB1"/>
+<ellipse cx="70" cy="104" rx="14" ry="7" fill="#F48FB1"/>
+</svg>`
+  },
+  {
+    id:'sprout', name:'Sprout', desc:'Leaps way up into the sky!', animation:'anim-leap',
+    color:'#66BB6A',
+    svg:`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="50" cy="90" rx="30" ry="22" fill="#4CAF50"/>
+<circle cx="50" cy="58" r="28" fill="#66BB6A"/>
+<circle cx="38" cy="43" r="8" fill="#66BB6A"/><circle cx="62" cy="43" r="8" fill="#66BB6A"/>
+<circle cx="38" cy="43" r="6" fill="#81C784"/><circle cx="62" cy="43" r="6" fill="#81C784"/>
+<circle cx="40" cy="54" r="9" fill="white"/><circle cx="60" cy="54" r="9" fill="white"/>
+<circle cx="40" cy="56" r="6" fill="#1B5E20"/><circle cx="60" cy="56" r="6" fill="#1B5E20"/>
+<circle cx="42" cy="53" r="2.5" fill="white"/><circle cx="62" cy="53" r="2.5" fill="white"/>
+<ellipse cx="50" cy="64" rx="4" ry="3" fill="#388E3C"/>
+<path d="M42,70 Q50,76 58,70" stroke="#388E3C" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<ellipse cx="33" cy="60" rx="8" ry="5" fill="#A5D6A7" opacity="0.5"/>
+<ellipse cx="67" cy="60" rx="8" ry="5" fill="#A5D6A7" opacity="0.5"/>
+<ellipse cx="22" cy="80" rx="12" ry="5" fill="#4CAF50" transform="rotate(20,22,80)"/>
+<ellipse cx="78" cy="80" rx="12" ry="5" fill="#4CAF50" transform="rotate(-20,78,80)"/>
+<ellipse cx="36" cy="110" rx="13" ry="7" fill="#4CAF50"/><ellipse cx="64" cy="110" rx="13" ry="7" fill="#4CAF50"/>
+</svg>`
+  },
+  {
+    id:'twirl', name:'Twirl', desc:'Spins with all eight arms wide', animation:'anim-tentacle-spin',
+    color:'#CE93D8',
+    svg:`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+<path d="M26,80 Q14,96 18,112" stroke="#BA68C8" stroke-width="7" fill="none" stroke-linecap="round"/>
+<path d="M36,86 Q28,102 30,116" stroke="#CE93D8" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M50,90 Q50,108 50,118" stroke="#BA68C8" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M64,86 Q72,102 70,116" stroke="#CE93D8" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M74,80 Q86,96 82,112" stroke="#BA68C8" stroke-width="7" fill="none" stroke-linecap="round"/>
+<path d="M20,68 Q8,78 10,96" stroke="#CE93D8" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M80,68 Q92,78 90,96" stroke="#CE93D8" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M18,54 Q6,60 8,78" stroke="#BA68C8" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M82,54 Q94,60 92,78" stroke="#BA68C8" stroke-width="5" fill="none" stroke-linecap="round"/>
+<ellipse cx="50" cy="60" rx="32" ry="28" fill="#CE93D8"/>
+<ellipse cx="50" cy="60" rx="28" ry="24" fill="#E1BEE7"/>
+<circle cx="40" cy="56" r="8" fill="white"/><circle cx="60" cy="56" r="8" fill="white"/>
+<circle cx="40" cy="57" r="5" fill="#6A1B9A"/><circle cx="60" cy="57" r="5" fill="#6A1B9A"/>
+<circle cx="42" cy="55" r="2" fill="white"/><circle cx="62" cy="55" r="2" fill="white"/>
+<ellipse cx="50" cy="66" rx="4" ry="3" fill="#8E24AA"/>
+<path d="M43,72 Q50,78 57,72" stroke="#8E24AA" stroke-width="2" fill="none" stroke-linecap="round"/>
+<ellipse cx="33" cy="62" rx="8" ry="5" fill="#CE93D8" opacity="0.5"/>
+<ellipse cx="67" cy="62" rx="8" ry="5" fill="#CE93D8" opacity="0.5"/>
+</svg>`
+  },
+  {
+    id:'boba', name:'Boba', desc:'Does a forward roll SO fast', animation:'anim-roll',
+    color:'#ECEFF1',
+    svg:`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="50" cy="90" rx="28" ry="22" fill="#37474F"/>
+<circle cx="50" cy="58" r="28" fill="#ECEFF1"/>
+<circle cx="32" cy="48" r="10" fill="#37474F"/><circle cx="68" cy="48" r="10" fill="#37474F"/>
+<circle cx="32" cy="48" r="7" fill="#ECEFF1"/><circle cx="68" cy="48" r="7" fill="#ECEFF1"/>
+<circle cx="41" cy="55" r="8" fill="white"/><circle cx="59" cy="55" r="8" fill="white"/>
+<circle cx="41" cy="56" r="5" fill="#212121"/><circle cx="59" cy="56" r="5" fill="#212121"/>
+<circle cx="43" cy="54" r="2" fill="white"/><circle cx="61" cy="54" r="2" fill="white"/>
+<ellipse cx="50" cy="64" rx="4" ry="3" fill="#37474F"/>
+<path d="M43,70 Q50,76 57,70" stroke="#37474F" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<ellipse cx="35" cy="61" rx="8" ry="5" fill="#CFD8DC" opacity="0.5"/>
+<ellipse cx="65" cy="61" rx="8" ry="5" fill="#CFD8DC" opacity="0.5"/>
+<ellipse cx="28" cy="80" rx="10" ry="5" fill="#37474F" transform="rotate(-25,28,80)"/>
+<ellipse cx="72" cy="80" rx="10" ry="5" fill="#37474F" transform="rotate(25,72,80)"/>
+<ellipse cx="36" cy="110" rx="12" ry="7" fill="#37474F"/><ellipse cx="64" cy="110" rx="12" ry="7" fill="#37474F"/>
+</svg>`
+  },
+  {
+    id:'pinky', name:'Pinky', desc:'Ballets with perfect elegance', animation:'anim-ballet',
+    color:'#F48FB1',
+    svg:`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="50" cy="55" rx="6" ry="24" fill="#F48FB1"/>
+<ellipse cx="50" cy="78" rx="20" ry="12" fill="#EC407A"/>
+<circle cx="50" cy="42" r="16" fill="#FFCDD2"/>
+<ellipse cx="44" cy="34" rx="4" ry="10" fill="#F48FB1" transform="rotate(-15,44,34)"/>
+<ellipse cx="56" cy="34" rx="4" ry="10" fill="#F48FB1" transform="rotate(15,56,34)"/>
+<circle cx="44" cy="40" r="5" fill="white"/><circle cx="56" cy="40" r="5" fill="white"/>
+<circle cx="44" cy="41" r="3.5" fill="#880E4F"/><circle cx="56" cy="41" r="3.5" fill="#880E4F"/>
+<circle cx="45" cy="39.5" r="1.5" fill="white"/><circle cx="57" cy="39.5" r="1.5" fill="white"/>
+<ellipse cx="50" cy="46" rx="3" ry="2" fill="#E91E63"/>
+<ellipse cx="38" cy="44" rx="6" ry="3.5" fill="#F8BBD9" opacity="0.55"/>
+<ellipse cx="62" cy="44" rx="6" ry="3.5" fill="#F8BBD9" opacity="0.55"/>
+<ellipse cx="28" cy="62" rx="18" ry="5" fill="#F48FB1" transform="rotate(-40,28,62)"/>
+<ellipse cx="72" cy="62" rx="18" ry="5" fill="#F48FB1" transform="rotate(40,72,62)"/>
+<ellipse cx="50" cy="100" rx="6" ry="16" fill="#F48FB1"/>
+<ellipse cx="45" cy="116" rx="8" ry="4" fill="#F06292"/>
+</svg>`
+  },
+  {
+    id:'chompy', name:'Chompy', desc:'Stomps with tiny dino feet', animation:'anim-stomp',
+    color:'#4DB6AC',
+    svg:`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+<path d="M72,40 L82,28 L80,42 L86,36 L82,48Z" fill="#26A69A"/>
+<ellipse cx="50" cy="86" rx="30" ry="24" fill="#4DB6AC"/>
+<circle cx="50" cy="56" r="28" fill="#4DB6AC"/>
+<ellipse cx="50" cy="70" rx="20" ry="12" fill="#26A69A"/>
+<circle cx="41" cy="52" r="8" fill="white"/><circle cx="59" cy="52" r="8" fill="white"/>
+<circle cx="41" cy="53" r="5" fill="#00695C"/><circle cx="59" cy="53" r="5" fill="#00695C"/>
+<circle cx="43" cy="51" r="2" fill="white"/><circle cx="61" cy="51" r="2" fill="white"/>
+<ellipse cx="50" cy="63" rx="5" ry="4" fill="#00695C"/>
+<path d="M38,70 L44,62 L50,70 L56,62 L62,70" stroke="#fff" stroke-width="2.5" fill="none" opacity="0.8"/>
+<ellipse cx="34" cy="59" rx="8" ry="5" fill="#80CBC4" opacity="0.5"/>
+<ellipse cx="66" cy="59" rx="8" ry="5" fill="#80CBC4" opacity="0.5"/>
+<ellipse cx="28" cy="80" rx="10" ry="5" fill="#4DB6AC" transform="rotate(-20,28,80)"/>
+<ellipse cx="72" cy="80" rx="10" ry="5" fill="#4DB6AC" transform="rotate(20,72,80)"/>
+<ellipse cx="32" cy="110" rx="14" ry="7" fill="#26A69A"/><ellipse cx="68" cy="110" rx="14" ry="7" fill="#26A69A"/>
+</svg>`
+  },
+  {
+    id:'glimmer', name:'Glimmer', desc:'Sparkles and shines endlessly', animation:'anim-sparkle',
+    color:'#FFD700',
+    svg:`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+<path d="M50,10 L56,38 L80,30 L62,50 L90,50 L64,62 L80,84 L56,70 L50,96 L44,70 L20,84 L36,62 L10,50 L38,50 L20,30 L44,38 Z" fill="#FFD700"/>
+<path d="M50,22 L54,40 L70,34 L58,50 L76,50 L60,60 L70,74 L54,66 L50,82 L46,66 L30,74 L40,60 L24,50 L42,50 L30,34 L46,40 Z" fill="#FFF176"/>
+<circle cx="41" cy="52" r="6" fill="white"/><circle cx="59" cy="52" r="6" fill="white"/>
+<circle cx="41" cy="53" r="4" fill="#5C3700"/><circle cx="59" cy="53" r="4" fill="#5C3700"/>
+<circle cx="42" cy="51" r="1.5" fill="white"/><circle cx="60" cy="51" r="1.5" fill="white"/>
+<ellipse cx="50" cy="59" rx="3" ry="2" fill="#CC8800"/>
+<path d="M43,63 Q50,69 57,63" stroke="#CC8800" stroke-width="2" fill="none" stroke-linecap="round"/>
+<ellipse cx="35" cy="57" rx="6" ry="3.5" fill="#FFF9C4" opacity="0.5"/>
+<ellipse cx="65" cy="57" rx="6" ry="3.5" fill="#FFF9C4" opacity="0.5"/>
+</svg>`
+  },
+  {
+    id:'nova', name:'Nova', desc:'Gallops across magical rainbows', animation:'anim-gallop',
+    color:'#CE93D8',
+    svg:`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+<path d="M50,10 L54,20 L50,14 L46,20 Z" fill="#FFD700"/>
+<ellipse cx="50" cy="90" rx="30" ry="24" fill="#F8BBD9"/>
+<circle cx="50" cy="56" r="28" fill="#FCE4EC"/>
+<ellipse cx="36" cy="40" rx="6" ry="16" fill="#F8BBD9" transform="rotate(-10,36,40)"/>
+<ellipse cx="64" cy="40" rx="6" ry="16" fill="#F8BBD9" transform="rotate(10,64,40)"/>
+<circle cx="41" cy="53" r="7" fill="white"/><circle cx="59" cy="53" r="7" fill="white"/>
+<circle cx="41" cy="54" r="5" fill="#6A1B9A"/><circle cx="59" cy="54" r="5" fill="#6A1B9A"/>
+<circle cx="43" cy="52" r="2" fill="white"/><circle cx="61" cy="52" r="2" fill="white"/>
+<ellipse cx="50" cy="62" rx="3" ry="2" fill="#E91E63"/>
+<ellipse cx="35" cy="59" rx="8" ry="5" fill="#F48FB1" opacity="0.5"/>
+<ellipse cx="65" cy="59" rx="8" ry="5" fill="#F48FB1" opacity="0.5"/>
+<path d="M43,67 Q50,73 57,67" stroke="#E91E63" stroke-width="2" fill="none" stroke-linecap="round"/>
+<ellipse cx="20" cy="82" rx="12" ry="5" fill="#F8BBD9" transform="rotate(-30,20,82)"/>
+<ellipse cx="80" cy="82" rx="12" ry="5" fill="#F8BBD9" transform="rotate(30,80,82)"/>
+<ellipse cx="32" cy="112" rx="13" ry="7" fill="#F8BBD9"/><ellipse cx="68" cy="112" rx="13" ry="7" fill="#F8BBD9"/>
+<path d="M60,30 Q66,24 72,28 Q68,30 64,26 Q70,30 68,36" stroke="#FF80AB" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+</svg>`
+  }
+];
+
+// ---- Spark Coin Storage ----
+// In-memory cache so earnSparkCoin always increments from the correct value
+// even if Firebase reads return stale data.
+let _sparkCoinsCache = null;
+
+async function loadSparkData() {
+  // Use the in-memory cache for coins when available — avoids Firebase read-latency
+  // causing stale increments. 'owned' is always read fresh (shop purchases are rare).
+  if (_sparkCoinsCache !== null) {
+    const owned = JSON.parse(localStorage.getItem(OWNED_CHARS_KEY) || '[]');
+    return { coins: _sparkCoinsCache, owned };
+  }
+  if (currentUser && window._fbReady) {
+    try {
+      const { getDoc } = window._fbFns;
+      const snap = await getDoc(userRef());
+      if (snap.exists()) {
+        const d = snap.data();
+        _sparkCoinsCache = d.sparkCoins || 0;
+        // Keep localStorage in sync so offline increments start from the right value
+        localStorage.setItem(SPARK_COIN_KEY, String(_sparkCoinsCache));
+        localStorage.setItem(OWNED_CHARS_KEY, JSON.stringify(d.ownedChars || []));
+        return { coins: _sparkCoinsCache, owned: d.ownedChars || [] };
+      }
+    } catch(e) { syncError(); }
+  }
+  try {
+    const coins = parseInt(localStorage.getItem(SPARK_COIN_KEY) || '0', 10);
+    const owned = JSON.parse(localStorage.getItem(OWNED_CHARS_KEY) || '[]');
+    _sparkCoinsCache = coins;
+    return { coins, owned };
+  } catch { return { coins: 0, owned: [] }; }
+}
+
+async function saveSparkData(coins, owned) {
+  _sparkCoinsCache = coins;
+  localStorage.setItem(SPARK_COIN_KEY, String(coins));
+  localStorage.setItem(OWNED_CHARS_KEY, JSON.stringify(owned));
+  // Update the display immediately — don't wait for the Firebase round-trip
+  updateSparkDisplay(coins);
+  if (currentUser && window._fbReady) {
+    syncStart();
+    try {
+      const { setDoc } = window._fbFns;
+      await setDoc(userRef(), { sparkCoins: coins, ownedChars: owned }, { merge: true });
+      syncDone();
+    } catch(e) { syncError(); }
+  }
+}
+
+function updateSparkDisplay(coins) {
+  const el = document.getElementById('spark-coin-count');
+  if (el) el.textContent = coins;
+}
+
+async function earnSparkCoin() {
+  const { coins, owned } = await loadSparkData();
+  const newCoins = coins + 1;
+  await saveSparkData(newCoins, owned);
+  // Show floating +1 animation
+  const badge = document.getElementById('spark-coin-badge');
+  if (badge) {
+    const rect = badge.getBoundingClientRect();
+    const fl = document.createElement('div');
+    fl.className = 'spark-coin-earn';
+    fl.textContent = '+1 ✨';
+    fl.style.left = rect.left + 'px';
+    fl.style.top = (rect.top - 10) + 'px';
+    document.body.appendChild(fl);
+    setTimeout(() => fl.remove(), 1500);
+  }
+  return newCoins;
+}
+
+// ---- Shop ----
+async function renderShop() {
+  const { coins, owned } = await loadSparkData();
+  const shopCoinsEl = document.getElementById('shop-coins-amount');
+  if (shopCoinsEl) shopCoinsEl.textContent = coins;
+  updateSparkDisplay(coins);
+  const grid = document.getElementById('chars-grid');
+  if (!grid) return;
+  grid.innerHTML = SPARK_CHARACTERS.map(ch => {
+    const isOwned = owned.includes(ch.id);
+    return `<div class="char-card ${isOwned ? 'owned' : 'locked'}" onclick="handleCharCardClick('${ch.id}')" title="${ch.name} — ${ch.desc}">
+      ${isOwned ? '<div class="char-card-owned-badge">✓ Owned</div>' : ''}
+      ${isOwned
+        ? `<div class="char-svg-wrap">${ch.svg}</div>`
+        : `<div class="char-mystery">❓</div>`
+      }
+      <div class="char-name">${ch.name}</div>
+      <div class="char-cost">${isOwned ? '✅ Yours!' : `✨ ${CHAR_COST}`}</div>
+    </div>`;
+  }).join('');
+}
+
+async function handleCharCardClick(charId) {
+  const ch = SPARK_CHARACTERS.find(c => c.id === charId);
+  if (!ch) return;
+  const { coins, owned } = await loadSparkData();
+  if (owned.includes(charId)) {
+    showCharAnimation(ch, false);
+    return;
+  }
+  if (coins < CHAR_COST) {
+    showShopToast(`Need ${CHAR_COST} ✨ Spark coins — answer more questions correctly!`);
+    return;
+  }
+  const newOwned = [...owned, charId];
+  const newCoins = coins - CHAR_COST;
+  await saveSparkData(newCoins, newOwned);
+  showShopToast(`🎉 You unlocked ${ch.name}!`);
+  renderShop();
+}
+
+function showShopToast(msg) {
+  let toast = document.getElementById('shop-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'shop-toast';
+    toast.style.cssText = `position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--surface2);border:1px solid var(--accent);border-radius:50px;padding:10px 22px;font-size:13px;font-weight:700;color:var(--text);z-index:500;box-shadow:0 4px 24px var(--shadow);white-space:nowrap;transition:opacity 0.3s`;
+    document.body.appendChild(toast);
+  }
+  toast.textContent = msg;
+  toast.style.opacity = '1';
+  clearTimeout(toast._hideT);
+  toast._hideT = setTimeout(() => { toast.style.opacity = '0'; }, 2800);
+}
+
+function showCharAnimation(ch, earnedCoin, onDone) {
+  const overlay = document.getElementById('char-anim-overlay');
+  if (!overlay) return;
+  const coinMsg = earnedCoin ? `<div class="char-spark-earned">+1 ✨ Spark Coin earned!</div>` : '';
+  overlay.innerHTML = `<div class="char-anim-overlay">
+    <div class="char-stage">
+      <div class="char-anim-wrap ${ch.animation}">${ch.svg}</div>
+      <div class="char-anim-name">${ch.name}</div>
+      <div class="char-anim-action">${ch.desc}</div>
+      ${coinMsg}
+      <div class="char-anim-timer"><div class="char-anim-timer-fill"></div></div>
+    </div>
+  </div>`;
+  overlay.style.display = 'block';
+  const tid = setTimeout(() => {
+    overlay.innerHTML = '';
+    overlay.style.display = 'none';
+    if (onDone) onDone();
+  }, 3000);
+  overlay.onclick = () => {
+    clearTimeout(tid);
+    overlay.innerHTML = '';
+    overlay.style.display = 'none';
+    if (onDone) onDone();
+  };
+}
+
+async function maybeShowCharAfterCorrect(onDone) {
+  const { owned } = await loadSparkData();
+  if (!owned.length) {
+    if (onDone) onDone();
+    return;
+  }
+  const charId = owned[Math.floor(Math.random() * owned.length)];
+  const ch = SPARK_CHARACTERS.find(c => c.id === charId);
+  if (!ch) { if (onDone) onDone(); return; }
+  showCharAnimation(ch, false, onDone);
+}
 </script>
 </body>
 </html>

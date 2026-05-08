@@ -124,7 +124,9 @@ def _validate_one(q, idx):
             if "text" not in opt:
                 errors.append(f"{prefix}: option[{i}] missing 'text'")
             elif not isinstance(opt["text"], str) or not opt["text"].strip():
-                errors.append(f"{prefix}: option[{i}].text is empty")
+                # SVG options are valid with empty text (the image IS the answer)
+                if not opt.get("svg"):
+                    errors.append(f"{prefix}: option[{i}].text is empty")
 
     # Answer index in bounds
     answer = q["answer"]
@@ -249,15 +251,16 @@ class TestOptions:
         assert not ans_errors, "\n".join(ans_errors[:20])
 
     def test_correct_option_text_is_not_empty(self, questions):
-        """The option pointed to by 'answer' must have a non-empty text."""
+        """The option pointed to by 'answer' must have non-empty text OR svg."""
         violations = []
         for q in questions:
             opts = q.get("options", [])
             ans = q.get("answer")
             if isinstance(ans, int) and 0 <= ans < len(opts):
-                if not opts[ans].get("text", "").strip():
+                opt = opts[ans]
+                if not opt.get("text", "").strip() and not opt.get("svg"):
                     violations.append(q.get("id"))
-        assert not violations, f"Correct option text is empty for: {violations[:20]}"
+        assert not violations, f"Correct option has neither text nor svg: {violations[:20]}"
 
 
 class TestTextContent:

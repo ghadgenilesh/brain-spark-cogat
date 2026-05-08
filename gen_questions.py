@@ -632,6 +632,41 @@ FC=[
 for gr,diff,text,opts,ai,expl in FC:
     add(gr,"figure-classification",diff,text,opts,ai,expl)
 
+# ─── COVERAGE GAP FILL — ensure every (grade × battery × difficulty) exists ──
+# These explicit entries cover combos that the probabilistic generators miss.
+COVERAGE_FILL = [
+    # grade=K, quantitative, medium
+    ("K","number-series","medium",
+     "What comes next?  2, 4, 6, 8, ___",
+     [10, 9, 7, 12], 0, "Count by 2s. 8+2=10."),
+    # grade=K, quantitative, hard
+    ("K","number-series","hard",
+     "What comes next?  1, 2, 4, 8, ___",
+     [16, 10, 12, 6], 0, "Double each time. 8×2=16."),
+    # grade=1, quantitative, hard
+    ("1","number-series","hard",
+     "What comes next?  1, 4, 9, 16, ___",
+     [25, 20, 24, 18], 0, "Perfect squares: 1²,2²,3²,4²,5²=25."),
+    # grade=7, quantitative, easy
+    ("7","number-series","easy",
+     "What comes next?  5, 10, 15, 20, ___",
+     [25, 22, 24, 30], 0, "Count by 5s. 20+5=25."),
+    # grade=7, quantitative, medium
+    ("7","number-analogies","medium",
+     "3 is to 9 as 4 is to ___.",
+     [16, 12, 8, 64], 0, "Square the number: 4²=16."),
+    # grade=8, quantitative, easy
+    ("8","number-series","easy",
+     "What comes next?  3, 6, 9, 12, ___",
+     [15, 14, 16, 13], 0, "Count by 3s. 12+3=15."),
+    # grade=8, quantitative, medium
+    ("8","number-analogies","medium",
+     "2 is to 8 as 3 is to ___.",
+     [27, 9, 6, 12], 0, "Cube the number: 3³=27."),
+]
+for gr, qtype, diff, text, opts_vals, ai, expl in COVERAGE_FILL:
+    add(gr, qtype, diff, text, opts_vals, ai, expl)
+
 # ─── WRITE OUTPUT ─────────────────────────────────────────────────
 random.shuffle(questions)
 for i,q in enumerate(questions,1):
