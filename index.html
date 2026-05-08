@@ -157,6 +157,7 @@ body.theme-math{
 .topbar-right{display:flex;align-items:center;gap:10px}
 .theme-btn{background:var(--surface2);border:1px solid var(--border);border-radius:30px;padding:6px 14px;color:var(--text2);font-family:var(--font-body);font-size:13px;cursor:pointer;transition:all 0.2s}
 .theme-btn:hover{background:var(--accent);color:white;border-color:var(--accent)}
+.btn-label{font-size:13px}
 
 /* ===== CARDS ===== */
 .card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px;position:relative;overflow:hidden}
@@ -777,10 +778,23 @@ body{background:#000}
 .nav-item-label{font-size:clamp(9px,2.5vw,11px)}
 
 /* ── 360px and below (very small phones) ── */
+/* ── Mobile topbar: icon-only, compact ── */
+@media(max-width:480px){
+  .topbar{padding:10px 14px 8px}
+  .topbar-right{gap:6px}
+  .btn-label{display:none}
+  .theme-btn{padding:7px 10px;font-size:17px;line-height:1;border-radius:12px}
+  .topbar-username{display:none}
+  .spark-coin-badge{padding:5px 9px;font-size:12px;border-radius:16px}
+  .spark-coin-badge .coin-icon{font-size:14px}
+}
 @media(max-width:360px){
   html{font-size:13.5px}
   .hero-title{font-size:20px}
-  .topbar-logo{font-size:17px}
+  .topbar-logo{font-size:16px}
+  .topbar{padding:8px 12px 6px}
+  .topbar-right{gap:5px}
+  .spark-coin-badge{padding:4px 8px;font-size:11px}
   .theme-card-name{font-size:12.5px}
   .theme-card-icon{font-size:28px}
   .btn-lg{padding:13px 20px;font-size:15px}
@@ -1103,7 +1117,7 @@ body{background:#000}
   <div class="topbar">
     <div class="topbar-logo" id="theme-logo">🚀 BrainSpark</div>
     <div class="topbar-right">
-      <button class="theme-btn" onclick="showScreen('themes')">🎨 Theme</button>
+      <button class="theme-btn" onclick="showScreen('themes')">🎨<span class="btn-label"> Theme</span></button>
       <button class="audio-btn" id="audio-btn" onclick="toggleAudio()" title="Toggle sound">🔊</button>
       <div class="spark-coin-badge" id="spark-coin-badge" onclick="showScreen('shop')" title="Spark Coins — visit the Character Shop!">
         <span class="coin-icon">✨</span>
