@@ -3514,6 +3514,10 @@ async function renderInsights() {
   const cvwWrong = recent.map(s=>s.answers.filter(a=>!a.correct).length);
 
   container.innerHTML = `
+    <div style="display:flex;gap:10px;margin-bottom:14px">
+      <button class="btn btn-secondary" style="flex:1;font-size:13px" onclick="showScreen('achievements')">🏅 My Badges</button>
+      <button class="btn btn-secondary" style="flex:1;font-size:13px" onclick="showScreen('parent')">👨‍👩‍👧 Parent View</button>
+    </div>
     <div class="stats-row">
       <div class="stat-chip"><div class="stat-chip-num">${sessions.length}</div><div class="stat-chip-lbl">Sessions</div></div>
       <div class="stat-chip"><div class="stat-chip-num" style="color:var(--correct)">${accuracy}%</div><div class="stat-chip-lbl">Accuracy</div></div>
@@ -3584,10 +3588,7 @@ async function renderInsights() {
       </div>
     </div>
 
-    <div style="display:flex;gap:10px;margin-top:4px;margin-bottom:4px">
-      <button class="btn btn-secondary" style="flex:1;font-size:13px" onclick="showScreen('achievements')">🏅 My Badges</button>
-      <button class="btn btn-secondary" style="flex:1;font-size:13px" onclick="showScreen('parent')">👨‍👩‍👧 Parent View</button>
-    </div>
+
   `;
 
   // Render charts after DOM update
