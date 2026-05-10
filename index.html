@@ -156,6 +156,31 @@ body.theme-library{
   --card-bg:#2e2410;--overlay:rgba(26,20,8,0.95);
   --deco1:#c8952a;--deco2:#e8c060;--star-color:#e8c060;
 }
+body.theme-pirate{
+  --bg:#1a0d04;--bg2:#2a1508;--surface:#38200a;--surface2:#4a2c0e;
+  --text:#f5e6c8;--text2:#d4a870;--text3:#9a7040;
+  --accent:#d4820a;--accent2:#e8c060;--accent3:#c8a850;
+  --correct:#6abf6a;--wrong:#c85050;--shadow:rgba(212,130,10,0.3);
+  --card-bg:#38200a;--overlay:rgba(26,13,4,0.95);
+  --deco1:#d4820a;--deco2:#8b1a1a;--star-color:#e8c060;
+}
+body.theme-light{
+  --bg:#f8f9fa;--bg2:#f0f1f3;--surface:#ffffff;--surface2:#e8eaed;
+  --text:#1a1a2e;--text2:#4a5568;--text3:#718096;
+  --accent:#4a6fa5;--accent2:#e05c5c;--accent3:#38a169;
+  --correct:#38a169;--wrong:#e05c5c;--shadow:rgba(74,111,165,0.2);
+  --card-bg:#ffffff;--overlay:rgba(248,249,250,0.97);
+  --deco1:#4a6fa5;--deco2:#e05c5c;--star-color:#d4a017;
+  --border:rgba(0,0,0,0.15);
+}
+body.theme-dark{
+  --bg:#0d0f14;--bg2:#141720;--surface:#1e2130;--surface2:#252840;
+  --text:#e8eaf0;--text2:#9098b0;--text3:#606880;
+  --accent:#5a8fd4;--accent2:#d46a5a;--accent3:#5ad48a;
+  --correct:#5ad48a;--wrong:#d46a5a;--shadow:rgba(90,143,212,0.25);
+  --card-bg:#1e2130;--overlay:rgba(13,15,20,0.97);
+  --deco1:#5a8fd4;--deco2:#d46a5a;--star-color:#a07bd4;
+}
 
 /* ===== LAYOUT ===== */
 #app{width:100%;height:100vh;display:flex;flex-direction:column;background:var(--bg);color:var(--text);overflow:hidden;position:relative}
@@ -447,6 +472,83 @@ body.theme-library #bg-particles::before{
   animation:libraryAurora 10s ease-in-out infinite alternate;
 }
 @keyframes libraryAurora{0%{opacity:0.4}100%{opacity:0.9}}
+
+/* ===== PIRATE THEME CARD ===== */
+.theme-pirate{
+  background:linear-gradient(160deg,#1a0d04,#38200a,#2a1508,#4a2c0e);
+  color:#f5e6c8;border-color:rgba(212,130,10,0.35);position:relative;overflow:hidden;
+}
+.theme-pirate::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 40% 80%,rgba(212,130,10,0.14) 0%,transparent 55%),
+             radial-gradient(ellipse at 70% 20%,rgba(139,26,26,0.1) 0%,transparent 45%);
+  animation:pirateFlicker 5s ease-in-out infinite;border-radius:var(--radius);pointer-events:none;
+}
+.theme-pirate::after{
+  content:'☠️ ⚓ 🦜';position:absolute;bottom:6px;right:8px;font-size:11px;
+  animation:twinkle 5s ease-in-out infinite;pointer-events:none;letter-spacing:1px;
+}
+@keyframes pirateFlicker{0%,100%{opacity:0.6}50%{opacity:1}}
+body.theme-pirate #bg-particles::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse at 25% 80%,rgba(212,130,10,0.1) 0%,transparent 50%),
+    radial-gradient(ellipse at 70% 30%,rgba(139,26,26,0.08) 0%,transparent 45%);
+  animation:pirateAurora 8s ease-in-out infinite alternate;
+}
+@keyframes pirateAurora{0%{opacity:0.4}100%{opacity:0.8}}
+
+/* ===== CLEAN LIGHT THEME CARD ===== */
+.theme-light{
+  background:linear-gradient(160deg,#f8f9fa,#ffffff,#f0f1f3,#e8eaed);
+  color:#1a1a2e;border-color:rgba(74,111,165,0.3);position:relative;overflow:hidden;
+}
+.theme-light::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 30% 60%,rgba(74,111,165,0.08) 0%,transparent 55%),
+             radial-gradient(ellipse at 70% 30%,rgba(224,92,92,0.05) 0%,transparent 45%);
+  animation:lightGlow 6s ease-in-out infinite;border-radius:var(--radius);pointer-events:none;
+}
+.theme-light::after{
+  content:'☀️ ✨ 💡';position:absolute;bottom:6px;right:8px;font-size:11px;
+  animation:twinkle 5s ease-in-out infinite;pointer-events:none;letter-spacing:1px;
+}
+@keyframes lightGlow{0%,100%{opacity:0.4}50%{opacity:0.8}}
+body.theme-light #bg-particles::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse at 20% 80%,rgba(74,111,165,0.06) 0%,transparent 50%),
+    radial-gradient(ellipse at 75% 25%,rgba(224,92,92,0.04) 0%,transparent 45%);
+  animation:lightAurora 10s ease-in-out infinite alternate;
+}
+@keyframes lightAurora{0%{opacity:0.3}100%{opacity:0.7}}
+/* Ensure Clean Light card text is dark — scoped to the card element only */
+.theme-card.theme-light .theme-card-name,.theme-card.theme-light .theme-card-desc{color:#1a1a2e}
+
+/* ===== CLEAN DARK THEME CARD ===== */
+.theme-dark{
+  background:linear-gradient(160deg,#0d0f14,#1e2130,#141720,#252840);
+  color:#e8eaf0;border-color:rgba(90,143,212,0.3);position:relative;overflow:hidden;
+}
+.theme-dark::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 35% 75%,rgba(90,143,212,0.1) 0%,transparent 55%),
+             radial-gradient(ellipse at 65% 25%,rgba(212,106,90,0.07) 0%,transparent 45%);
+  animation:darkPulse 7s ease-in-out infinite;border-radius:var(--radius);pointer-events:none;
+}
+.theme-dark::after{
+  content:'🌑 ✨ 🌙';position:absolute;bottom:6px;right:8px;font-size:11px;
+  animation:twinkle 5s ease-in-out infinite;pointer-events:none;letter-spacing:1px;
+}
+@keyframes darkPulse{0%,100%{opacity:0.5}50%{opacity:0.9}}
+body.theme-dark #bg-particles::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse at 20% 80%,rgba(90,143,212,0.08) 0%,transparent 50%),
+    radial-gradient(ellipse at 75% 25%,rgba(212,106,90,0.06) 0%,transparent 45%);
+  animation:darkAurora 12s ease-in-out infinite alternate;
+}
+@keyframes darkAurora{0%{opacity:0.3}100%{opacity:0.8}}
 
 /* ===== SESSION SETUP ===== */
 #screen-setup{padding:0 20px 30px}
@@ -1344,6 +1446,16 @@ body{background:#000}
       <div class="section-sub">Pick a theme that makes you feel awesome!</div>
     </div>
     <div class="themes-grid">
+      <div class="theme-card theme-light" id="tc-light" onclick="setTheme('light')">
+        <span class="theme-card-icon">☀️</span>
+        <div class="theme-card-name">Clean Light</div>
+        <div class="theme-card-desc">Simple, bright &amp; focused</div>
+      </div>
+      <div class="theme-card theme-dark" id="tc-dark" onclick="setTheme('dark')">
+        <span class="theme-card-icon">🌑</span>
+        <div class="theme-card-name">Clean Dark</div>
+        <div class="theme-card-desc">Minimal, dark &amp; sharp</div>
+      </div>
       <div class="theme-card theme-space" id="tc-space" onclick="setTheme('space')">
         <span class="theme-card-icon">🚀</span>
         <div class="theme-card-name">Space Explorer</div>
@@ -1403,6 +1515,11 @@ body{background:#000}
         <span class="theme-card-icon">📚</span>
         <div class="theme-card-name">Scholar's Nook</div>
         <div class="theme-card-desc">Focus, think, discover</div>
+      </div>
+      <div class="theme-card theme-pirate" id="tc-pirate" onclick="setTheme('pirate')">
+        <span class="theme-card-icon">☠️</span>
+        <div class="theme-card-name">Pirate's Cove</div>
+        <div class="theme-card-desc">Sail the seas of knowledge</div>
       </div>
     </div>
     <button class="btn btn-secondary" style="margin-top:20px;width:100%" onclick="showScreen('home')">← Back</button>
@@ -2515,6 +2632,9 @@ const THEMES = {
   math:       { icon:'🔢', word:'Genius',     logo:'🔢 BrainSpark' },
   ocean:      { icon:'🌊', word:'Explorer',   logo:'🌊 BrainSpark' },
   library:    { icon:'📚', word:'Scholar',    logo:'📚 BrainSpark' },
+  pirate:     { icon:'☠️', word:'Captain',    logo:'☠️ BrainSpark' },
+  light:      { icon:'☀️', word:'Scholar',    logo:'☀️ BrainSpark' },
+  dark:       { icon:'🌑', word:'Night Owl',  logo:'🌑 BrainSpark' },
 };
 
 async function setTheme(name) {
@@ -2555,6 +2675,9 @@ function createParticles(theme) {
     math:      ['➕','✖️','➗','🔢','📐','📏','🔺','💡'],
     ocean:     ['🌊','🐠','🐟','💧','🐚','🦀','🐙','✨'],
     library:   ['📚','📖','✏️','🦉','💡','🌙','☕','📝'],
+    pirate:    ['☠️','⚓','🦜','🗡️','🏴‍☠️','💰','🦀','🌊'],
+    light:     ['⭐','✨','💡','🌟','📝','✅','🎯','💪'],
+    dark:      ['⭐','✨','🌙','💫','🎯','🔷','💎','🌟'],
   };
   const s = symbols[theme] || symbols.space;
   const count = theme === 'unicorn' ? 16 : theme === 'candyland' ? 18 : theme === 'science' ? 14 : 12;
@@ -2581,6 +2704,9 @@ function createParticles(theme) {
     math:      { colors: ['#ffd740','#ff6d00','#a78bfa','#ffca28','#ff9100'], size: 9, duration: 700 },
     ocean:     { colors: ['#29acd6','#00e5c8','#80d8f0','#4fc3f7','#b2ebf2'], size: 7, duration: 1100 },
     library:   { colors: ['#c8952a','#e8c060','#d4a847','#a07828','#f0d080'], size: 7, duration: 1000 },
+    pirate:    { colors: ['#d4820a','#e8c060','#8b1a1a','#c8a850','#f0c040'], size: 9, duration: 750 },
+    light:     { colors: ['#4a6fa5','#e05c5c','#38a169','#d4a017','#7b68ee'], size: 7, duration: 700 },
+    dark:      { colors: ['#5a8fd4','#d46a5a','#5ad48a','#d4b85a','#a07bd4'], size: 7, duration: 700 },
   };
   const trailCfg = trailConfigs[theme] || trailConfigs.space;
   let colorIdx = 0;
@@ -3079,6 +3205,60 @@ function createParticles(theme) {
       pianoNote();
       window._ambientStop = () => { try { rainNode.stop(); actx.close(); } catch(e){} };
     } catch(e) { console.warn('Library sound unavailable', e); }
+  }
+
+  // PIRATE: hull drone + wind + shanty melody in D minor pentatonic
+  if (theme === 'pirate') {
+    window._ambientStop = () => {};
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      const actx = new AudioCtx();
+      // Hull drone — D1 with slow LFO swell
+      const droneOsc = actx.createOscillator();
+      const droneGain = actx.createGain();
+      droneOsc.type = 'sine'; droneOsc.frequency.value = 36.7;
+      droneGain.gain.value = 0.055;
+      const droneLfo = actx.createOscillator();
+      const droneLfoGain = actx.createGain();
+      droneLfo.type = 'sine'; droneLfo.frequency.value = 0.09;
+      droneLfoGain.gain.value = 0.02;
+      droneLfo.connect(droneLfoGain); droneLfoGain.connect(droneGain.gain);
+      droneOsc.connect(droneGain); droneGain.connect(actx.destination);
+      droneOsc.start(); droneLfo.start();
+      // Wind — soft mid-frequency tone
+      const windOsc = actx.createOscillator();
+      const windGain = actx.createGain();
+      windOsc.type = 'sine'; windOsc.frequency.value = 180;
+      windGain.gain.value = 0.018;
+      windOsc.connect(windGain); windGain.connect(actx.destination);
+      windOsc.start();
+      // Shanty melody — D minor pentatonic (D3, F3, G3, A3, C4)
+      const shantyFreqs = [146.83, 174.61, 196.0, 220.0, 261.63];
+      function playPhrase() {
+        if (!document.body.classList.contains('theme-pirate')) return;
+        const len = 5 + Math.floor(Math.random() * 4);
+        let t = actx.currentTime;
+        for (let i = 0; i < len; i++) {
+          const freq = shantyFreqs[Math.floor(Math.random() * shantyFreqs.length)];
+          const osc = actx.createOscillator(); const g = actx.createGain();
+          osc.type = 'triangle'; osc.frequency.value = freq;
+          g.gain.setValueAtTime(0, t);
+          g.gain.linearRampToValueAtTime(0.07, t + 0.05);
+          g.gain.exponentialRampToValueAtTime(0.001, t + 0.55);
+          osc.connect(g); g.connect(actx.destination);
+          osc.start(t); osc.stop(t + 0.6);
+          t += 0.35;
+        }
+        setTimeout(playPhrase, (len * 350) + 8000 + Math.random() * 6000);
+      }
+      playPhrase();
+      window._ambientStop = () => { try { droneOsc.stop(); droneLfo.stop(); windOsc.stop(); actx.close(); } catch(e){} };
+    } catch(e) { console.warn('Pirate sound unavailable', e); }
+  }
+
+  // LIGHT / DARK: silent (no ambient audio)
+  if (theme === 'light' || theme === 'dark') {
+    window._ambientStop = () => {};
   }
 }
 
