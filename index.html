@@ -1298,7 +1298,7 @@ body{background:#000}
 .exam-batt-pct{font-weight:700;font-size:12px;width:32px;text-align:right;flex-shrink:0}
 </style>
 </head>
-<body class="theme-space">
+<body class="theme-light">
 
 <!-- Loader -->
 <div class="loader-screen" id="loader">
@@ -3429,7 +3429,7 @@ async function refreshHome() {
     nameEl.textContent = playerName + '!';
     if (subEl) subEl.textContent = `9 questions · 15 minutes · Go get 'em, ${playerName}!`;
   } else {
-    const t = THEMES[settings.theme||'space'];
+    const t = THEMES[settings.theme||'light'];
     nameEl.textContent = t ? t.word : 'Star';
     if (subEl) subEl.textContent = "9 questions · 15 minutes · You've got this!";
   }
@@ -4355,7 +4355,7 @@ function launchConfetti() {
     magic:     ['#00bcd4','#ffd54f','#b39ddb','#80deea','#fff176'],
     candyland: ['#ff4081','#ffab40','#69f0ae','#ff80ab','#ea80fc']
   };
-  const theme = (document.body.className.replace('theme-','') || 'space');
+  const theme = (document.body.className.replace('theme-','') || 'light');
   const colors = themeColors[theme] || themeColors.space;
   for (let i=0; i<50; i++) {
     const c = document.createElement('div');
@@ -4458,7 +4458,7 @@ function toggleAudio() {
     // Re-enable: resume AudioContext and restart ambient for current theme
     const ctx = _getAudioCtx();
     if (ctx && ctx.state === 'suspended') ctx.resume();
-    loadSettings().then(s => { createParticles(s.theme || 'space'); });
+    loadSettings().then(s => { createParticles(s.theme || 'light'); });
   } else {
     // Mute: stop ambient audio immediately
     try { window._ambientStop?.(); } catch(e) {}
