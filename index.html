@@ -1366,8 +1366,7 @@ body{background:#000}
         <div class="hb-menu-divider"></div>
         <button class="hb-menu-item" onclick="showScreen('themes');closeHamburgerMenu()">🎨 Theme</button>
         <button class="hb-menu-item" id="audio-btn" onclick="toggleAudio()">🔊 Sound</button>
-        <button class="hb-menu-item" id="help-btn" onclick="showScreen('help');closeHamburgerMenu()">❓ About</button>
-        <div class="hb-menu-divider"></div>
+        <button class="hb-menu-item" id="help-btn" onclick="showScreen('help');closeHamburgerMenu()">💡 About</button>
         <button class="hb-menu-item" onclick="openFeedbackModal();closeHamburgerMenu()">💬 Send Feedback</button>
       </div>
     </div>
@@ -4814,7 +4813,7 @@ async function appStart(user) {
   // Audio setting
   audioEnabled = settings.audioEnabled !== false;
   const audioBtn = document.getElementById('audio-btn');
-  if (audioBtn) audioBtn.textContent = audioEnabled ? '🔊' : '🔇';
+  if (audioBtn) audioBtn.textContent = audioEnabled ? '🔊 Sound' : '🔇 Sound (off)';
 
   // Load questions
   try {
