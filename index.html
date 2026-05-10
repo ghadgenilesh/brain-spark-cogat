@@ -140,6 +140,22 @@ body.theme-math{
   --correct:#69f0ae;--wrong:#ff5252;--shadow:rgba(255,215,64,0.3);
   --deco1:#ffd740;--deco2:#ff6d00;--star-color:#ffd740;
 }
+body.theme-ocean{
+  --bg:#061e30;--bg2:#0a2840;--surface:#0e3650;--surface2:#164465;
+  --text:#d8f0f8;--text2:#78b8d8;--text3:#3a7898;
+  --accent:#29acd6;--accent2:#00e5c8;--accent3:#80d8f0;
+  --correct:#00e5c8;--wrong:#ff5f6d;--shadow:rgba(41,172,214,0.28);
+  --card-bg:#0e3650;--overlay:rgba(6,30,48,0.95);
+  --deco1:#29acd6;--deco2:#00e5c8;--star-color:#80d8f0;
+}
+body.theme-library{
+  --bg:#1a1408;--bg2:#221b0c;--surface:#2e2410;--surface2:#3a2e16;
+  --text:#f5edda;--text2:#c8b888;--text3:#887848;
+  --accent:#c8952a;--accent2:#e8c060;--accent3:#a07828;
+  --correct:#6abf6a;--wrong:#c85050;--shadow:rgba(200,149,42,0.28);
+  --card-bg:#2e2410;--overlay:rgba(26,20,8,0.95);
+  --deco1:#c8952a;--deco2:#e8c060;--star-color:#e8c060;
+}
 
 /* ===== LAYOUT ===== */
 #app{width:100%;height:100vh;display:flex;flex-direction:column;background:var(--bg);color:var(--text);overflow:hidden;position:relative}
@@ -154,7 +170,7 @@ body.theme-math{
 /* ===== TOP BAR ===== */
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 20px 10px;position:relative;z-index:10;flex-shrink:0}
 .topbar-logo{font-family:var(--font-display);font-size:22px;color:var(--accent);letter-spacing:1px;text-shadow:0 0 20px var(--shadow)}
-.topbar-right{display:flex;align-items:center;gap:10px}
+.topbar-right{display:flex;align-items:center;gap:10px;position:relative}
 .theme-btn{background:var(--surface2);border:1px solid var(--border);border-radius:30px;padding:6px 14px;color:var(--text2);font-family:var(--font-body);font-size:13px;cursor:pointer;transition:all 0.2s}
 .theme-btn:hover{background:var(--accent);color:white;border-color:var(--accent)}
 .btn-label{font-size:13px}
@@ -176,7 +192,7 @@ body.theme-math{
 .btn:disabled{opacity:0.5;cursor:not-allowed;transform:none}
 
 /* ===== HOME SCREEN ===== */
-#screen-home{align-items:center;justify-content:flex-start;padding-top:0}
+#screen-home{align-items:center;justify-content:flex-start;padding-top:0;overflow:hidden}
 .home-hero{width:100%;text-align:center;padding:30px 20px 0;position:relative;z-index:1}
 .hero-icon{font-size:72px;margin-bottom:8px;animation:bounce 2s ease-in-out infinite}
 @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
@@ -190,6 +206,22 @@ body.theme-math{
 .battery-pills{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:0 20px;margin-bottom:20px;position:relative;z-index:1}
 .battery-pill{background:var(--surface2);border:1px solid var(--border);border-radius:30px;padding:6px 14px;font-size:13px;font-weight:600;color:var(--text2)}
 .battery-pill span{margin-right:5px}
+/* ===== HOME CAROUSEL ===== */
+.home-greeting{width:100%;text-align:center;padding:22px 20px 10px;flex-shrink:0;position:relative;z-index:1}
+.home-greeting-title{font-family:var(--font-display);font-size:clamp(22px,6vw,36px);color:var(--text);line-height:1.2}
+.home-greeting-title span{color:var(--accent)}
+.home-carousel-wrap{flex:1;overflow:hidden;width:100%;min-height:0;position:relative;z-index:1}
+.home-carousel{display:flex;height:100%;overflow-x:scroll;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.home-carousel::-webkit-scrollbar{display:none}
+.hc-card{scroll-snap-align:start;flex-shrink:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 28px;box-sizing:border-box}
+.hc-card-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);margin-bottom:14px}
+.hc-card-title{font-family:var(--font-display);font-size:clamp(18px,5vw,24px);color:var(--text);margin-bottom:18px;text-align:center}
+.hc-cta-btn{width:100%;max-width:320px}
+.hc-card-icon{font-size:52px;margin-bottom:14px}
+.hc-card-desc{font-size:15px;color:var(--text2);text-align:center;margin-bottom:20px;line-height:1.5;max-width:260px}
+.hc-dots{display:flex;gap:8px;justify-content:center;padding:14px 0 18px;flex-shrink:0;position:relative;z-index:1}
+.hc-dot{width:8px;height:8px;border-radius:50%;background:var(--border);transition:all 0.3s;cursor:pointer}
+.hc-dot.active{background:var(--accent);width:24px;border-radius:4px}
 
 /* ===== THEME SELECTOR ===== */
 #screen-themes{padding:20px}
@@ -364,6 +396,58 @@ body.theme-math #bg-particles::before{
 @keyframes mathAurora{0%{opacity:0.4}100%{opacity:0.9}}
 @keyframes twinkle{0%,100%{opacity:0.3;transform:scale(0.8)}50%{opacity:1;transform:scale(1.2)}}
 
+/* ===== OCEAN THEME CARD ===== */
+.theme-ocean{
+  background:linear-gradient(160deg,#061e30,#0e3650,#0a2840,#164465);
+  color:#d8f0f8;border-color:rgba(41,172,214,0.35);position:relative;overflow:hidden;
+}
+.theme-ocean::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 100%,rgba(41,172,214,0.2) 0%,transparent 55%),
+             radial-gradient(ellipse at 80% 30%,rgba(0,229,200,0.1) 0%,transparent 45%);
+  animation:oceanSwell 6s ease-in-out infinite;border-radius:var(--radius);pointer-events:none;
+}
+.theme-ocean::after{
+  content:'🌊 🐠 🐚';position:absolute;bottom:6px;right:8px;font-size:11px;
+  animation:waveFloat 4s ease-in-out infinite;pointer-events:none;letter-spacing:1px;
+}
+@keyframes oceanSwell{0%,100%{opacity:0.5;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.03)}}
+@keyframes waveFloat{0%,100%{transform:translateX(0)}50%{transform:translateX(-3px)}}
+body.theme-ocean #bg-particles::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse at 20% 90%,rgba(41,172,214,0.12) 0%,transparent 50%),
+    radial-gradient(ellipse at 80% 60%,rgba(0,229,200,0.08) 0%,transparent 45%),
+    radial-gradient(ellipse at 50% 20%,rgba(128,216,240,0.06) 0%,transparent 40%);
+  animation:oceanAurora 9s ease-in-out infinite alternate;
+}
+@keyframes oceanAurora{0%{opacity:0.5}50%{opacity:0.9}100%{opacity:0.6}}
+
+/* ===== LIBRARY THEME CARD ===== */
+.theme-library{
+  background:linear-gradient(160deg,#1a1408,#2e2410,#221b0c,#3a2e16);
+  color:#f5edda;border-color:rgba(200,149,42,0.35);position:relative;overflow:hidden;
+}
+.theme-library::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 30% 70%,rgba(200,149,42,0.12) 0%,transparent 55%),
+             radial-gradient(ellipse at 70% 30%,rgba(232,192,96,0.08) 0%,transparent 45%);
+  animation:libraryGlow 7s ease-in-out infinite;border-radius:var(--radius);pointer-events:none;
+}
+.theme-library::after{
+  content:'📚 🦉 ✏️';position:absolute;bottom:6px;right:8px;font-size:11px;
+  animation:twinkle 4s ease-in-out infinite;pointer-events:none;letter-spacing:1px;
+}
+@keyframes libraryGlow{0%,100%{opacity:0.5}50%{opacity:1}}
+body.theme-library #bg-particles::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse at 15% 85%,rgba(200,149,42,0.1) 0%,transparent 50%),
+    radial-gradient(ellipse at 75% 25%,rgba(232,192,96,0.07) 0%,transparent 45%);
+  animation:libraryAurora 10s ease-in-out infinite alternate;
+}
+@keyframes libraryAurora{0%{opacity:0.4}100%{opacity:0.9}}
+
 /* ===== SESSION SETUP ===== */
 #screen-setup{padding:0 20px 30px}
 .setup-section{margin-bottom:20px}
@@ -391,6 +475,15 @@ body.theme-math #bg-particles::before{
 .grade-age{font-size:9px;color:var(--text2);text-align:center;line-height:1.2}
 .grade-info-box{background:var(--surface2);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--text2);line-height:1.5;min-height:36px;transition:all .3s;animation:slideUp .25s ease both}
 .grade-info-box strong{color:var(--accent)}
+
+/* ===== QUESTION COUNT PICKER ===== */
+.numq-grid{display:flex;gap:8px;flex-wrap:wrap}
+.numq-btn{flex:1;min-width:52px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 8px;border-radius:12px;border:2px solid var(--border);background:var(--surface);cursor:pointer;transition:all .2s;position:relative}
+.numq-btn:hover{border-color:var(--accent);background:rgba(124,111,255,.1);transform:translateY(-2px)}
+.numq-btn.selected{border-color:var(--accent);background:linear-gradient(135deg,rgba(124,111,255,.2),rgba(255,107,157,.1));box-shadow:0 4px 16px var(--shadow)}
+.numq-btn.selected::after{content:'✓';position:absolute;top:-6px;right:-6px;width:16px;height:16px;border-radius:50%;background:var(--accent);color:white;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.numq-num{font-family:var(--font-display);font-size:22px;color:var(--text);line-height:1}
+.numq-label{font-size:9px;color:var(--text2);text-align:center;line-height:1.2}
 
 /* ===== QUIZ SCREEN ===== */
 #screen-quiz{padding:0}
@@ -734,6 +827,20 @@ body.theme-math #bg-particles::before{
 .sync-dot{width:7px;height:7px;border-radius:50%;background:var(--accent3);display:inline-block;margin-left:4px;transition:background .3s}
 .sync-dot.syncing{background:var(--accent2);animation:pulse 1s infinite}
 .sync-dot.error{background:var(--wrong)}
+/* ===== HAMBURGER MENU ===== */
+.hb-btn{background:none;border:none;cursor:pointer;font-size:20px;padding:5px 8px;border-radius:10px;color:var(--text2);line-height:1;transition:all .18s;flex-shrink:0}
+.hb-btn:hover{background:var(--surface2);color:var(--text)}
+.hb-menu{display:none;flex-direction:column;position:absolute;top:calc(100% + 4px);right:0;min-width:220px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:6px;z-index:500;box-shadow:0 8px 32px rgba(0,0,0,0.5)}
+.hb-menu.open{display:flex}
+.hb-menu-item{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:var(--radius-sm);border:none;background:none;color:var(--text);font-family:var(--font-body);font-size:14px;font-weight:600;cursor:pointer;width:100%;text-align:left;transition:background .15s;text-decoration:none}
+.hb-menu-item:hover{background:var(--surface2)}
+.hb-menu-divider{height:1px;background:var(--border);margin:4px 2px}
+/* ===== FEEDBACK MODAL ===== */
+.feedback-textarea{width:100%;box-sizing:border-box;background:var(--surface2);border:1.5px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-family:var(--font-body);font-size:14px;line-height:1.6;padding:12px;resize:vertical;min-height:140px;outline:none;transition:border-color .18s}
+.feedback-textarea:focus{border-color:var(--accent)}
+.feedback-char-counter{font-size:11px;color:var(--text3);text-align:right;margin-top:4px}
+.feedback-char-counter.over{color:var(--wrong)}
+.feedback-status{font-size:13px;text-align:center;margin-top:8px;min-height:20px}
 
 /* ===== RESPONSIVE ===== */
 /* Base: mobile-first (applies to all sizes unless overridden) */
@@ -996,6 +1103,12 @@ body{background:#000}
 .shop-coins-label{font-size:12px;color:var(--text2);font-weight:600;margin-bottom:2px}
 .shop-coins-amount{font-family:var(--font-display);font-size:26px;color:#FFD700;line-height:1}
 .shop-section-title{font-size:13px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.shop-settings-row{display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:11px 14px;margin-bottom:14px;gap:10px}
+.shop-settings-label{font-size:13px;font-weight:600;color:var(--text)}
+.shop-settings-sub{font-size:11px;color:var(--text2);margin-top:1px}
+.anim-toggle-btn{flex-shrink:0;padding:5px 14px;border-radius:20px;border:none;font-size:12px;font-weight:700;cursor:pointer;transition:background .2s,color .2s}
+.anim-toggle-btn.on{background:var(--correct);color:#fff}
+.anim-toggle-btn.off{background:var(--surface2);color:var(--text2);border:1px solid var(--border)}
 .chars-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
 @media(min-width:420px){.chars-grid{grid-template-columns:repeat(5,1fr)}}
 @media(min-width:600px){.chars-grid{grid-template-columns:repeat(5,1fr)}}
@@ -1135,64 +1248,93 @@ body{background:#000}
   <div class="topbar">
     <div class="topbar-logo" id="theme-logo" onclick="showScreen('home')" style="cursor:pointer">🚀 BrainSpark</div>
     <div class="topbar-right">
-      <button class="theme-btn" onclick="showScreen('themes')">🎨<span class="btn-label"> Theme</span></button>
-      <button class="audio-btn" id="audio-btn" onclick="toggleAudio()" title="Toggle sound">🔊</button>
-      <button class="audio-btn" id="help-btn" onclick="showScreen('help')" title="About &amp; Help">ℹ️</button>
       <div class="spark-coin-badge" id="spark-coin-badge" onclick="showScreen('shop')" title="Spark Coins — visit the Character Shop!">
         <span class="coin-icon">✨</span>
         <span id="spark-coin-count">0</span>
       </div>
-      <span class="sync-dot" id="sync-dot" title="Data synced"></span>
-      <button class="theme-btn" id="topbar-signin-btn" onclick="showLoginScreenUI()" style="display:none">Sign in</button>
-      <div class="topbar-user" id="topbar-user" onclick="handleAvatarClick()" style="display:none" title="Profile & settings">
-        <img class="topbar-avatar" id="topbar-avatar" src="" alt="" style="display:none"/>
-        <div class="topbar-avatar-placeholder" id="topbar-avatar-placeholder">?</div>
-        <span class="topbar-username" id="topbar-username"></span>
+      <button class="hb-btn" id="hb-btn" onclick="toggleHamburgerMenu()" title="Menu" aria-label="Open menu">☰</button>
+      <div class="hb-menu" id="hb-menu">
+        <div class="topbar-user hb-menu-item" id="topbar-user" onclick="handleAvatarClick();closeHamburgerMenu()" style="display:none" title="Profile &amp; settings">
+          <img class="topbar-avatar" id="topbar-avatar" src="" alt="" style="display:none"/>
+          <div class="topbar-avatar-placeholder" id="topbar-avatar-placeholder">?</div>
+          <span class="topbar-username" id="topbar-username"></span>
+          <span class="sync-dot" id="sync-dot" title="Data synced" style="margin-left:auto"></span>
+        </div>
+        <button class="hb-menu-item" id="topbar-signin-btn" onclick="showLoginScreenUI();closeHamburgerMenu()" style="display:none">👤 Sign in</button>
+        <div class="hb-menu-divider"></div>
+        <button class="hb-menu-item" onclick="showScreen('themes');closeHamburgerMenu()">🎨 Theme</button>
+        <button class="hb-menu-item" id="audio-btn" onclick="toggleAudio()">🔊 Sound</button>
+        <button class="hb-menu-item" id="help-btn" onclick="showScreen('help');closeHamburgerMenu()">❓ About</button>
+        <div class="hb-menu-divider"></div>
+        <button class="hb-menu-item" onclick="openFeedbackModal();closeHamburgerMenu()">💬 Send Feedback</button>
       </div>
     </div>
   </div>
 
   <!-- HOME -->
   <div class="screen active" id="screen-home">
-    <div class="home-hero">
-      <div class="hero-icon" id="hero-icon">🚀</div>
-      <div class="hero-title">Ready to go <span id="hero-word">Star</span>?</div>
-      <div class="hero-sub" id="hero-sub">9 questions · 15 minutes · You've got this!</div>
+    <!-- Compact greeting -->
+    <div class="home-greeting">
+      <div class="home-greeting-title">Hey <span id="hero-word">Star</span>! 👋</div>
     </div>
-    <div id="session-resume-wrap" style="display:none">
-      <div class="session-status-box">
-        <div class="session-resume-label">⚡ Session in progress</div>
-        <div class="session-resume-info" id="session-resume-info">Loading...</div>
-        <button class="btn btn-secondary btn-sm" onclick="resumeSession()">Resume →</button>
-      </div>
-    </div>
-    <div class="battery-pills" id="battery-pills"></div>
-    <div style="text-align:center;padding:0 20px 12px;position:relative;z-index:1">
-      <span id="home-grade-pill" style="display:none;background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:5px 16px;font-size:13px;font-weight:700;color:var(--accent);cursor:pointer" onclick="showScreen('setup')">
-        📚 <span id="home-grade-text"></span> — tap to change
-      </span>
-    </div>
-    <div class="home-actions">
-      <button class="btn btn-primary btn-lg" onclick="showScreen('setup')" id="btn-new-session">
-        <span>⚡</span> Start New Session
-      </button>
-      <button class="btn btn-secondary" onclick="showScreen('insights')">
-        <span>📊</span> My Progress
-      </button>
-      <button class="review-btn" id="btn-review-mistakes" onclick="startMistakeReview()" disabled title="No mistakes yet">
-        🔄 Review My Mistakes
-      </button>
-    </div>
-    <div style="padding:0 20px 10px;position:relative;z-index:1">
-      <div class="card">
-        <div style="font-size:13px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Quick stats</div>
-        <div class="stats-row" id="home-stats">
-          <div class="stat-chip"><div class="stat-chip-num" id="hs-sessions">0</div><div class="stat-chip-lbl">Sessions</div></div>
-          <div class="stat-chip"><div class="stat-chip-num" id="hs-accuracy">-</div><div class="stat-chip-lbl">Accuracy</div></div>
-          <div class="stat-chip"><div class="stat-chip-num" id="hs-streak">0🔥</div><div class="stat-chip-lbl">Streak</div></div>
+
+    <!-- Swipeable card carousel -->
+    <div class="home-carousel-wrap">
+      <div class="home-carousel" id="home-carousel">
+
+        <!-- Card 1: Start Session -->
+        <div class="hc-card hc-card-cta">
+          <div class="hc-card-label">Ready to practice?</div>
+          <div id="session-resume-wrap" style="display:none;text-align:center;width:100%;max-width:320px;margin-bottom:14px">
+            <div class="session-resume-label">⚡ Session in progress</div>
+            <div class="session-resume-info" id="session-resume-info">Loading...</div>
+            <button class="btn btn-secondary btn-sm" onclick="resumeSession()" style="width:100%;margin-bottom:12px">Resume →</button>
+          </div>
+          <button class="btn btn-primary btn-lg hc-cta-btn" onclick="showScreen('setup')" id="btn-new-session">
+            <span>⚡</span> Start New Session
+          </button>
+          <!-- Hidden compat elements -->
+          <span id="home-grade-pill" style="display:none"><span id="home-grade-text"></span></span>
         </div>
+
+        <!-- Card 2: Stats -->
+        <div class="hc-card hc-card-stats">
+          <div class="hc-card-label">Your Progress</div>
+          <div class="stats-row" id="home-stats" style="width:100%;max-width:340px">
+            <div class="stat-chip"><div class="stat-chip-num" id="hs-sessions">0</div><div class="stat-chip-lbl">Sessions</div></div>
+            <div class="stat-chip"><div class="stat-chip-num" id="hs-accuracy">-</div><div class="stat-chip-lbl">Accuracy</div></div>
+            <div class="stat-chip"><div class="stat-chip-num" id="hs-streak">0🔥</div><div class="stat-chip-lbl">Streak</div></div>
+          </div>
+          <button class="btn btn-secondary" onclick="showScreen('insights')" style="width:100%;max-width:340px;margin-top:16px">
+            📊 View Full Progress
+          </button>
+        </div>
+
+        <!-- Card 3: Review Mistakes -->
+        <div class="hc-card hc-card-review">
+          <div class="hc-card-label">Keep improving</div>
+          <div class="hc-card-icon">🔄</div>
+          <div class="hc-card-title">Review Mistakes</div>
+          <div class="hc-card-desc">Practice the questions you got wrong to sharpen your skills</div>
+          <button class="review-btn" id="btn-review-mistakes" onclick="startMistakeReview()" disabled title="No mistakes yet" style="max-width:320px;width:100%">
+            🔄 Review My Mistakes
+          </button>
+        </div>
+
       </div>
     </div>
+
+    <!-- Carousel page dots -->
+    <div class="hc-dots" id="hc-dots">
+      <span class="hc-dot active"></span>
+      <span class="hc-dot"></span>
+      <span class="hc-dot"></span>
+    </div>
+
+    <!-- Hidden compat elements the JS writes to -->
+    <div id="battery-pills" style="display:none"></div>
+    <div id="hero-sub" style="display:none"></div>
+    <div id="hero-icon" style="display:none">🚀</div>
   </div>
 
   <!-- THEMES -->
@@ -1251,6 +1393,16 @@ body{background:#000}
         <span class="theme-card-icon">🔢</span>
         <div class="theme-card-name">Math World</div>
         <div class="theme-card-desc">Numbers &amp; patterns rule</div>
+      </div>
+      <div class="theme-card theme-ocean" id="tc-ocean" onclick="setTheme('ocean')">
+        <span class="theme-card-icon">🌊</span>
+        <div class="theme-card-name">Deep Ocean</div>
+        <div class="theme-card-desc">Calm currents, clear mind</div>
+      </div>
+      <div class="theme-card theme-library" id="tc-library" onclick="setTheme('library')">
+        <span class="theme-card-icon">📚</span>
+        <div class="theme-card-name">Scholar's Nook</div>
+        <div class="theme-card-desc">Focus, think, discover</div>
       </div>
     </div>
     <button class="btn btn-secondary" style="margin-top:20px;width:100%" onclick="showScreen('home')">← Back</button>
@@ -1364,6 +1516,29 @@ body{background:#000}
               <div class="battery-option-desc">Matrices, Paper Folding, Classification</div>
             </div>
             <div class="battery-check"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Number of Questions -->
+      <div class="setup-section">
+        <div class="setup-label">Number of Questions</div>
+        <div class="numq-grid" id="numq-grid">
+          <div class="numq-btn" id="nq-5" onclick="selectNumQuestions(5,this)">
+            <span class="numq-num">5</span>
+            <span class="numq-label">Quick</span>
+          </div>
+          <div class="numq-btn selected" id="nq-9" onclick="selectNumQuestions(9,this)">
+            <span class="numq-num">9</span>
+            <span class="numq-label">Default</span>
+          </div>
+          <div class="numq-btn" id="nq-12" onclick="selectNumQuestions(12,this)">
+            <span class="numq-num">12</span>
+            <span class="numq-label">Extended</span>
+          </div>
+          <div class="numq-btn" id="nq-15" onclick="selectNumQuestions(15,this)">
+            <span class="numq-num">15</span>
+            <span class="numq-label">Deep Dive</span>
           </div>
         </div>
       </div>
@@ -1482,6 +1657,13 @@ body{background:#000}
         Earn by answering<br>questions correctly!
       </div>
     </div>
+    <div class="shop-settings-row">
+      <div>
+        <div class="shop-settings-label">🎭 Character Animations</div>
+        <div class="shop-settings-sub">Show a character after each correct answer</div>
+      </div>
+      <button id="anim-toggle-btn" class="anim-toggle-btn" onclick="toggleCharAnimations()">ON</button>
+    </div>
     <div class="shop-section-title">Characters — 15 ✨ each</div>
     <div class="chars-grid" id="chars-grid">
       <!-- Rendered by JS -->
@@ -1587,6 +1769,8 @@ body{background:#000}
             <tr><td>🧘 Zen</td><td>Calm gradient + singing bowl tones</td></tr>
             <tr><td>🔬 Science</td><td>Circuit-board aesthetic + lab hum &amp; beeps</td></tr>
             <tr><td>➕ Math</td><td>Number-grid aesthetic + frequency sequence audio</td></tr>
+            <tr><td>🌊 Deep Ocean</td><td>Drifting sea particles + ocean waves &amp; seagulls</td></tr>
+            <tr><td>📚 Scholar's Nook</td><td>Warm study particles + soft rain &amp; piano tones</td></tr>
           </table>
         </div>
       </div>
@@ -1733,6 +1917,20 @@ body{background:#000}
     <button class="btn btn-secondary" style="width:100%;margin-top:10px;font-size:13px" onclick="skipWelcome()">
       Skip for now
     </button>
+  </div>
+</div>
+
+<!-- Feedback Modal -->
+<div class="result-overlay" id="feedback-modal" onclick="if(event.target===this)closeFeedbackModal()">
+  <div class="result-card" style="max-width:420px;text-align:left">
+    <div style="font-size:36px;margin-bottom:8px;text-align:center">💬</div>
+    <div class="result-title" style="font-size:20px;margin-bottom:6px;text-align:center">Send Feedback</div>
+    <div style="font-size:13px;color:var(--text2);margin-bottom:16px;text-align:center;line-height:1.5">Tell us what you think — bugs, ideas, or just a hi!</div>
+    <textarea class="feedback-textarea" id="feedback-text" maxlength="5000" placeholder="Your feedback..." oninput="onFeedbackInput()"></textarea>
+    <div class="feedback-char-counter" id="feedback-char-counter">0 / 5000</div>
+    <div class="feedback-status" id="feedback-status"></div>
+    <button class="btn btn-primary" style="width:100%;margin-top:12px" id="feedback-submit-btn" onclick="submitFeedback()">Submit ✓</button>
+    <button class="btn btn-secondary" style="width:100%;margin-top:8px;font-size:13px" onclick="closeFeedbackModal()">Cancel</button>
   </div>
 </div>
 
@@ -2314,7 +2512,9 @@ const THEMES = {
   candyland:  { icon:'🍭', word:'Champion',   logo:'🍭 BrainSpark' },
   zen:        { icon:'🎋', word:'Seeker',     logo:'🎋 BrainSpark' },
   science:    { icon:'⚗️',  word:'Scientist',  logo:'⚗️ BrainSpark'  },
-  math:       { icon:'🔢', word:'Genius',     logo:'🔢 BrainSpark' }
+  math:       { icon:'🔢', word:'Genius',     logo:'🔢 BrainSpark' },
+  ocean:      { icon:'🌊', word:'Explorer',   logo:'🌊 BrainSpark' },
+  library:    { icon:'📚', word:'Scholar',    logo:'📚 BrainSpark' },
 };
 
 async function setTheme(name) {
@@ -2352,7 +2552,9 @@ function createParticles(theme) {
     candyland: ['🍭','🍬','🍩','🍫','🧁','🍦','🎂','🌈'],
     zen:       ['🎋','🪨','🌿','🍃','☁️','🌸','🕊️','💧'],
     science:   ['⚗️','🔬','🧬','⚡','🔭','💡','🧪','🌡️'],
-    math:      ['➕','✖️','➗','🔢','📐','📏','🔺','💡']
+    math:      ['➕','✖️','➗','🔢','📐','📏','🔺','💡'],
+    ocean:     ['🌊','🐠','🐟','💧','🐚','🦀','🐙','✨'],
+    library:   ['📚','📖','✏️','🦉','💡','🌙','☕','📝'],
   };
   const s = symbols[theme] || symbols.space;
   const count = theme === 'unicorn' ? 16 : theme === 'candyland' ? 18 : theme === 'science' ? 14 : 12;
@@ -2376,7 +2578,9 @@ function createParticles(theme) {
     candyland: { colors: ['#ff6eb4','#fbbf24','#34d399','#f97316','#a78bfa'], size: 11, duration: 700 },
     zen:       { colors: ['#7ab87a','#b8d4a0','#e0f0d0','#c8e6c9','#a5d6a7'], size: 7, duration: 1200 },
     science:   { colors: ['#00b0ff','#e040fb','#00e5ff','#40c4ff','#80d8ff'], size: 8, duration: 650 },
-    math:      { colors: ['#ffd740','#ff6d00','#a78bfa','#ffca28','#ff9100'], size: 9, duration: 700 }
+    math:      { colors: ['#ffd740','#ff6d00','#a78bfa','#ffca28','#ff9100'], size: 9, duration: 700 },
+    ocean:     { colors: ['#29acd6','#00e5c8','#80d8f0','#4fc3f7','#b2ebf2'], size: 7, duration: 1100 },
+    library:   { colors: ['#c8952a','#e8c060','#d4a847','#a07828','#f0d080'], size: 7, duration: 1000 },
   };
   const trailCfg = trailConfigs[theme] || trailConfigs.space;
   let colorIdx = 0;
@@ -2786,6 +2990,96 @@ function createParticles(theme) {
       window._ambientStop = () => { try { actx.close(); } catch(e){} };
     } catch(e) { console.warn('Math sound unavailable', e); }
   }
+
+  // OCEAN: slow rolling wave noise + soft distant seagull calls
+  if (theme === 'ocean') {
+    window._ambientStop = () => {};
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      const actx = new AudioCtx();
+      // Wave wash — band-pass filtered noise with slow LFO swell
+      const bufSize = actx.sampleRate * 4;
+      const noiseBuf = actx.createBuffer(1, bufSize, actx.sampleRate);
+      const nd = noiseBuf.getChannelData(0);
+      for (let i = 0; i < bufSize; i++) nd[i] = Math.random() * 2 - 1;
+      const noiseNode = actx.createBufferSource();
+      noiseNode.buffer = noiseBuf; noiseNode.loop = true;
+      const waveFilter = actx.createBiquadFilter();
+      waveFilter.type = 'bandpass'; waveFilter.frequency.value = 300; waveFilter.Q.value = 0.5;
+      const waveGain = actx.createGain(); waveGain.gain.value = 0.04;
+      // Slow LFO to simulate wave rhythm (~0.12 Hz = 8-second swell)
+      const lfo = actx.createOscillator(); const lfoGain = actx.createGain();
+      lfo.type = 'sine'; lfo.frequency.value = 0.12; lfoGain.gain.value = 0.025;
+      lfo.connect(lfoGain); lfoGain.connect(waveGain.gain);
+      noiseNode.connect(waveFilter); waveFilter.connect(waveGain); waveGain.connect(actx.destination);
+      noiseNode.start(); lfo.start();
+      // Soft high-frequency shimmer (ocean surface sparkle)
+      const shimmerFilter = actx.createBiquadFilter();
+      shimmerFilter.type = 'highpass'; shimmerFilter.frequency.value = 3000;
+      const shimmerGain = actx.createGain(); shimmerGain.gain.value = 0.008;
+      const noiseNode2 = actx.createBufferSource();
+      noiseNode2.buffer = noiseBuf; noiseNode2.loop = true;
+      noiseNode2.connect(shimmerFilter); shimmerFilter.connect(shimmerGain); shimmerGain.connect(actx.destination);
+      noiseNode2.start();
+      // Distant seagull call (occasional gentle glide)
+      function seagull() {
+        if (!document.body.classList.contains('theme-ocean')) return;
+        const osc = actx.createOscillator(); const g = actx.createGain();
+        osc.type = 'sine';
+        const f0 = 900 + Math.random() * 200;
+        osc.frequency.setValueAtTime(f0, actx.currentTime);
+        osc.frequency.linearRampToValueAtTime(f0 * 1.25, actx.currentTime + 0.3);
+        osc.frequency.linearRampToValueAtTime(f0 * 0.9, actx.currentTime + 0.7);
+        g.gain.setValueAtTime(0, actx.currentTime);
+        g.gain.linearRampToValueAtTime(0.045, actx.currentTime + 0.15);
+        g.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + 0.9);
+        osc.connect(g); g.connect(actx.destination);
+        osc.start(); osc.stop(actx.currentTime + 1);
+        setTimeout(seagull, 8000 + Math.random() * 12000);
+      }
+      seagull();
+      window._ambientStop = () => { try { noiseNode.stop(); noiseNode2.stop(); actx.close(); } catch(e){} };
+    } catch(e) { console.warn('Ocean sound unavailable', e); }
+  }
+
+  // LIBRARY: soft rain on glass + gentle low-piano tone
+  if (theme === 'library') {
+    window._ambientStop = () => {};
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      const actx = new AudioCtx();
+      // Rain — high-pass filtered noise at low volume
+      const bufSize = actx.sampleRate * 3;
+      const noiseBuf = actx.createBuffer(1, bufSize, actx.sampleRate);
+      const nd = noiseBuf.getChannelData(0);
+      for (let i = 0; i < bufSize; i++) nd[i] = Math.random() * 2 - 1;
+      const rainNode = actx.createBufferSource();
+      rainNode.buffer = noiseBuf; rainNode.loop = true;
+      const rainFilter = actx.createBiquadFilter();
+      rainFilter.type = 'highpass'; rainFilter.frequency.value = 2000;
+      const rainGain = actx.createGain(); rainGain.gain.value = 0.022;
+      rainNode.connect(rainFilter); rainFilter.connect(rainGain); rainGain.connect(actx.destination);
+      rainNode.start();
+      // Occasional warm piano note (D minor pentatonic: D3, F3, G3, A3, C4)
+      const pianoFreqs = [146.83, 174.61, 196.0, 220.0, 261.63];
+      function pianoNote() {
+        if (!document.body.classList.contains('theme-library')) return;
+        const freq = pianoFreqs[Math.floor(Math.random() * pianoFreqs.length)];
+        const osc = actx.createOscillator(); const g = actx.createGain();
+        const filter = actx.createBiquadFilter();
+        osc.type = 'triangle'; osc.frequency.value = freq;
+        filter.type = 'lowpass'; filter.frequency.value = 1200;
+        g.gain.setValueAtTime(0, actx.currentTime);
+        g.gain.linearRampToValueAtTime(0.1, actx.currentTime + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + 3.5);
+        osc.connect(filter); filter.connect(g); g.connect(actx.destination);
+        osc.start(); osc.stop(actx.currentTime + 4);
+        setTimeout(pianoNote, 4000 + Math.random() * 7000);
+      }
+      pianoNote();
+      window._ambientStop = () => { try { rainNode.stop(); actx.close(); } catch(e){} };
+    } catch(e) { console.warn('Library sound unavailable', e); }
+  }
 }
 
 // ============================================================
@@ -2820,6 +3114,78 @@ async function loadQuestions() {
 // ============================================================
 // NAVIGATION
 // ============================================================
+function toggleHamburgerMenu() {
+  const menu = document.getElementById('hb-menu');
+  if (menu) menu.classList.toggle('open');
+}
+function closeHamburgerMenu() {
+  const menu = document.getElementById('hb-menu');
+  if (menu) menu.classList.remove('open');
+}
+document.addEventListener('click', function(e) {
+  const menu = document.getElementById('hb-menu');
+  const btn  = document.getElementById('hb-btn');
+  if (!menu || !menu.classList.contains('open')) return;
+  if (!menu.contains(e.target) && btn && !btn.contains(e.target)) menu.classList.remove('open');
+});
+
+function openFeedbackModal() {
+  const modal = document.getElementById('feedback-modal');
+  const ta = document.getElementById('feedback-text');
+  const counter = document.getElementById('feedback-char-counter');
+  const status = document.getElementById('feedback-status');
+  if (!modal) return;
+  if (ta) ta.value = '';
+  if (counter) { counter.textContent = '0 / 5000'; counter.classList.remove('over'); }
+  if (status) status.textContent = '';
+  const submitBtn = document.getElementById('feedback-submit-btn');
+  if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit ✓'; }
+  modal.classList.add('visible');
+  setTimeout(() => { if (ta) ta.focus(); }, 100);
+}
+function closeFeedbackModal() {
+  const modal = document.getElementById('feedback-modal');
+  if (modal) modal.classList.remove('visible');
+}
+function onFeedbackInput() {
+  const ta = document.getElementById('feedback-text');
+  const counter = document.getElementById('feedback-char-counter');
+  if (!ta || !counter) return;
+  const len = ta.value.length;
+  counter.textContent = len + ' / 5000';
+  counter.classList.toggle('over', len > 5000);
+}
+async function submitFeedback() {
+  const ta = document.getElementById('feedback-text');
+  const status = document.getElementById('feedback-status');
+  const submitBtn = document.getElementById('feedback-submit-btn');
+  const text = ta ? ta.value.trim() : '';
+  if (!text) { if (status) status.textContent = '⚠ Please write something before submitting.'; return; }
+  if (text.length > 5000) { if (status) status.textContent = '⚠ Feedback is too long (max 5000 characters).'; return; }
+  if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+  if (status) status.textContent = '';
+  try {
+    const db = window._fbDb;
+    const { collection, addDoc } = window._fbFns || {};
+    if (!db || !addDoc || !collection) throw new Error('Firebase not ready');
+    const entry = {
+      text: text,
+      submittedAt: new Date().toISOString(),
+      userId: (window._fbAuth && window._fbAuth.currentUser) ? window._fbAuth.currentUser.uid : null,
+      playerName: (typeof playerName !== 'undefined' && playerName) ? playerName : 'Anonymous',
+      userAgent: navigator.userAgent.substring(0, 200)
+    };
+    await addDoc(collection(db, 'feedback'), entry);
+    if (status) status.textContent = '✅ Thanks! Your feedback was sent.';
+    if (submitBtn) submitBtn.textContent = 'Sent ✓';
+    setTimeout(() => closeFeedbackModal(), 1800);
+  } catch(err) {
+    console.error('Feedback error:', err);
+    if (status) status.textContent = '❌ Could not send. Please try again.';
+    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit ✓'; }
+  }
+}
+
 function showScreen(name) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -2828,16 +3194,40 @@ function showScreen(name) {
   const nav = document.getElementById(`nav-${name}`);
   if (nav) nav.classList.add('active');
   if (name === 'insights') renderInsights();
-  if (name === 'home') refreshHome();
+  if (name === 'home') { refreshHome(); const c = document.getElementById('home-carousel'); if (c) c.scrollTo({ left: 0, behavior: 'smooth' }); }
   if (name === 'achievements') renderAchievements();
   if (name === 'parent') renderParentDashboard();
-  if (name === 'shop') renderShop();
+  if (name === 'shop') { renderShop(); updateAnimToggleBtn(); }
+}
+
+// ============================================================
+// HOME CAROUSEL
+// ============================================================
+let _carouselInited = false;
+function initCarousel() {
+  if (_carouselInited) return;
+  const carousel = document.getElementById('home-carousel');
+  const dots = document.querySelectorAll('#hc-dots .hc-dot');
+  if (!carousel || !dots.length) return;
+  _carouselInited = true;
+  // Tap dots to jump to card
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      carousel.scrollTo({ left: carousel.clientWidth * i, behavior: 'smooth' });
+    });
+  });
+  // Update active dot on scroll
+  carousel.addEventListener('scroll', () => {
+    const idx = Math.round(carousel.scrollLeft / carousel.clientWidth);
+    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+  }, { passive: true });
 }
 
 // ============================================================
 // HOME
 // ============================================================
 async function refreshHome() {
+  initCarousel();
   const sessions = await loadSessions();
   const active = await loadActiveSession();
 
@@ -2940,6 +3330,7 @@ function calcStreak(sessions) {
 // ============================================================
 let setupBattery = 'mixed';
 let setupGrade = '';
+let setupNumQuestions = 9;
 
 // Grade metadata: difficulty range, CoGAT level name, encouragement
 const GRADE_META = {
@@ -2969,6 +3360,12 @@ async function selectGrade(grade, el) {
 function selectBattery(bat, el) {
   setupBattery = bat;
   document.querySelectorAll('.battery-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function selectNumQuestions(n, el) {
+  setupNumQuestions = n;
+  document.querySelectorAll('.numq-btn').forEach(b => b.classList.remove('selected'));
   el.classList.add('selected');
 }
 
@@ -3061,8 +3458,8 @@ async function startNewSession() {
   if (!firstQ) { alert('No questions available for this selection — please try a different grade or battery.'); return; }
   adaptState.pendingToast = null; // No toast on the first question
 
-  const totalQ   = setupExamMode ? EXAM_QUESTIONS : SESSION_QUESTIONS;
-  const totalMin  = setupExamMode ? EXAM_MINUTES   : SESSION_MINUTES;
+  const totalQ   = setupExamMode ? EXAM_QUESTIONS : setupNumQuestions;
+  const totalMin  = setupExamMode ? EXAM_MINUTES   : Math.round((setupNumQuestions / SESSION_QUESTIONS) * SESSION_MINUTES);
 
   activeSession = {
     id:             'ses_' + Date.now(),
@@ -3377,8 +3774,8 @@ async function completeSession() {
   // Personalized shoutouts
   const shoutouts = {
     perfect: name
-      ? [`${name}, you're a GENIUS! 🧠✨`, `Perfect score, ${name}! You're unstoppable! 🚀`, `${name} = 🔥 LEGEND! 9 for 9!`, `${name}, your brain is on FIRE! 🔥`]
-      : ["PERFECT SCORE! You're a genius! 🧠✨", 'Absolutely flawless! 🚀', 'Unstoppable! 9 for 9! 🌟'],
+      ? [`${name}, you're a GENIUS! 🧠✨`, `Perfect score, ${name}! You're unstoppable! 🚀`, `${name} = 🔥 LEGEND! ${total} for ${total}!`, `${name}, your brain is on FIRE! 🔥`]
+      : ["PERFECT SCORE! You're a genius! 🧠✨", 'Absolutely flawless! 🚀', `Unstoppable! ${total} for ${total}! 🌟`],
     great: name
       ? [`Way to go, ${name}! 🎉`, `${name}, you're crushing it! 💪`, `Awesome work, ${name}! Keep going! 🌟`, `${name}, you're getting smarter every day! 📈`]
       : ["Great job! 🎉", "You're getting smarter! 💪", "Awesome work! 🌟"],
@@ -3876,7 +4273,7 @@ let _audioCtx = null;
 function toggleAudio() {
   audioEnabled = !audioEnabled;
   const btn = document.getElementById('audio-btn');
-  if (btn) btn.textContent = audioEnabled ? '🔊' : '🔇';
+  if (btn) btn.textContent = audioEnabled ? '🔊 Sound' : '🔇 Sound (off)';
   if (audioEnabled) {
     // Re-enable: resume AudioContext and restart ambient for current theme
     const ctx = _getAudioCtx();
@@ -4363,6 +4760,20 @@ document.querySelectorAll('.footer-year-modal').forEach(el => el.textContent = _
 const SPARK_COIN_KEY = 'bs_spark_coins';
 const OWNED_CHARS_KEY = 'bs_owned_chars';
 const CHAR_COST = 15;
+const ANIM_DISABLED_KEY = 'bs_anim_disabled';
+function isAnimDisabled() { return localStorage.getItem(ANIM_DISABLED_KEY) === '1'; }
+function toggleCharAnimations() {
+  const disabled = isAnimDisabled();
+  localStorage.setItem(ANIM_DISABLED_KEY, disabled ? '0' : '1');
+  updateAnimToggleBtn();
+}
+function updateAnimToggleBtn() {
+  const btn = document.getElementById('anim-toggle-btn');
+  if (!btn) return;
+  const off = isAnimDisabled();
+  btn.textContent = off ? 'OFF' : 'ON';
+  btn.className = 'anim-toggle-btn ' + (off ? 'off' : 'on');
+}
 
 // 25 cute characters with unique CSS animations
 const SPARK_CHARACTERS = [
@@ -5023,6 +5434,7 @@ function showCharAnimation(ch, earnedCoin, onDone) {
 }
 
 async function maybeShowCharAfterCorrect(onDone) {
+  if (isAnimDisabled()) { if (onDone) onDone(); return; }
   const { owned } = await loadSparkData();
   if (!owned.length) {
     if (onDone) onDone();
