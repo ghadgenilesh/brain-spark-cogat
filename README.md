@@ -11,7 +11,7 @@ BrainSpark runs entirely in the browser — no installation, no accounts require
 ## ✨ Highlights
 
 - **2,550+ questions** across all 9 CoGAT question types and every grade from K–8, including visual SVG figure-matrices
-- **10 kid-friendly themes** — Space, Superhero, Royal Quest, Jungle, Unicorn, Magic Realm, Candy Kingdom, Zen, Science, Math
+- **15 kid-friendly themes** — Clean Light, Clean Dark, Space, Superhero, Royal Quest, Jungle, Unicorn, Magic Realm, Candy Kingdom, Zen Garden, Science Lab, Math World, Deep Ocean, Scholar's Nook, Pirate's Cove
 - **Offline-first** — works without internet after the first load; questions are cached in the browser
 - **Google Sign-In sync** — scores, streaks, and settings follow you across any device
 - **Daily streak system** with full-screen milestone celebrations
@@ -20,7 +20,7 @@ BrainSpark runs entirely in the browser — no installation, no accounts require
 - **Mistake Review Mode** — re-practice questions you got wrong in past sessions
 - **Achievement badges** — 12 unlockable badges tied to practice milestones
 - **Parent Dashboard** — weekly activity chart, battery accuracy, weak question types, session history
-- **Audio feedback** — sound cues for correct answers, wrong answers, and badge unlocks (toggleable)
+- **Audio feedback** — ambient soundscapes per theme (jungle crickets, space drone, pirate shanty, and more) plus sound cues for correct/wrong answers and badge unlocks (toggleable)
 - **Free and open** for educational use
 
 ---
@@ -103,20 +103,25 @@ Milestones trigger a full-screen animation with expanding rings, confetti, and a
 
 ### Themes
 
-10 kid-friendly themes, each with unique colors and particle effects:
+15 themes, each with unique colors, particle effects, and an ambient soundscape:
 
-| Theme | Special Effect |
-|-------|---------------|
-| 🚀 Space Explorer | Floating star particles |
-| ⚡ Superhero | Power-burst particles |
-| 👑 Royal Quest | Flower-petal particles |
-| 🌿 Jungle Adventure | Falling leaf particles |
-| 🦄 Unicorn Dreams | Rainbow cursor trail |
-| 🔮 Magic Realm | Live star constellation canvas |
-| 🍭 Candy Kingdom | Bouncing candy particles |
-| 🧘 Zen | Calm gradient |
-| 🔬 Science | Circuit-board aesthetic |
-| ➕ Math | Number-grid aesthetic |
+| Theme | Particles | Ambient Audio |
+|-------|-----------|---------------|
+| ☀️ Clean Light | Stars & sparkles | Silent |
+| 🌑 Clean Dark | Stars & sparkles | Silent |
+| 🚀 Space Explorer | Floating star particles | Cosmic drone + radio blips |
+| ⚡ Superhero | Power-burst particles | Power thrum + energy pulses |
+| 👑 Royal Quest | Flower-petal particles | Harp arpeggios |
+| 🌿 Jungle Adventure | Falling leaf particles | Crickets, frogs & wind |
+| 🦄 Unicorn Dreams | Rainbow cursor trail | Dreamy shimmer + sparkle arpeggios |
+| 🔮 Magic Realm | Live star constellation canvas | Deep drone + descending spell shimmer |
+| 🍭 Candy Kingdom | Bouncing candy particles | Glockenspiel melody |
+| 🧘 Zen Garden | Calm gradient | Singing bowl tones |
+| 🔬 Science Lab | Circuit-board aesthetic | Lab hum + electronic beeps |
+| ➕ Math World | Number-grid aesthetic | Mathematical frequency ratios |
+| 🌊 Deep Ocean | Wave particles | Rolling wave noise + seagull calls |
+| 📚 Scholar's Nook | Book & pen particles | Soft rain on glass + piano |
+| ☠️ Pirate's Cove | Skull & anchor particles | Hull drone + wind + shanty melody |
 
 ### ✨ SparkCoins & Character Shop
 
@@ -128,10 +133,11 @@ Every correct answer earns **1 SparkCoin**, shown in the top-right badge. Spend 
 
 ### Audio Feedback
 
+- **Ambient soundscapes** — each theme plays a unique background audio (see Themes table above)
 - Ascending chime on correct answers
 - Descending buzz on wrong answers
 - Fanfare on badge unlocks
-- Toggle on/off with the 🔊 button in the top bar
+- Toggle on/off with the **🔊 Sound** button in the top bar
 
 ---
 
