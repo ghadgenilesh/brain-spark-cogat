@@ -1,5 +1,7 @@
 # 🧠 BrainSpark — CoGAT Practice for K–8
 
+**Live at [brainspark.stacklets.app](https://brainspark.stacklets.app)**
+
 **A free, ad-free, offline-capable CoGAT (Cognitive Abilities Test) practice app for students in Kindergarten through Grade 8.**
 
 BrainSpark runs entirely in the browser — no installation, no accounts required. Students sign in with Google to sync progress across devices, or play as a guest with everything stored locally.
