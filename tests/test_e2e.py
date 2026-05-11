@@ -1693,3 +1693,75 @@ class TestMultipleSessions:
         page.locator("#screen-home").wait_for(state="visible", timeout=5_000)
         seen_2 = len(json.loads(page.evaluate("() => localStorage.getItem('cogat_seen_ids_local')") or "[]"))
         assert seen_2 >= seen_1
+
+
+# ===========================================================================
+# Feedback modal
+# ===========================================================================
+
+class TestFeedback:
+    def _open_feedback_modal(self, page, local_server):
+        go_home(page, local_server)
+        open_hamburger_menu(page)
+        page.locator("#hb-menu button", has_text="Send Feedback").click()
+        page.locator("#feedback-modal.visible").wait_for(state="visible", timeout=3_000)
+
+    def test_feedback_modal_opens(self, page, local_server):
+        self._open_feedback_modal(page, local_server)
+        assert page.locator("#feedback-text").is_visible()
+
+    def test_empty_feedback_shows_warning(self, page, local_server):
+        self._open_feedback_modal(page, local_server)
+        page.locator("#feedback-submit-btn").click()
+        status = page.locator("#feedback-status").text_content()
+        assert "Please write something" in status
+
+    def test_feedback_too_long_shows_warning(self, page, local_server):
+        self._open_feedback_modal(page, local_server)
+        # bypass maxlength attribute via JS to exceed limit
+        page.evaluate("() => { document.getElementById('feedback-text').value = 'x'.repeat(5001); }")
+        page.locator("#feedback-submit-btn").click()
+        status = page.locator("#feedback-status").text_content()
+        assert "too long" in status
+
+    def test_unauthenticated_user_redirected_to_login(self, page, local_server):
+        """Guest users clicking Submit should be sent to sign-in, not Firestore."""
+        self._open_feedback_modal(page, local_server)
+        page.locator("#feedback-text").fill("Hello from guest")
+        page.locator("#feedback-submit-btn").click()
+        page.wait_for_timeout(500)
+        # Modal should close and login screen should become visible
+        modal_visible = page.locator("#feedback-modal").evaluate("el => el.classList.contains('visible')")
+        assert not modal_visible
+
+    def test_rate_limit_blocks_second_submission(self, page, local_server):
+        """Second feedback attempt in same hour is blocked by localStorage."""
+        go_home(page, local_server)
+        current_hour = page.evaluate("() => new Date().toISOString().slice(0, 13)")
+        # Seed the rate-limit key and use the test seam to bypass closure auth check
+        page.evaluate(f"""() => {{
+            localStorage.setItem('feedback_sent_test_uid_rate', '{current_hour}');
+            window._testCurrentUser = {{ uid: 'test_uid_rate' }};
+            document.getElementById('feedback-modal').classList.add('visible');
+            document.getElementById('feedback-text').value = 'second attempt';
+            document.getElementById('feedback-status').textContent = '';
+        }}""")
+        page.evaluate("submitFeedback()")
+        # Rate limit path is synchronous — short wait is enough
+        page.wait_for_timeout(300)
+        status = page.locator("#feedback-status").text_content()
+        page.evaluate("() => { delete window._testCurrentUser; }")
+        assert "already sent" in status.lower()
+
+    def test_char_counter_updates(self, page, local_server):
+        self._open_feedback_modal(page, local_server)
+        page.locator("#feedback-text").fill("Hello!")
+        counter = page.locator("#feedback-char-counter").text_content()
+        assert counter.startswith("6")
+
+    def test_cancel_closes_modal(self, page, local_server):
+        self._open_feedback_modal(page, local_server)
+        page.locator("#feedback-modal button", has_text="Cancel").click()
+        page.wait_for_timeout(300)
+        modal_visible = page.locator("#feedback-modal").evaluate("el => el.classList.contains('visible')")
+        assert not modal_visible
