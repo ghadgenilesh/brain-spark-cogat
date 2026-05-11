@@ -3341,16 +3341,23 @@ async function submitFeedback() {
   const text = ta ? ta.value.trim() : '';
   if (!text) { if (status) status.textContent = '⚠ Please write something before submitting.'; return; }
   if (text.length > 5000) { if (status) status.textContent = '⚠ Feedback is too long (max 5000 characters).'; return; }
+  const auth = window._fbAuth;
+  if (!auth || !auth.currentUser) {
+    closeFeedbackModal();
+    showLoginScreenUI();
+    return;
+  }
   if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
   if (status) status.textContent = '';
   try {
     const db = window._fbDb;
     const { collection, addDoc } = window._fbFns || {};
     if (!db || !addDoc || !collection) throw new Error('Firebase not ready');
+    const user = auth.currentUser;
     const entry = {
       text: text,
       submittedAt: new Date().toISOString(),
-      userId: (window._fbAuth && window._fbAuth.currentUser) ? window._fbAuth.currentUser.uid : null,
+      userId: user ? user.uid : null,
       playerName: (typeof playerName !== 'undefined' && playerName) ? playerName : 'Anonymous',
       userAgent: navigator.userAgent.substring(0, 200)
     };
