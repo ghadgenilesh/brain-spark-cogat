@@ -3341,8 +3341,7 @@ async function submitFeedback() {
   const text = ta ? ta.value.trim() : '';
   if (!text) { if (status) status.textContent = '⚠ Please write something before submitting.'; return; }
   if (text.length > 5000) { if (status) status.textContent = '⚠ Feedback is too long (max 5000 characters).'; return; }
-  const auth = window._fbAuth;
-  if (!auth || !auth.currentUser) {
+  if (!currentUser) {
     closeFeedbackModal();
     showLoginScreenUI();
     return;
@@ -3353,7 +3352,7 @@ async function submitFeedback() {
     const db = window._fbDb;
     const { collection, addDoc } = window._fbFns || {};
     if (!db || !addDoc || !collection) throw new Error('Firebase not ready');
-    const user = auth.currentUser;
+    const user = currentUser;
     const entry = {
       text: text,
       submittedAt: new Date().toISOString(),
